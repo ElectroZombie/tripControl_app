@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
+import 'package:trip_control_app/models/compra_model.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 
 class DB {
@@ -18,13 +19,6 @@ class DB {
     );
   }
 
-  static Future<void> insertNewTrip(TripModel T) async {
-    Database db = await _openDB();
-
-    db.insert("viaje", T.toMap());
-    return;
-  }
-
   static Future<bool> isDBEmpty() async {
     Database db = await _openDB();
 
@@ -34,5 +28,33 @@ class DB {
     } else {
       return false;
     }
+  }
+
+  static Future<void> insertNewTrip(TripModel T) async {
+    Database db = await _openDB();
+
+    db.insert("viaje", T.toMap());
+    return;
+  }
+
+  static Future<TripModel> updateTrip(TripModel T) async {
+    Database db = await _openDB();
+
+    db.update('viaje', T.toMap(),
+        where: '${T.tripID} = ?', whereArgs: [T.tripID]);
+
+    List<Map<String, dynamic>> Q = await db
+        .query('viaje', where: '${T.tripID} = ?', whereArgs: [T.tripID]);
+    return List.generate(Q.length, (i) => T).first;
+  }
+
+  static Future<void> deleteTrip(int idTrip) async {
+    Database db = await _openDB();
+    db.delete('viaje', where: 'id_viaje = ?', whereArgs: [idTrip]);
+  }
+
+  static Future<void> insertNewCompra(CompraModel c) async {
+    Database db = await _openDB();
+    db.insert('compra', c.toMap());
   }
 }
