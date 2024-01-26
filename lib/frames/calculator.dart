@@ -16,7 +16,8 @@ TextEditingController pagoM2 = new TextEditingController();
 TextEditingController precioM1 = new TextEditingController();
 TextEditingController cambioM1 = new TextEditingController();
 TextEditingController cambioM2 = new TextEditingController();
-GlobalKey<FormState> keyForm = new GlobalKey();
+TextEditingController rentR = new TextEditingController();
+TextEditingController rentK = new TextEditingController();
 
 class CalculatorState extends State<Calculator> {
   @override
@@ -25,17 +26,12 @@ class CalculatorState extends State<Calculator> {
       appBar: AppBar(
         title: const Text('Calculadora'),
       ),
-      body: Stack(
-        children: [
-          gradient(),
-          SingleChildScrollView(
-            child: Form(
-                key: keyForm,
-                child: form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
-                    keyForm)),
-          ),
-        ],
-      ),
+      body: Stack(children: [
+        gradient(),
+        Form(
+            child: form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
+                rentR, rentK)),
+      ]),
     );
   }
 }
