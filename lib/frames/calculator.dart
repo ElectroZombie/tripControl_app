@@ -22,16 +22,11 @@ TextEditingController rentK = new TextEditingController();
 class CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Calculadora'),
-      ),
-      body: Stack(children: [
-        gradient(),
-        Form(
-            child: form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
-                rentR, rentK)),
-      ]),
-    );
+    return Stack(children: [
+      gradient(),
+      Form(
+          child: form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR,
+              rentK, context)),
+    ]);
   }
 }

@@ -25,9 +25,6 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-      ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
