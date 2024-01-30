@@ -9,7 +9,7 @@ Widget gradient() {
               begin: FractionalOffset(0.0, 0.1),
               end: FractionalOffset(0.0, 1.0),
               colors: [
-            Color.fromARGB(170, 47, 182, 99),
-            Color.fromARGB(255, 233, 187, 87)
+            Color.fromARGB(170, 47, 128, 182),
+            Color.fromARGB(255, 77, 36, 131)
           ])));
 }
