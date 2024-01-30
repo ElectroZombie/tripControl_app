@@ -16,20 +16,20 @@ class Principal extends StatelessWidget {
             "Control de viajes",
             style: TextStyle(fontSize: 20),
           ),
-          backgroundColor: Color.fromARGB(170, 47, 128, 182),
+          backgroundColor: Color.fromARGB(255, 47, 128, 182),
           bottom: const TabBar(
             tabs: [
               Tab(
                 child: Text(
                   'Calculadora',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
               Tab(
-                child: Text('Lista de viajes', style: TextStyle(fontSize: 20)),
+                child: Text('Lista de viajes', style: TextStyle(fontSize: 16)),
               ),
               Tab(
-                child: Text('Control de viaje', style: TextStyle(fontSize: 20)),
+                child: Text('Control de viaje', style: TextStyle(fontSize: 16)),
               ),
             ],
           ),

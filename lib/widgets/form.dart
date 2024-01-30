@@ -10,7 +10,7 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: (MediaQuery.of(context).size.width * 45) / 100,
+          width: (MediaQuery.of(context).size.width * 48) / 100,
           child: ListView(
             shrinkWrap: true,
             children: [
@@ -19,49 +19,50 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 title: const Text(
-                  "Cantidad de unidades compradas",
-                  style: TextStyle(fontSize: 22),
+                  "CANTIDAD DE UNIDADES",
+                  style: TextStyle(fontSize: 16),
                 ),
                 subtitle: TextFormField(
                   controller: cantU,
                   maxLength: 8,
                   keyboardType: TextInputType.number,
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 14),
                 ),
               ),
               ListTile(
                 tileColor: Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title: Text("Peso total en kg", style: TextStyle(fontSize: 22)),
+                title: Text("PESO TOTAL KG", style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: pesoT,
                   maxLength: 8,
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 14),
                 ),
               ),
               ListTile(
                 tileColor: Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title: Text("Pago total en Moneda_2",
-                    style: TextStyle(fontSize: 22)),
+                title: Text("PAGO TOTAL M2", style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: pagoM2,
                   maxLength: 8,
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width / 10,
+          width: (MediaQuery.of(context).size.width * 4) / 100,
         ),
         SizedBox(
-          width: (MediaQuery.of(context).size.width * 45) / 100,
+          width: (MediaQuery.of(context).size.width * 48) / 100,
           child: ListView(
             shrinkWrap: true,
             children: [
@@ -69,38 +70,37 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
                 tileColor: Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title: Text("Precio de cada unidad en CUP",
-                    style: TextStyle(fontSize: 22)),
+                title: Text("PRECIO POR UNIDAD EN CUP",
+                    style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: precioM1,
                   maxLength: 8,
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 14),
                 ),
               ),
               ListTile(
                 tileColor: Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title: Text("Cambio CUP/USD", style: TextStyle(fontSize: 22)),
+                title: Text("CAMBIO CUP/USD", style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: cambioM1,
                   maxLength: 8,
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 14),
                 ),
               ),
               ListTile(
                 tileColor: Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title:
-                    Text("Cambio Moneda_2/USD", style: TextStyle(fontSize: 22)),
+                title: Text("CAMBIO M2/USD", style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: cambioM2,
                   maxLength: 8,
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 14),
                 ),
               ),
             ],
@@ -118,7 +118,7 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
       onPressed: () => save(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
           rentR, rentKg, context),
       child: Text(
-        "Convertir",
+        "CONVERTIR",
         style: TextStyle(fontSize: 20),
       ),
     ),
@@ -126,30 +126,31 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-            width: (MediaQuery.of(context).size.width * 30) / 100,
+            width: (MediaQuery.of(context).size.width * 42) / 100,
             child: ListTile(
               tileColor: Color.fromARGB(162, 90, 64, 102),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
-              title: Text("Rentabilidad real", style: TextStyle(fontSize: 22)),
+              title: Text("RENTABILIDAD REAL", style: TextStyle(fontSize: 16)),
               subtitle: TextField(
                 readOnly: true,
                 controller: rentR,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 14),
               ),
             )),
+        SizedBox(width: (MediaQuery.of(context).size.width * 10) / 100),
         SizedBox(
-            width: (MediaQuery.of(context).size.width * 30) / 100,
+            width: (MediaQuery.of(context).size.width * 42) / 100,
             child: ListTile(
               tileColor: Color.fromARGB(162, 90, 64, 102),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
               title:
-                  Text("Rentabilidad por kg", style: TextStyle(fontSize: 22)),
+                  Text("RENTABILIDAD POR KG", style: TextStyle(fontSize: 16)),
               subtitle: TextField(
                 controller: rentKg,
                 readOnly: true,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 14),
               ),
             ))
       ],
