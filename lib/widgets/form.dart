@@ -15,7 +15,7 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
             shrinkWrap: true,
             children: [
               ListTile(
-                tileColor: Color.fromARGB(104, 105, 89, 112),
+                tileColor: const Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 title: const Text(
@@ -26,33 +26,37 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
                   controller: cantU,
                   maxLength: 8,
                   keyboardType: TextInputType.number,
-                  style: TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 14),
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               ListTile(
-                tileColor: Color.fromARGB(104, 105, 89, 112),
+                tileColor: const Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title: Text("PESO TOTAL KG", style: TextStyle(fontSize: 16)),
+                title:
+                    const Text("PESO TOTAL KG", style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: pesoT,
                   maxLength: 8,
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(fontSize: 14),
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style: const TextStyle(fontSize: 14),
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               ListTile(
-                tileColor: Color.fromARGB(104, 105, 89, 112),
+                tileColor: const Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title: Text("PAGO TOTAL M2", style: TextStyle(fontSize: 16)),
+                title:
+                    const Text("PAGO TOTAL M2", style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: pagoM2,
                   maxLength: 8,
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style: const TextStyle(
                     fontSize: 14,
                   ),
                 ),
@@ -69,42 +73,47 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
             shrinkWrap: true,
             children: [
               ListTile(
-                tileColor: Color.fromARGB(104, 105, 89, 112),
+                tileColor: const Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title: Text("PRECIO POR UNIDAD EN CUP",
+                title: const Text("PRECIO POR UNIDAD EN CUP",
                     style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: precioM1,
                   maxLength: 8,
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(fontSize: 14),
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style: const TextStyle(fontSize: 14),
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               ListTile(
-                tileColor: Color.fromARGB(104, 105, 89, 112),
+                tileColor: const Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title: Text("CAMBIO CUP/USD", style: TextStyle(fontSize: 16)),
+                title: const Text("CAMBIO CUP/USD",
+                    style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: cambioM1,
                   maxLength: 8,
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(fontSize: 14),
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style: const TextStyle(fontSize: 14),
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               ListTile(
-                tileColor: Color.fromARGB(104, 105, 89, 112),
+                tileColor: const Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
-                title: Text("CAMBIO M2/USD", style: TextStyle(fontSize: 16)),
+                title:
+                    const Text("CAMBIO M2/USD", style: TextStyle(fontSize: 16)),
                 subtitle: TextFormField(
                   controller: cambioM2,
                   maxLength: 8,
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  style: TextStyle(fontSize: 14),
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  style: const TextStyle(fontSize: 14),
                 ),
               ),
             ],
@@ -112,51 +121,52 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
         )
       ],
     ),
-    SizedBox(height: 5),
+    const SizedBox(height: 5),
     TextButton(
       style: ButtonStyle(
-          fixedSize: MaterialStatePropertyAll(Size(150, 50)),
+          fixedSize: const MaterialStatePropertyAll(Size(150, 50)),
           backgroundColor: MaterialStateColor.resolveWith(
-              (states) => Color.fromARGB(161, 255, 255, 255)),
+              (states) => const Color.fromARGB(161, 255, 255, 255)),
           overlayColor: MaterialStateColor.resolveWith(
               (states) => const Color.fromARGB(99, 104, 58, 183))),
       onPressed: () => save(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
           rentR, rentKg, context),
-      child: Text(
+      child: const Text(
         "CONVERTIR",
         style: TextStyle(fontSize: 20),
       ),
     ),
-    SizedBox(height: 5),
+    const SizedBox(height: 5),
     Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
             width: (MediaQuery.of(context).size.width * 42) / 100,
             child: ListTile(
-              tileColor: Color.fromARGB(162, 90, 64, 102),
+              tileColor: const Color.fromARGB(162, 90, 64, 102),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
-              title: Text("RENTABILIDAD REAL", style: TextStyle(fontSize: 16)),
+              title: const Text("RENTABILIDAD REAL",
+                  style: TextStyle(fontSize: 16)),
               subtitle: TextField(
                 readOnly: true,
                 controller: rentR,
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               ),
             )),
         SizedBox(width: (MediaQuery.of(context).size.width * 10) / 100),
         SizedBox(
             width: (MediaQuery.of(context).size.width * 42) / 100,
             child: ListTile(
-              tileColor: Color.fromARGB(162, 90, 64, 102),
+              tileColor: const Color.fromARGB(162, 90, 64, 102),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30)),
-              title:
-                  Text("RENTABILIDAD POR KG", style: TextStyle(fontSize: 16)),
+              title: const Text("RENTABILIDAD POR KG",
+                  style: TextStyle(fontSize: 16)),
               subtitle: TextField(
                 controller: rentKg,
                 readOnly: true,
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               ),
             ))
       ],
@@ -183,7 +193,7 @@ void save(
     await showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
+        return const AlertDialog(
             title: Text('Error'),
             content: Text("Debe rellenar todos los campos"));
       },

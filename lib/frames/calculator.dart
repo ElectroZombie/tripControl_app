@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/db/db.dart';
 import 'package:trip_control_app/utils/gradient.dart';
 import 'package:trip_control_app/widgets/form.dart';
 
@@ -10,14 +9,14 @@ class Calculator extends StatefulWidget {
   CalculatorState createState() => CalculatorState();
 }
 
-TextEditingController cantU = new TextEditingController();
-TextEditingController pesoT = new TextEditingController();
-TextEditingController pagoM2 = new TextEditingController();
-TextEditingController precioM1 = new TextEditingController();
-TextEditingController cambioM1 = new TextEditingController();
-TextEditingController cambioM2 = new TextEditingController();
-TextEditingController rentR = new TextEditingController();
-TextEditingController rentK = new TextEditingController();
+TextEditingController cantU = TextEditingController();
+TextEditingController pesoT = TextEditingController();
+TextEditingController pagoM2 = TextEditingController();
+TextEditingController precioM1 = TextEditingController();
+TextEditingController cambioM1 = TextEditingController();
+TextEditingController cambioM2 = TextEditingController();
+TextEditingController rentR = TextEditingController();
+TextEditingController rentK = TextEditingController();
 
 class CalculatorState extends State<Calculator> {
   @override
