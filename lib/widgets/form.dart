@@ -29,6 +29,7 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
                   style: TextStyle(fontSize: 14),
                 ),
               ),
+              SizedBox(height: 5),
               ListTile(
                 tileColor: Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
@@ -41,6 +42,7 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
                   style: TextStyle(fontSize: 14),
                 ),
               ),
+              SizedBox(height: 5),
               ListTile(
                 tileColor: Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
@@ -79,6 +81,7 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
                   style: TextStyle(fontSize: 14),
                 ),
               ),
+              SizedBox(height: 5),
               ListTile(
                 tileColor: Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
@@ -91,6 +94,7 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
                   style: TextStyle(fontSize: 14),
                 ),
               ),
+              SizedBox(height: 5),
               ListTile(
                 tileColor: Color.fromARGB(104, 105, 89, 112),
                 shape: RoundedRectangleBorder(
@@ -108,6 +112,7 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
         )
       ],
     ),
+    SizedBox(height: 5),
     TextButton(
       style: ButtonStyle(
           fixedSize: MaterialStatePropertyAll(Size(150, 50)),
@@ -122,6 +127,7 @@ Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
         style: TextStyle(fontSize: 20),
       ),
     ),
+    SizedBox(height: 5),
     Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

@@ -7,6 +7,7 @@ class TripModel {
   String tripName;
   double? coin1Price;
   double? coin2Price;
+  bool activo = true;
 
   double gastoTotal = 0.0; //Dollar
   double? gastoCompras; //Coin2-Dollar
@@ -24,6 +25,7 @@ class TripModel {
   TripModel(
       {required this.tripID,
       required this.tripName,
+      required this.activo,
       this.coin1Price,
       this.coin2Price,
       this.gastoCompras,
@@ -39,6 +41,7 @@ class TripModel {
     return {
       'tripID': tripID,
       'tripName': tripName,
+      'activo': activo,
       'coin1Price': coin1Price,
       'coin2Price': coin2Price,
       'gastoTotal': gastoTotal,

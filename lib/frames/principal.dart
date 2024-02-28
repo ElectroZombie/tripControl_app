@@ -21,12 +21,12 @@ class Principal extends StatelessWidget {
             tabs: [
               Tab(
                 child: Text(
-                  'Calculadora',
+                  'Lista de viajes',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
               Tab(
-                child: Text('Lista de viajes', style: TextStyle(fontSize: 16)),
+                child: Text('Calculadora', style: TextStyle(fontSize: 16)),
               ),
               Tab(
                 child: Text('Control de viaje', style: TextStyle(fontSize: 16)),
@@ -34,7 +34,9 @@ class Principal extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(children: [Calculator(), TripList(), TripData()]),
+        body: TabBarView(
+          children: [TripList(), Calculator(), TripData()],
+        ),
       ),
     );
   }

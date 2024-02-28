@@ -7,6 +7,7 @@ import 'package:trip_control_app/frames/trip_control.dart';
 import 'package:trip_control_app/frames/trip_data.dart';
 import 'package:trip_control_app/frames/trip_list.dart';
 import 'package:trip_control_app/models/trip_model.dart';
+import 'package:trip_control_app/utils/tuple.dart';
 
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -30,7 +31,7 @@ class MainApp extends StatelessWidget {
       routes: {
         '/': (context) => const Principal(),
         '/calculator': (BuildContext context) => const Calculator(),
-        '/trip_control': (BuildContext context) => const TripControl(TripModel),
+        '/trip_control': (BuildContext context) => const TripControl(Tuple),
         '/trip_data': (BuildContext context) => const TripData(),
         'trip_list': (BuildContext context) => const TripList()
       },
