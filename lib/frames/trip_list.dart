@@ -29,13 +29,13 @@ class TripListState extends State<TripList> {
               if (!snapshot.hasData || snapshot.data.length == 0) {
                 return Column(
                   children: [
-                    Text("No hay viajes disponibles"),
+                    const Text("No hay viajes disponibles"),
                     TextButton(
                         onPressed: () => {
                               Navigator.popAndPushNamed(context, '/TripControl',
                                   arguments: Tuple(T: true, K: null))
                             },
-                        child: Text("Crear viaje"))
+                        child: const Text("Crear viaje"))
                   ],
                 );
               } else {
@@ -51,9 +51,9 @@ class TripListState extends State<TripList> {
                                     Navigator.pushNamed(context, '/TripData',
                                         arguments: snapshot.data[r].tripID)
                                   },
-                              icon: Icon(Icons.arrow_circle_right_outlined)),
+                              icon: const Icon(Icons.arrow_circle_right_outlined)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         nuevoViaje(snapshot, context),
@@ -77,9 +77,9 @@ Widget nuevoViaje(snapshot, context) {
               Navigator.popAndPushNamed(context, '/TripControl',
                   arguments: Tuple(T: true, K: null))
             },
-        child: Text("Crear viaje"));
+        child: const Text("Crear viaje"));
   }
-  return SizedBox(
+  return const SizedBox(
     height: 1,
   );
 }

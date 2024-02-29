@@ -12,11 +12,11 @@ class Principal extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Control de viajes",
             style: TextStyle(fontSize: 20),
           ),
-          backgroundColor: Color.fromARGB(255, 47, 128, 182),
+          backgroundColor: const Color.fromARGB(255, 47, 128, 182),
           bottom: const TabBar(
             tabs: [
               Tab(
@@ -34,7 +34,7 @@ class Principal extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [TripList(), Calculator(), TripData()],
         ),
       ),
