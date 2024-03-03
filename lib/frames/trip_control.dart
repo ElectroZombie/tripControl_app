@@ -22,17 +22,17 @@ class TripControlState extends State<TripControl> {
       children: [
         gradient(),
         SingleChildScrollView(
-          child: widgetTrip(tupla),
+          child: widgetTrip(tupla, context),
         ),
       ],
     );
   }
 }
 
-Widget widgetTrip(Tuple<bool, TripModel> tupla) {
+Widget widgetTrip(Tuple<bool, TripModel> tupla, context) {
   if (tupla.T!) {
-    return newTripWidget();
+    return newTripWidget(context);
   } else {
-    return currentTripWidget(tupla.K!);
+    return currentTripWidget(tupla.K!, context);
   }
 }
