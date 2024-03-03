@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart';
 import 'package:trip_control_app/models/compra_model.dart';
+import 'package:trip_control_app/models/gasto_model.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 
 class DB {
@@ -87,5 +89,69 @@ class DB {
   static Future<void> insertNewCompra(CompraModel c) async {
     Database db = await _openDB();
     db.insert('compra', c.toMap());
+  }
+
+  static Future<List<CompraModel>> getComprasTrip(int idTrip) async {
+    Database db = await _openDB();
+
+    List<Map<String, dynamic>> Q =
+        await db.query('compra', where: 'id_viaje = ?', whereArgs: [idTrip]);
+
+    return List.generate(
+        Q.length,
+        (i) => CompraModel(
+            tripID: idTrip,
+            id: Q[i]['id_compra'],
+            compraNombre: Q[i]['nombre_compra'],
+            cantU: Q[i]['cant_unidades'],
+            pesoT: Q[i]['peso_total'],
+            compraPrecio: Q[i]['compra_precio'],
+            ventaCUPXUnidad: Q[i]['ventaCUP']));
+  }
+
+  static Future<void> updateCompra(CompraModel compra) async {
+    Database db = await _openDB();
+
+    db.update('compra', compra.toMap(),
+        where: 'id_viaje = ?', whereArgs: [compra.tripID]);
+  }
+
+  static Future<void> deleteCompra(int idCompra) async {
+    Database db = await _openDB();
+
+    db.delete('compra', where: 'id_viaje = ?', whereArgs: [idCompra]);
+  }
+
+  static Future<void> insertNewGasto(GastoModel g) async {
+    Database db = await _openDB();
+    db.insert('gasto', g.toMap());
+  }
+
+  static Future<List<GastoModel>> getGastosTrip(int idTrip) async {
+    Database db = await _openDB();
+
+    List<Map<String, dynamic>> Q =
+        await db.query('gasto', where: 'id_viaje = ?', whereArgs: [idTrip]);
+
+    return List.generate(
+        Q.length,
+        (i) => GastoModel(
+            id: Q[i]['id_gasto'],
+            tripID: idTrip,
+            gastoDescripcion: Q[i]['descripcion_gasto'],
+            gastoMoney: Q[i]['gasto_money']));
+  }
+
+  static Future<void> updateGasto(GastoModel gasto) async {
+    Database db = await _openDB();
+
+    db.update('gasto', gasto.toMap(),
+        where: 'id_viaje = ?', whereArgs: [gasto.tripID]);
+  }
+
+  static Future<void> deleteGasto(int idGasto) async {
+    Database db = await _openDB();
+
+    db.delete('gasto', where: 'id_viaje = ?', whereArgs: [idGasto]);
   }
 }
