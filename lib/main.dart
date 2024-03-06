@@ -29,11 +29,11 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const Principal(),
+        '/': (context) => Principal(),
         '/calculator': (BuildContext context) => const Calculator(),
         '/trip_control': (BuildContext context) => const TripControl(Tuple),
         '/trip_data': (BuildContext context) => const TripData(),
-        'trip_list': (BuildContext context) => const TripList()
+        '/trip_list': (BuildContext context) => const TripList()
       },
     );
   }
