@@ -15,7 +15,7 @@ class DB {
         join(await getDatabasesPath(), 'tripControl.db'),
         onCreate: (db, version) async {
           await db.execute(
-              "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo BOOL, precio_M1 DOUBLE, precio_M2 DOUBLE, gasto_total DOUBLE, gasto_compras DOUBLE, gasto_otros DOUBLE, gananciaCompraReal DOUBLE, gananciaCompraKilo DOUBLE, gastoCompraKilo DOUBLE, rentabilidad DOUBLE, rentabilidadKilo DOUBLE, rentabilidadPorcentual DOUBLE)");
+              "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE, gasto_total DOUBLE, gasto_compras DOUBLE, gasto_otros DOUBLE, gananciaCompraReal DOUBLE, gananciaCompraKilo DOUBLE, gastoCompraKilo DOUBLE, rentabilidad DOUBLE, rentabilidadKilo DOUBLE, rentabilidadPorcentual DOUBLE)");
           await db.execute(
               "CREATE TABLE compra (id_compra INTEGER PRIMARY KEY, id_viaje INTEGER, nombre_compra TEXT, peso_total DOUBLE, cant_unidades INTEGER, compra_precio DOUBLE, ventaCUP DOUBLE)");
           await db.execute(
@@ -32,7 +32,7 @@ class DB {
           version: 1,
           onCreate: (db, version) async {
             await db.execute(
-                "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo BOOL, precio_M1 DOUBLE, precio_M2 DOUBLE, gasto_total DOUBLE, gasto_compras DOUBLE, gasto_otros DOUBLE, gananciaCompraReal DOUBLE, gananciaCompraKilo DOUBLE, gastoCompraKilo DOUBLE, rentabilidad DOUBLE, rentabilidadKilo DOUBLE, rentabilidadPorcentual DOUBLE)");
+                "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE, gasto_total DOUBLE, gasto_compras DOUBLE, gasto_otros DOUBLE, gananciaCompraReal DOUBLE, gananciaCompraKilo DOUBLE, gastoCompraKilo DOUBLE, rentabilidad DOUBLE, rentabilidadKilo DOUBLE, rentabilidadPorcentual DOUBLE)");
             await db.execute(
                 "CREATE TABLE compra (id_compra INTEGER PRIMARY KEY, id_viaje INTEGER, nombre_compra TEXT, peso_total DOUBLE, cant_unidades INTEGER, compra_precio DOUBLE, ventaCUP DOUBLE)");
             await db.execute(
@@ -55,7 +55,7 @@ class DB {
   static Future<void> insertNewTrip(TripModel T) async {
     Database db = await _openDB();
 
-    db.insert("viaje", T.toMap());
+    db.insert("viaje", T.toEmptyMap());
     return;
   }
 
@@ -84,6 +84,53 @@ class DB {
             tripID: Q[i]['id_viaje'],
             tripName: Q[i]['nombre_viaje'],
             activo: Q[i]['activo']));
+  }
+
+  static Future<int> getLastIDTrip() async {
+    Database db = await _openDB();
+
+    if (await isDBEmpty()) {
+      return 1;
+    }
+    List<Map<String, dynamic>> Q =
+        await db.rawQuery("SELECT (max)id_viaje from viaje");
+    return List.generate(Q.length, (i) => Q[i]['id_viaje']).first;
+  }
+
+  static Future<bool> verifyActiveTrip(int id) async {
+    Database db = await _openDB();
+    List<Map<String, dynamic>> Q = await db.query('viaje',
+        columns: ['activo'],
+        where: 'activo = 1 and id_viaje = ?',
+        whereArgs: [id]);
+    if (Q.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static Future<TripModel> getTripByID(int id) async {
+    Database db = await _openDB();
+    List<Map<String, dynamic>> Q =
+        await db.query('viaje', where: 'id_viaje = ?', whereArgs: [id]);
+    TripModel viaje = TripModel(
+        tripID: id, tripName: Q[0]['nombre_viaje'], activo: Q[0]['activo']);
+    viaje.coin1Price = Q[0]['precio_M1'];
+    viaje.coin2Price = Q[0]['precio_M2'];
+    viaje.compras = await DB.getComprasTrip(id);
+    viaje.gananciaComprasReal = Q[0]['gananciaCompraReal'];
+    viaje.gananciaComprasXKilo = Q[0]['gananciaCompraKilo'];
+    viaje.gastoCompras = Q[0]['gasto_compras'];
+    viaje.gastoComprasXKilo = Q[0]['gastoCompraKilo'];
+    viaje.gastoTotal = Q[0]['gasto_total'];
+    viaje.gastos = await DB.getGastosTrip(id);
+    viaje.otrosGastos = Q[0]['gasto_otros'];
+    viaje.rentabilidad = Q[0]['rentabilidad'];
+    viaje.rentabilidadPorcentual = Q[0]['rentabilidadPorcentual'];
+    viaje.rentabilidadXKilo = Q[0]['rentabilidadKilo'];
+
+    return viaje;
   }
 
   static Future<void> insertNewCompra(CompraModel c) async {
