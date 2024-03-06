@@ -40,6 +40,9 @@ Widget currentTripWidget(TripModel trip, context) {
         future: getCompras(trip.tripID),
         initialData: null,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) {
+            return Text("Sin compras");
+          }
           return ListView.builder(
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, int i) {

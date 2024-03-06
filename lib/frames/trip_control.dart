@@ -15,22 +15,24 @@ class TripControl extends StatefulWidget {
 class TripControlState extends State<TripControl> {
   @override
   Widget build(BuildContext context) {
-    Tuple<bool, TripModel> tupla =
-        ModalRoute.of(context)!.settings.arguments as Tuple<bool, TripModel>;
+    Tuple<int, TripModel> tupla =
+        ModalRoute.of(context)!.settings.arguments as Tuple<int, TripModel>;
 
-    return Stack(
-      children: [
-        gradient(),
-        SingleChildScrollView(
-          child: widgetTrip(tupla, context),
-        ),
-      ],
-    );
+    return Scaffold(
+        appBar: AppBar(),
+        body: Stack(
+          children: [
+            gradient(),
+            Form(
+              child: widgetTrip(tupla, context),
+            )
+          ],
+        ));
   }
 }
 
-Widget widgetTrip(Tuple<bool, TripModel> tupla, context) {
-  if (tupla.T!) {
+Widget widgetTrip(Tuple<int, TripModel> tupla, context) {
+  if (tupla.T == 0) {
     return newTripWidget(context);
   } else {
     return currentTripWidget(tupla.K!, context);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db.dart';
+import 'package:trip_control_app/frames/trip_control.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/utils/gradient.dart';
 import 'package:trip_control_app/utils/tuple.dart';
@@ -21,49 +22,48 @@ class TripListState extends State<TripList> {
     return Stack(
       children: [
         gradient(),
-        SingleChildScrollView(
-          child: FutureBuilder(
-            future: loadTrips(),
-            initialData: null,
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (!snapshot.hasData || snapshot.data.length == 0) {
-                return Column(
-                  children: [
-                    const Text("No hay viajes disponibles"),
-                    TextButton(
-                        onPressed: () => {
-                              Navigator.popAndPushNamed(context, '/TripControl',
-                                  arguments: Tuple(T: true, K: null))
-                            },
-                        child: const Text("Crear viaje"))
-                  ],
-                );
-              } else {
-                return ListView.builder(
-                  itemCount: snapshot.data.length - 1,
-                  itemBuilder: (context, r) {
-                    return Column(
-                      children: [
-                        ListTile(
-                          title: snapshot.data[r].tripName,
-                          leading: IconButton(
-                              onPressed: () => {
-                                    Navigator.pushNamed(context, '/TripData',
-                                        arguments: snapshot.data[r].tripID)
-                                  },
-                              icon: const Icon(Icons.arrow_circle_right_outlined)),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        nuevoViaje(snapshot, context),
-                      ],
-                    );
-                  },
-                );
-              }
-            },
-          ),
+        FutureBuilder(
+          future: loadTrips(),
+          initialData: null,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (!snapshot.hasData || snapshot.data.length == 0) {
+              return Column(
+                children: [
+                  const Text("No hay viajes disponibles"),
+                  TextButton(
+                      onPressed: () => {
+                            Navigator.popAndPushNamed(context, '/trip_control',
+                                arguments: Tuple(T: 0, K: TripModel.nullTrip()))
+                          },
+                      child: const Text("Crear viaje"))
+                ],
+              );
+            } else {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, r) {
+                  return Column(
+                    children: [
+                      ListTile(
+                        title: Text(snapshot.data[r].tripName),
+                        leading: IconButton(
+                            onPressed: () => {
+                                  Navigator.pushNamed(context, '/trip_data',
+                                      arguments: snapshot.data[r].tripID)
+                                },
+                            icon:
+                                const Icon(Icons.arrow_circle_right_outlined)),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      nuevoViaje(snapshot, context),
+                    ],
+                  );
+                },
+              );
+            }
+          },
         ),
       ],
     );
@@ -71,11 +71,11 @@ class TripListState extends State<TripList> {
 }
 
 Widget nuevoViaje(snapshot, context) {
-  if (!snapshot.data[snapshot.data.length].activo) {
+  if (snapshot.data[snapshot.data.length - 1].activo == 0) {
     return TextButton(
         onPressed: () => {
-              Navigator.popAndPushNamed(context, '/TripControl',
-                  arguments: Tuple(T: true, K: null))
+              Navigator.popAndPushNamed(context, '/trip_control',
+                  arguments: Tuple(T: 0, K: TripModel.nullTrip()))
             },
         child: const Text("Crear viaje"));
   }

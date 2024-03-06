@@ -7,7 +7,7 @@ class TripModel {
   String tripName;
   double? coin1Price;
   double? coin2Price;
-  bool activo = true;
+  int activo = 1;
 
   double gastoTotal = 0.0; //Dollar
   double? gastoCompras; //Coin2-Dollar
@@ -37,24 +37,47 @@ class TripModel {
       this.rentabilidadXKilo,
       this.rentabilidadPorcentual});
 
+  static TripModel nullTrip() {
+    return TripModel(tripID: -1, tripName: "", activo: 0);
+  }
+
   Map<String, dynamic> toMap() {
     return {
-      'tripID': tripID,
-      'tripName': tripName,
+      'id_viaje': tripID,
+      'nombre_viaje': tripName,
       'activo': activo,
-      'coin1Price': coin1Price,
-      'coin2Price': coin2Price,
-      'gastoTotal': gastoTotal,
-      'otrosGastos': otrosGastos,
-      'gastoCompras': gastoCompras,
-      'gananciaComprasReal': gananciaComprasReal,
-      'gananciaComprasXKilo': gananciaComprasXKilo,
-      'gastoComprasXKilo': gastoComprasXKilo,
+      'precio_M1': coin1Price,
+      'precio_M2': coin2Price,
+      'gasto_total': gastoTotal,
+      'gasto_otros': otrosGastos,
+      'gasto_compras': gastoCompras,
+      'gananciaCompraReal': gananciaComprasReal,
+      'gananciaCompraKilo': gananciaComprasXKilo,
+      'gastoCompraKilo': gastoComprasXKilo,
       'rentabilidad': rentabilidad,
-      'rentabilidadXKilo': rentabilidadXKilo,
+      'rentabilidadKilo': rentabilidadXKilo,
       'rentabilidadPorcentual': rentabilidadPorcentual,
       'gastos': gastos,
       'compras': compras
+    };
+  }
+
+  Map<String, dynamic> toEmptyMap() {
+    return {
+      'id_viaje': tripID,
+      'nombre_viaje': tripName,
+      'activo': activo,
+      'precio_M1': coin1Price,
+      'precio_M2': coin2Price,
+      'gasto_total': gastoTotal,
+      'gasto_otros': otrosGastos,
+      'gasto_compras': gastoCompras,
+      'gananciaCompraReal': gananciaComprasReal,
+      'gananciaCompraKilo': gananciaComprasXKilo,
+      'gastoCompraKilo': gastoComprasXKilo,
+      'rentabilidad': rentabilidad,
+      'rentabilidadKilo': rentabilidadXKilo,
+      'rentabilidadPorcentual': rentabilidadPorcentual,
     };
   }
 

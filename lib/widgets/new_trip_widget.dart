@@ -8,35 +8,45 @@ Widget newTripWidget(context) {
   TextEditingController precioM1 = TextEditingController();
   TextEditingController precioM2 = TextEditingController();
 
-  return Column(
+  return SingleChildScrollView(
+      child: Column(
     children: [
-      TextFormField(
+      ListTile(
+          subtitle: TextFormField(
         controller: nombreViaje,
         maxLength: 20,
         keyboardType: TextInputType.text,
         style: const TextStyle(fontSize: 14),
-      ),
-      Row(
-        children: [
-          TextFormField(
-            controller: precioM1,
-            maxLength: 6,
-            keyboardType: TextInputType.number,
-            style: const TextStyle(fontSize: 14),
-          ),
-          TextFormField(
-            controller: precioM2,
-            maxLength: 6,
-            keyboardType: TextInputType.number,
-            style: const TextStyle(fontSize: 14),
-          ),
-        ],
-      ),
+      )),
+      SizedBox(
+          width: 500,
+          child: Row(
+            children: [
+              SizedBox(
+                  width: 200,
+                  child: ListTile(
+                      subtitle: TextFormField(
+                    controller: precioM1,
+                    maxLength: 6,
+                    keyboardType: TextInputType.number,
+                    style: const TextStyle(fontSize: 14),
+                  ))),
+              SizedBox(
+                  width: 200,
+                  child: ListTile(
+                      subtitle: TextFormField(
+                    controller: precioM2,
+                    maxLength: 6,
+                    keyboardType: TextInputType.number,
+                    style: const TextStyle(fontSize: 14),
+                  ))),
+            ],
+          )),
       TextButton(
           onPressed: () => crearViaje(nombreViaje, precioM1, precioM2, context),
           child: Text("Crear viaje"))
     ],
-  );
+  ));
 }
 
 void crearViaje(
@@ -65,14 +75,14 @@ void crearViaje(
         });
   } else {
     TripModel trip = TripModel(
-        tripID: (await DB.getTrips()).length + 1,
+        tripID: (await DB.getLastIDTrip()) + 1,
         tripName: nombreViaje.value.text,
-        activo: true);
-    trip.coin1Price = precioM1.value.text as double;
-    trip.coin2Price = precioM2.value.text as double;
+        activo: 1);
+    trip.coin1Price = double.tryParse(precioM1.value.text);
+    trip.coin2Price = double.tryParse(precioM2.value.text);
     await DB.insertNewTrip(trip);
 
     Navigator.pushReplacementNamed(context, '/trip_control',
-        arguments: Tuple(T: true, K: trip));
+        arguments: Tuple(T: 1, K: trip));
   }
 }
