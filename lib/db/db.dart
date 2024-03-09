@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart';
@@ -93,8 +92,8 @@ class DB {
       return 1;
     }
     List<Map<String, dynamic>> Q =
-        await db.rawQuery("SELECT (max)id_viaje from viaje");
-    return List.generate(Q.length, (i) => Q[i]['id_viaje']).first;
+        await db.rawQuery("SELECT max (id_viaje) from viaje");
+    return Q[Q.length - 1]['max (id_viaje)'];
   }
 
   static Future<bool> verifyActiveTrip(int id) async {
