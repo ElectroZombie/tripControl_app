@@ -9,24 +9,19 @@ import 'package:trip_control_app/utils/tuple.dart';
 
 class Principal extends StatelessWidget {
   Principal({Key? key}) : super(key: key);
-  TripModel trip = TripModel.nullTrip();
-  int activo = 0;
-
-  revisarViaje() async {
-    int id = await DB.getLastIDTrip();
-    if (await DB.verifyActiveTrip(id)) {
-      trip = await DB.getTripByID(id);
-      activo = 1;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    revisarViaje();
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            TextButton(
+                onPressed: () =>
+                    {Navigator.pushNamed(context, '/trip_control')},
+                child: Text("Control de viaje actual"))
+          ],
           title: const Text(
             "Control de viajes",
             style: TextStyle(fontSize: 20),
@@ -42,19 +37,12 @@ class Principal extends StatelessWidget {
               ),
               Tab(
                 child: Text('Calculadora', style: TextStyle(fontSize: 16)),
-              ),
-              Tab(
-                child: Text('Control de viaje', style: TextStyle(fontSize: 16)),
-              ),
+              )
             ],
           ),
         ),
         body: TabBarView(
-          children: [
-            const TripList(),
-            const Calculator(),
-            TripControl(Tuple(T: activo, K: trip))
-          ],
+          children: [const TripList(), const Calculator()],
         ),
       ),
     );

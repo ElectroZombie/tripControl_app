@@ -31,10 +31,8 @@ class TripListState extends State<TripList> {
                 children: [
                   const Text("No hay viajes disponibles"),
                   TextButton(
-                      onPressed: () => {
-                            Navigator.popAndPushNamed(context, '/trip_control',
-                                arguments: Tuple(T: 0, K: TripModel.nullTrip()))
-                          },
+                      onPressed: () =>
+                          {Navigator.pushNamed(context, '/trip_control')},
                       child: const Text("Crear viaje"))
                 ],
               );
@@ -73,10 +71,7 @@ class TripListState extends State<TripList> {
 Widget nuevoViaje(snapshot, context) {
   if (snapshot.data[snapshot.data.length - 1].activo == 0) {
     return TextButton(
-        onPressed: () => {
-              Navigator.popAndPushNamed(context, '/trip_control',
-                  arguments: Tuple(T: 0, K: TripModel.nullTrip()))
-            },
+        onPressed: () => {Navigator.pushNamed(context, '/trip_control')},
         child: const Text("Crear viaje"));
   }
   return const SizedBox(
