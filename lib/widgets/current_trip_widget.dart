@@ -16,6 +16,8 @@ Widget currentTripWidget(TripModel trip, context) {
   TextEditingController descripcionGasto = TextEditingController();
   TextEditingController costoGastoD = TextEditingController();
 
+  nombreViaje.value = TextEditingValue(text: trip.tripName);
+
   double gastoT = 0.0;
   double gastoCompras = 0.0;
   double gastoComprasKilo = 0.0;
@@ -44,6 +46,7 @@ Widget currentTripWidget(TripModel trip, context) {
             return Text("Sin compras");
           }
           return ListView.builder(
+            shrinkWrap: true,
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, int i) {
               return ListTile(
