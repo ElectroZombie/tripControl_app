@@ -30,45 +30,56 @@ Widget currentTripWidget(TripModel trip, context) {
 
   //List<GastoModel> gastos = getGastos(trip.tripID);
 
-  return Column(
+  return SingleChildScrollView(
+      child: Column(
     children: [
-      TextFormField(
-        controller: nombreViaje,
-        maxLength: 20,
-        keyboardType: TextInputType.text,
-        style: const TextStyle(fontSize: 14),
+      ListTile(
+        title: Text("nombre del viaje"),
+        subtitle: TextFormField(
+          controller: nombreViaje,
+          maxLength: 20,
+          keyboardType: TextInputType.text,
+          style: const TextStyle(fontSize: 14),
+        ),
       ),
-      TextFormField(
-        controller: precioM1,
-        maxLength: 20,
-        keyboardType: TextInputType.text,
-        style: const TextStyle(fontSize: 14),
+      ListTile(
+        title: Text("Precio de la moneda nacional"),
+        subtitle: TextFormField(
+          controller: precioM1,
+          maxLength: 20,
+          keyboardType: TextInputType.text,
+          style: const TextStyle(fontSize: 14),
+        ),
       ),
-      TextFormField(
-        controller: precioM2,
-        maxLength: 20,
-        keyboardType: TextInputType.text,
-        style: const TextStyle(fontSize: 14),
+      ListTile(
+        title: Text("Precio de la moneda foranea"),
+        subtitle: TextFormField(
+          controller: precioM2,
+          maxLength: 20,
+          keyboardType: TextInputType.text,
+          style: const TextStyle(fontSize: 14),
+        ),
       ),
       FutureBuilder(
         future: getCompras(trip.tripID),
         initialData: null,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
-            return Text("Sin compras");
+            return const Text("Sin compras");
           }
           return ListView.builder(
             shrinkWrap: true,
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, int i) {
               return ListTile(
-                title: Text(snapshot.data[i]['nombre_compra']),
+                title: Text(snapshot.data[i].compraNombre),
                 leading: IconButton(
-                    onPressed: () => actualizarCompra(snapshot.data[i]),
-                    icon: Icon(Icons.ac_unit)),
+                    onPressed: () => actualizarCompra(context, snapshot.data[i],
+                        nombreCompra, cantU, pesoT, costoM2, ventaM1),
+                    icon: const Icon(Icons.ac_unit)),
                 trailing: IconButton(
-                  onPressed: () => eliminarCompra(snapshot.data[i]),
-                  icon: Icon(Icons.delete),
+                  onPressed: () => eliminarCompra(context, snapshot.data[i]),
+                  icon: const Icon(Icons.delete),
                 ),
               );
             },
@@ -76,13 +87,15 @@ Widget currentTripWidget(TripModel trip, context) {
         },
       ),
       TextButton(
-          onPressed: () => agregarCompra(), child: Text("Agregar compra")),
+          onPressed: () => agregarCompra(
+              context, nombreCompra, cantU, pesoT, costoM2, ventaM1),
+          child: const Text("Agregar compra")),
       FutureBuilder(
         future: getGastos(trip.tripID),
         initialData: null,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Text("Sin gastos");
+            return const Text("Sin gastos");
           } else {
             return ListView.builder(
               shrinkWrap: true,
@@ -92,10 +105,10 @@ Widget currentTripWidget(TripModel trip, context) {
                   title: Text(snapshot.data![i].gastoDescripcion),
                   leading: IconButton(
                       onPressed: () => actualizarGasto(snapshot.data![i].id),
-                      icon: Icon(Icons.ac_unit)),
+                      icon: const Icon(Icons.ac_unit)),
                   trailing: IconButton(
                     onPressed: () => eliminarGasto(snapshot.data![i].id),
-                    icon: Icon(Icons.delete),
+                    icon: const Icon(Icons.delete),
                   ),
                 );
               },
@@ -103,7 +116,8 @@ Widget currentTripWidget(TripModel trip, context) {
           }
         },
       ),
-      TextButton(onPressed: () => agregarGasto(), child: Text("Agregar gasto")),
+      TextButton(
+          onPressed: () => agregarGasto(), child: const Text("Agregar gasto")),
       Text(gastoT.toString()),
       Text(gastoCompras.toString()),
       Text(gastoComprasKilo.toString()),
@@ -114,14 +128,189 @@ Widget currentTripWidget(TripModel trip, context) {
       Text(rentabilidadKilo.toString()),
       Text(rentabilidadPorcentual.toString()),
     ],
+  ));
+}
+
+Future<void> actualizarCompra(
+    context,
+    CompraModel compra,
+    TextEditingController nombreCompra,
+    TextEditingController cantU,
+    TextEditingController pesoT,
+    TextEditingController costoM2,
+    TextEditingController ventaM1) async {
+  nombreCompra.value = TextEditingValue(text: compra.compraNombre);
+  cantU.value = TextEditingValue(text: compra.cantU.toString());
+  pesoT.value = TextEditingValue(text: compra.pesoT.toString());
+  costoM2.value = TextEditingValue(text: compra.compraPrecio.toString());
+  ventaM1.value = TextEditingValue(text: compra.ventaCUPXUnidad.toString());
+
+  _actualizarCompra() async {
+    CompraModel compraAct = CompraModel(
+        tripID: compra.tripID,
+        id: compra.id,
+        compraNombre: nombreCompra.value.text,
+        cantU: int.parse(cantU.value.text),
+        pesoT: double.parse(pesoT.value.text),
+        compraPrecio: double.parse(costoM2.value.text),
+        ventaCUPXUnidad: double.parse(ventaM1.value.text));
+    await DB.updateCompra(compraAct);
+    Navigator.pushReplacementNamed(context, '/trip_control');
+  }
+
+  await showDialog<String>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Actualizar compra'),
+        content: Column(
+          children: [
+            TextFormField(
+              controller: nombreCompra,
+            ),
+            TextFormField(
+              controller: cantU,
+            ),
+            TextFormField(
+              controller: pesoT,
+            ),
+            TextFormField(
+              controller: costoM2,
+            ),
+            TextFormField(
+              controller: ventaM1,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Cerrar el diálogo sin agregar la unidad
+            },
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () {
+              _actualizarCompra();
+              Navigator.pop(
+                  context); // Cerrar el diálogo y pasar la unidad ingresada
+            },
+            child: const Text('Confirmar'),
+          ),
+        ],
+      );
+    },
   );
 }
 
-void actualizarCompra(compra) {}
+Future<void> agregarCompra(
+    BuildContext context,
+    TextEditingController nombreCompra,
+    TextEditingController cantU,
+    TextEditingController pesoT,
+    TextEditingController costoM2,
+    TextEditingController ventaM1) async {
+  nombreCompra.clear;
+  cantU.clear;
+  pesoT.clear;
+  costoM2.clear;
+  ventaM1.clear;
 
-void agregarCompra() {}
+  _agregarCompra() async {
+    CompraModel compraAct = CompraModel(
+        tripID: await DB.getLastIDTrip(),
+        id: (await DB.getLastIDCompra()) + 1,
+        compraNombre: nombreCompra.value.text,
+        cantU: int.parse(cantU.value.text),
+        pesoT: double.parse(pesoT.value.text),
+        compraPrecio: double.parse(costoM2.value.text),
+        ventaCUPXUnidad: double.parse(ventaM1.value.text));
+    await DB.insertNewCompra(compraAct);
+    Navigator.pushReplacementNamed(context, '/trip_control');
+  }
 
-void eliminarCompra(compra) {}
+  await showDialog<String>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Actualizar compra'),
+        content: Column(
+          children: [
+            Text("Nombre del producto"),
+            TextFormField(
+              controller: nombreCompra,
+            ),
+            Text("Cantidad de unidades"),
+            TextFormField(
+              controller: cantU,
+            ),
+            Text("Peso total"),
+            TextFormField(
+              controller: pesoT,
+            ),
+            Text("Costo en moneda foranea"),
+            TextFormField(
+              controller: costoM2,
+            ),
+            Text("Precio de venta en moneda nacional"),
+            TextFormField(
+              controller: ventaM1,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Cerrar el diálogo sin agregar la unidad
+            },
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () {
+              _agregarCompra();
+              Navigator.pop(
+                  context); // Cerrar el diálogo y pasar la unidad ingresada
+            },
+            child: const Text('Confirmar'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Future<void> eliminarCompra(context, CompraModel compra) async {
+  _eliminarCompra(CompraModel compra) async {
+    await DB.deleteCompra(compra.id);
+    Navigator.pushReplacementNamed(context, '/trip_control');
+  }
+
+  await showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text("Eliminar compra"),
+        content: Text("Esta seguro de que desea eliminar la compra?"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Cerrar el diálogo sin agregar la unidad
+            },
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () {
+              _eliminarCompra(compra);
+              Navigator.pop(
+                  context); // Cerrar el diálogo y pasar la unidad ingresada
+            },
+            child: const Text('Confirmar'),
+          ),
+        ],
+      );
+    },
+  );
+}
 
 void actualizarGasto(gasto) {}
 

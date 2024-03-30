@@ -19,13 +19,13 @@ class CompraModel extends IDElementModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'tripID': tripID,
-      'id': id,
-      'compraNombre': compraNombre,
-      'cantU': cantU,
-      'pesoT': pesoT,
-      'compraPrecio': compraPrecio,
-      'ventaCUPXUnidad': ventaCUPXUnidad
+      'id_compra': id,
+      'id_viaje': tripID,
+      'nombre_compra': compraNombre,
+      'peso_total': pesoT,
+      'cant_unidades': cantU,
+      'compra_precio': compraPrecio,
+      'ventaCUP': ventaCUPXUnidad
     };
   }
 }

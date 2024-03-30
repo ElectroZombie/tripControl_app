@@ -158,14 +158,33 @@ class DB {
   static Future<void> updateCompra(CompraModel compra) async {
     Database db = await _openDB();
 
-    db.update('compra', compra.toMap(),
-        where: 'id_viaje = ?', whereArgs: [compra.tripID]);
+    db.rawUpdate(
+        "UPDATE compra SET nombre_compra = ?, peso_total = ?, cant_unidades = ?, compra_precio = ?, ventaCUP = ? WHERE id_compra = ${compra.id}",
+        [
+          compra.compraNombre,
+          compra.pesoT,
+          compra.cantU,
+          compra.compraPrecio,
+          compra.ventaCUPXUnidad
+        ]);
   }
 
   static Future<void> deleteCompra(int idCompra) async {
     Database db = await _openDB();
 
-    db.delete('compra', where: 'id_viaje = ?', whereArgs: [idCompra]);
+    db.delete('compra', where: 'id_compra = ?', whereArgs: [idCompra]);
+  }
+
+  static Future<int> getLastIDCompra() async {
+    Database db = await _openDB();
+
+    List<Map<String, dynamic>> S =
+        await db.rawQuery("SELECT MAX (id_compra) AS maxId FROM compra");
+    if (S[0]['maxId'] == null) {
+      return 1;
+    } else {
+      return S[0]['maxId'];
+    }
   }
 
   static Future<void> insertNewGasto(GastoModel g) async {

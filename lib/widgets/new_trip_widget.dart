@@ -44,7 +44,7 @@ Widget newTripWidget(context) {
           )),
       TextButton(
           onPressed: () => crearViaje(nombreViaje, precioM1, precioM2, context),
-          child: Text("Crear viaje"))
+          child: const Text("Crear viaje"))
     ],
   ));
 }
@@ -61,14 +61,14 @@ void crearViaje(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Rellene todos los campos"),
+            title: const Text("Rellene todos los campos"),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.of(context)
                       .pop(); // Cerrar el diálogo sin guardar los cambios
                 },
-                child: Text('Aceptar'),
+                child: const Text('Aceptar'),
               ),
             ],
           );

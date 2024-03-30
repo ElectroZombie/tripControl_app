@@ -7,7 +7,7 @@ import 'package:trip_control_app/widgets/current_trip_widget.dart';
 import 'package:trip_control_app/widgets/new_trip_widget.dart';
 
 class TripControl extends StatefulWidget {
-  TripControl({Key? key}) : super(key: key);
+  const TripControl({Key? key}) : super(key: key);
 
   @override
   TripControlState createState() => TripControlState();
@@ -38,7 +38,7 @@ class TripControlState extends State<TripControl> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: BackButton(),
+          leading: const BackButton(),
         ),
         body: Stack(
           children: [

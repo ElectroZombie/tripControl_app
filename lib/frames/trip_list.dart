@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db.dart';
-import 'package:trip_control_app/frames/trip_control.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/utils/gradient.dart';
-import 'package:trip_control_app/utils/tuple.dart';
 
 class TripList extends StatefulWidget {
   const TripList({Key? key}) : super(key: key);

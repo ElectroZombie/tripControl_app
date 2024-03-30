@@ -14,10 +14,10 @@ class GastoModel extends IDElementModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'tripID': tripID,
-      'gastoDescripcion': gastoDescripcion,
-      'gastoMoney': gastoMoney,
+      'id_gasto': id,
+      'id_viaje': tripID,
+      'descripcion_gasto': gastoDescripcion,
+      'gasto_money': gastoMoney,
     };
   }
 }
