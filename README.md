@@ -6,17 +6,17 @@ v...
 
 Autores:
 =
-Eric Michel Villavicencio Reyes (https://github.com/ElectroZombie)
+ Eric Michel Villavicencio Reyes (https://github.com/ElectroZombie)
 
-Joan Manuel Molina Gómez (https://github.com/JoanManuel16)
+ Joan Manuel Molina Gómez (https://github.com/JoanManuel16)
 
 Especificaciones del proyecto:
 -
-Java Version: 17.0.10+7
+ Java Version: 17.0.10+7
 
-SQLite 3 Version: 3.45.1
+ SQLite 3 Version: 3.45.1
 
-Dart SDK: 3.1.0
+ Dart SDK: 3.1.0
 
 Construido con:
 -
@@ -33,21 +33,21 @@ v...
 
 Authors:
 =
-Eric Michel Villavicencio Reyes (https://github.com/ElectroZombie)
+ Eric Michel Villavicencio Reyes (https://github.com/ElectroZombie)
 
-Joan Manuel Molina Gómez (https://github.com/JoanManuel16)
+ Joan Manuel Molina Gómez (https://github.com/JoanManuel16)
 
 Buildig Specs:
 -
-Java Version: 17.0.10+7
+ Java Version: 17.0.10+7
 
-SQLite 3 Version: 3.45.1
+ SQLite 3 Version: 3.45.1
 
-Dart SDK: 3.1.0
+ Dart SDK: 3.1.0
 
 Built on:
 -
-Flutter SDK: 3.13.0
+ Flutter SDK: 3.13.0
  
  Android SDK: 31.0.0
 
