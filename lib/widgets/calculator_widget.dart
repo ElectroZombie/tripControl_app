@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:trip_control_app/utils/calculo_rentabilidad.dart';
 import 'package:trip_control_app/utils/tuple.dart';
 
-Widget form(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR, rentKg,
-    context) {
+Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR,
+    rentKg, context) {
   return SingleChildScrollView(
       child: Column(children: [
     Row(

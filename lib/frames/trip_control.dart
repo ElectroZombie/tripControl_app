@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/db/db.dart';
+import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/utils/gradient.dart';
 import 'package:trip_control_app/utils/tuple.dart';
-import 'package:trip_control_app/widgets/current_trip_widget.dart';
-import 'package:trip_control_app/widgets/new_trip_widget.dart';
+import 'package:trip_control_app/widgets/trip_widgets/current_trip_widget.dart';
+import 'package:trip_control_app/widgets/trip_widgets/new_trip_widget.dart';
 
 class TripControl extends StatefulWidget {
   const TripControl({Key? key}) : super(key: key);
