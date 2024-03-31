@@ -24,7 +24,7 @@ class GastoConsults {
   }
 
   static Future<void> deleteGasto(db, int idGasto) async {
-    db.delete('gasto', where: 'id_viaje = ?', whereArgs: [idGasto]);
+    db.delete('gasto', where: 'id_gasto = ?', whereArgs: [idGasto]);
   }
 
   static Future<int> getLastIDGasto(db) async {
