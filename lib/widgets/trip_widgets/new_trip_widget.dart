@@ -77,7 +77,15 @@ void crearViaje(
     TripModel trip = TripModel(
         tripID: (await DB.getLastIDTrip()) + 1,
         tripName: nombreViaje.value.text,
-        activo: 1);
+        activo: 1,
+        gananciaComprasReal: 0,
+        gananciaComprasXKilo: 0,
+        gastoCompras: 0,
+        gastoComprasXKilo: 0,
+        otrosGastos: 0,
+        rentabilidad: 0,
+        rentabilidadPorcentual: 0,
+        rentabilidadXKilo: 0);
     trip.coin1Price = double.tryParse(precioM1.value.text);
     trip.coin2Price = double.tryParse(precioM2.value.text);
     await DB.insertNewTrip(trip);

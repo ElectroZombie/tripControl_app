@@ -39,6 +39,11 @@ class TripControlState extends State<TripControl> {
     return Scaffold(
         appBar: AppBar(
           leading: const BackButton(),
+          actions: [
+            TextButton(
+                onPressed: () => endTrip(tupla, context),
+                child: Text("Finalizar Viaje"))
+          ],
         ),
         body: Stack(
           children: [
@@ -48,6 +53,53 @@ class TripControlState extends State<TripControl> {
             )
           ],
         ));
+  }
+
+  Future<void> endTrip(Tuple<int, TripModel> tupla, context) async {
+    _endTrip(int idTrip) async {
+      await DB.endTrip(idTrip);
+      Navigator.pushReplacementNamed(context, '/trip_control');
+    }
+
+    if (tupla.T == 0) {
+      await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Todavia no se ha creado el viaje"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("Aceptar"))
+            ],
+          );
+        },
+      );
+    } else {
+      await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Desea finalizar este viaje?"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    _endTrip(tupla.K!.tripID);
+                    Navigator.pop(context);
+                  },
+                  child: Text("Si")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("No"))
+            ],
+          );
+        },
+      );
+    }
   }
 
   Widget widgetTrip(Tuple<int, TripModel> tupla, context) {

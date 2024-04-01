@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/methods/compras_methods.dart';
 import 'package:trip_control_app/methods/gastos_methods.dart';
 import 'package:trip_control_app/models/trip_model.dart';
@@ -16,16 +17,8 @@ Widget currentTripWidget(TripModel trip, context) {
   TextEditingController costoGastoD = TextEditingController();
 
   nombreViaje.value = TextEditingValue(text: trip.tripName);
-
-  double gastoT = 0.0;
-  double gastoCompras = 0.0;
-  double gastoComprasKilo = 0.0;
-  double gastoOtros = 0.0;
-  double gananciaReal = 0.0;
-  double gananciaKilo = 0.0;
-  double rentabilidadR = 0.0;
-  double rentabilidadKilo = 0.0;
-  double rentabilidadPorcentual = 0.0;
+  precioM1.value = TextEditingValue(text: trip.coin1Price.toString());
+  precioM2.value = TextEditingValue(text: trip.coin2Price.toString());
 
   return SingleChildScrollView(
       child: Column(
@@ -57,6 +50,15 @@ Widget currentTripWidget(TripModel trip, context) {
           style: const TextStyle(fontSize: 14),
         ),
       ),
+      TextButton(
+          onPressed: () {
+            trip.setCoin2Price(double.parse(precioM2.value.text));
+            trip.setCoin1Price(double.parse(precioM1.value.text));
+            trip.tripName = nombreViaje.value.text;
+            DB.updateTrip(trip);
+            Navigator.pushReplacementNamed(context, '/trip_control');
+          },
+          child: Text("Actualizar Valores")),
       FutureBuilder(
         future: getCompras(trip.tripID),
         initialData: null,
@@ -72,10 +74,11 @@ Widget currentTripWidget(TripModel trip, context) {
                 title: Text(snapshot.data[i].compraNombre),
                 leading: IconButton(
                     onPressed: () => actualizarCompra(context, snapshot.data[i],
-                        nombreCompra, cantU, pesoT, costoM2, ventaM1),
+                        nombreCompra, cantU, pesoT, costoM2, ventaM1, trip),
                     icon: const Icon(Icons.ac_unit)),
                 trailing: IconButton(
-                  onPressed: () => eliminarCompra(context, snapshot.data[i]),
+                  onPressed: () =>
+                      eliminarCompra(context, snapshot.data[i], trip),
                   icon: const Icon(Icons.delete),
                 ),
               );
@@ -85,7 +88,7 @@ Widget currentTripWidget(TripModel trip, context) {
       ),
       TextButton(
           onPressed: () => agregarCompra(
-              context, nombreCompra, cantU, pesoT, costoM2, ventaM1),
+              context, nombreCompra, cantU, pesoT, costoM2, ventaM1, trip),
           child: const Text("Agregar compra")),
       const SizedBox(
         height: 30,
@@ -104,12 +107,16 @@ Widget currentTripWidget(TripModel trip, context) {
                 return ListTile(
                   title: Text(snapshot.data![i].gastoDescripcion),
                   leading: IconButton(
-                      onPressed: () => actualizarGasto(context,
-                          snapshot.data![i], descripcionGasto, costoGastoD),
+                      onPressed: () => actualizarGasto(
+                          context,
+                          snapshot.data![i],
+                          descripcionGasto,
+                          costoGastoD,
+                          trip),
                       icon: const Icon(Icons.ac_unit)),
                   trailing: IconButton(
                     onPressed: () =>
-                        eliminarGasto(context, snapshot.data![i].id),
+                        eliminarGasto(context, snapshot.data![i], trip),
                     icon: const Icon(Icons.delete),
                   ),
                 );
@@ -119,17 +126,18 @@ Widget currentTripWidget(TripModel trip, context) {
         },
       ),
       TextButton(
-          onPressed: () => agregarGasto(context, descripcionGasto, costoGastoD),
+          onPressed: () =>
+              agregarGasto(context, descripcionGasto, costoGastoD, trip),
           child: const Text("Agregar gasto")),
-      Text(gastoT.toString()),
-      Text(gastoCompras.toString()),
-      Text(gastoComprasKilo.toString()),
-      Text(gastoOtros.toString()),
-      Text(gananciaReal.toString()),
-      Text(gananciaKilo.toString()),
-      Text(rentabilidadR.toString()),
-      Text(rentabilidadKilo.toString()),
-      Text(rentabilidadPorcentual.toString()),
+      Text(trip.gastoTotal.toString()),
+      Text(trip.gastoCompras.toString()),
+      Text(trip.gastoComprasXKilo.toString()),
+      Text(trip.otrosGastos.toString()),
+      Text(trip.gananciaComprasReal.toString()),
+      Text(trip.gananciaComprasXKilo.toString()),
+      Text(trip.rentabilidad.toString()),
+      Text(trip.rentabilidadXKilo.toString()),
+      Text(trip.rentabilidadPorcentual.toString()),
     ],
   ));
 }

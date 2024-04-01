@@ -35,29 +35,35 @@ class TripListState extends State<TripList> {
                 ],
               );
             } else {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, r) {
-                  return Column(
-                    children: [
-                      ListTile(
-                        title: Text(snapshot.data[r].tripName),
-                        leading: IconButton(
-                            onPressed: () => {
-                                  Navigator.pushNamed(context, '/trip_data',
-                                      arguments: snapshot.data[r].tripID)
-                                },
-                            icon:
-                                const Icon(Icons.arrow_circle_right_outlined)),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      nuevoViaje(snapshot, context),
-                    ],
-                  );
-                },
-              );
+              return SingleChildScrollView(
+                  child: Column(
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, r) {
+                      return Column(
+                        children: [
+                          ListTile(
+                            title: Text(snapshot.data[r].tripName),
+                            leading: IconButton(
+                                onPressed: () => {
+                                      Navigator.pushNamed(context, '/trip_data',
+                                          arguments: snapshot.data[r].tripID)
+                                    },
+                                icon: const Icon(
+                                    Icons.arrow_circle_right_outlined)),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  nuevoViaje(snapshot, context),
+                ],
+              ));
             }
           },
         ),

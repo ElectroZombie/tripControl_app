@@ -1,6 +1,4 @@
 import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/gasto_model.dart';
-import 'package:trip_control_app/utils/busqueda_binaria.dart';
 
 class TripModel {
   int tripID;
@@ -19,8 +17,8 @@ class TripModel {
   double? rentabilidadXKilo;
   double? rentabilidadPorcentual;
 
-  List<GastoModel> gastos = List.empty();
-  List<CompraModel> compras = List.empty();
+  //List<GastoModel> gastos = List.empty();
+  //List<CompraModel> compras = List.empty();
 
   TripModel(
       {required this.tripID,
@@ -48,36 +46,6 @@ class TripModel {
       'activo': activo,
       'precio_M1': coin1Price,
       'precio_M2': coin2Price,
-      'gasto_total': gastoTotal,
-      'gasto_otros': otrosGastos,
-      'gasto_compras': gastoCompras,
-      'gananciaCompraReal': gananciaComprasReal,
-      'gananciaCompraKilo': gananciaComprasXKilo,
-      'gastoCompraKilo': gastoComprasXKilo,
-      'rentabilidad': rentabilidad,
-      'rentabilidadKilo': rentabilidadXKilo,
-      'rentabilidadPorcentual': rentabilidadPorcentual,
-      'gastos': gastos,
-      'compras': compras
-    };
-  }
-
-  Map<String, dynamic> toEmptyMap() {
-    return {
-      'id_viaje': tripID,
-      'nombre_viaje': tripName,
-      'activo': activo,
-      'precio_M1': coin1Price,
-      'precio_M2': coin2Price,
-      'gasto_total': gastoTotal,
-      'gasto_otros': otrosGastos,
-      'gasto_compras': gastoCompras,
-      'gananciaCompraReal': gananciaComprasReal,
-      'gananciaCompraKilo': gananciaComprasXKilo,
-      'gastoCompraKilo': gastoComprasXKilo,
-      'rentabilidad': rentabilidad,
-      'rentabilidadKilo': rentabilidadXKilo,
-      'rentabilidadPorcentual': rentabilidadPorcentual,
     };
   }
 
@@ -98,33 +66,15 @@ class TripModel {
     rentabilidadPorcentual = (gananciaComprasReal! * 100) / gastoTotal;
   }
 
-  void addGasto(GastoModel gasto) {
-    gastos.add(gasto);
-    otrosGastos = otrosGastos! + gasto.gastoMoney;
-
-    _actualizarRentabilidad();
-  }
-
-  void deleteGasto(GastoModel gasto) {
-    int ini = busquedaBinaria(gastos, gasto);
-    gastos.removeAt(ini);
-    otrosGastos = otrosGastos! - gasto.gastoMoney;
-
-    _actualizarRentabilidad();
-  }
-
-  void updateGasto(GastoModel gasto) {
-    int ini = busquedaBinaria(gastos, gasto);
-
-    otrosGastos = otrosGastos! - gastos[ini].gastoMoney;
-    gastos[ini] = gasto;
-    otrosGastos = otrosGastos! + gastos[ini].gastoMoney;
+  void addGasto(double gasto) {
+    //gastos.add(gasto);
+    otrosGastos = otrosGastos! + gasto;
 
     _actualizarRentabilidad();
   }
 
   void addCompra(CompraModel compra) {
-    compras.add(compra);
+    //compras.add(compra);
 
     gastoCompras = gastoCompras! + compra.compraPrecio / coin2Price!;
 
@@ -138,63 +88,6 @@ class TripModel {
         (((compra.cantU * compra.ventaCUPXUnidad) / coin1Price!) *
             ((compra.compraPrecio / coin2Price!) * (1 / compra.pesoT)) /
             (compra.compraPrecio / coin2Price!));
-
-    _actualizarRentabilidad();
-  }
-
-  void deleteCompra(CompraModel compra) {
-    int ini = busquedaBinaria(compras, compra);
-
-    gastoCompras = gastoCompras! - compra.compraPrecio / coin2Price!;
-
-    gananciaComprasReal = gananciaComprasReal! -
-        (compra.cantU * compra.ventaCUPXUnidad) / coin1Price!;
-
-    gastoComprasXKilo = gastoComprasXKilo! -
-        (compra.compraPrecio / coin2Price!) * (1 / compra.pesoT);
-
-    gananciaComprasXKilo = gananciaComprasXKilo! -
-        (((compra.cantU * compra.ventaCUPXUnidad) / coin1Price!) *
-            ((compra.compraPrecio / coin2Price!) * (1 / compra.pesoT)) /
-            (compra.compraPrecio / coin2Price!));
-
-    compras.removeAt(ini);
-
-    _actualizarRentabilidad();
-  }
-
-  void updateCompra(CompraModel compra) {
-    int ini = busquedaBinaria(compras, compra);
-
-    gastoCompras = gastoCompras! - compras[ini].compraPrecio / coin2Price!;
-
-    gananciaComprasReal = gananciaComprasReal! -
-        (compras[ini].cantU * compras[ini].ventaCUPXUnidad) / coin1Price!;
-
-    gastoComprasXKilo = gastoComprasXKilo! -
-        (compras[ini].compraPrecio / coin2Price!) * (1 / compras[ini].pesoT);
-
-    gananciaComprasXKilo = gananciaComprasXKilo! -
-        (((compras[ini].cantU * compras[ini].ventaCUPXUnidad) / coin1Price!) *
-            ((compras[ini].compraPrecio / coin2Price!) *
-                (1 / compras[ini].pesoT)) /
-            (compras[ini].compraPrecio / coin2Price!));
-
-    compras[ini] = compra;
-
-    gastoCompras = gastoCompras! + compras[ini].compraPrecio / coin2Price!;
-
-    gananciaComprasReal = gananciaComprasReal! +
-        (compras[ini].cantU * compras[ini].ventaCUPXUnidad) / coin1Price!;
-
-    gastoComprasXKilo = gastoComprasXKilo! +
-        (compras[ini].compraPrecio / coin2Price!) * (1 / compras[ini].pesoT);
-
-    gananciaComprasXKilo = gananciaComprasXKilo! +
-        (((compras[ini].cantU * compras[ini].ventaCUPXUnidad) / coin1Price!) *
-            ((compras[ini].compraPrecio / coin2Price!) *
-                (1 / compras[ini].pesoT)) /
-            (compras[ini].compraPrecio / coin2Price!));
 
     _actualizarRentabilidad();
   }

@@ -1,23 +1,27 @@
+import 'package:sqflite/sqflite.dart';
+import 'package:trip_control_app/db/compras_consults.dart';
 import 'package:trip_control_app/db/db_general.dart';
+import 'package:trip_control_app/db/gastos_consults.dart';
+import 'package:trip_control_app/models/compra_model.dart';
+import 'package:trip_control_app/models/gasto_model.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 
 class TripConsults {
   static Future<void> insertNewTrip(db, TripModel T) async {
-    db.insert("viaje", T.toEmptyMap());
+    await db.insert("viaje", T.toMap());
     return;
   }
 
-  static Future<TripModel> updateTrip(db, TripModel T) async {
-    db.update('viaje', T.toMap(),
-        where: '${T.tripID} = ?', whereArgs: [T.tripID]);
-
-    List<Map<String, dynamic>> Q = await db
-        .query('viaje', where: '${T.tripID} = ?', whereArgs: [T.tripID]);
-    return List.generate(Q.length, (i) => T).first;
+  static Future<void> updateTrip(Database db, TripModel T) async {
+    await db.rawUpdate(
+        "UPDATE viaje SET nombre_viaje = ?, precio_M1 = ?, precio_M2 = ? WHERE id_viaje = ${T.tripID}",
+        [T.tripName, T.coin1Price, T.coin2Price]);
   }
 
-  static Future<void> deleteTrip(db, int idTrip) async {
-    db.delete('viaje', where: 'id_viaje = ?', whereArgs: [idTrip]);
+  static Future<void> deleteTrip(Database db, int idTrip) async {
+    await db.delete('compra', where: 'id_viaje = ?', whereArgs: [idTrip]);
+    await db.delete('gasto', where: 'id_viaje = ?', whereArgs: [idTrip]);
+    await db.delete('viaje', where: 'id_viaje = ?', whereArgs: [idTrip]);
   }
 
   static Future<List<TripModel>> getTrips(db) async {
@@ -55,21 +59,50 @@ class TripConsults {
     List<Map<String, dynamic>> Q =
         await db.query('viaje', where: 'id_viaje = ?', whereArgs: [id]);
     TripModel viaje = TripModel(
-        tripID: id, tripName: Q[0]['nombre_viaje'], activo: Q[0]['activo']);
+        tripID: id,
+        tripName: Q[0]['nombre_viaje'],
+        activo: Q[0]['activo'],
+        gananciaComprasReal: 0,
+        gananciaComprasXKilo: 0,
+        gastoCompras: 0,
+        gastoComprasXKilo: 0,
+        otrosGastos: 0,
+        rentabilidad: 0,
+        rentabilidadPorcentual: 0,
+        rentabilidadXKilo: 0);
     viaje.coin1Price = Q[0]['precio_M1'];
     viaje.coin2Price = Q[0]['precio_M2'];
-    viaje.compras = await DB.getComprasTrip(id);
-    viaje.gananciaComprasReal = Q[0]['gananciaCompraReal'];
-    viaje.gananciaComprasXKilo = Q[0]['gananciaCompraKilo'];
-    viaje.gastoCompras = Q[0]['gasto_compras'];
-    viaje.gastoComprasXKilo = Q[0]['gastoCompraKilo'];
-    viaje.gastoTotal = Q[0]['gasto_total'];
-    viaje.gastos = await DB.getGastosTrip(id);
-    viaje.otrosGastos = Q[0]['gasto_otros'];
-    viaje.rentabilidad = Q[0]['rentabilidad'];
-    viaje.rentabilidadPorcentual = Q[0]['rentabilidadPorcentual'];
-    viaje.rentabilidadXKilo = Q[0]['rentabilidadKilo'];
+
+    List<CompraModel> compras = await CompraConsults.getComprasTrip(db, id);
+    for (var compra in compras) {
+      viaje.addCompra(compra);
+    }
+
+    List<GastoModel> gastos = await GastoConsults.getGastosTrip(db, id);
+    for (var gasto in gastos) {
+      viaje.addGasto(gasto.gastoMoney);
+    }
 
     return viaje;
+  }
+
+  static Future<void> endTrip(Database db, int idTrip) async {
+    await db.update('viaje', {'activo': 0},
+        where: 'id_viaje = ?', whereArgs: [idTrip]);
+  }
+
+  static Future<void> activateTrip(Database db, int idTrip) async {
+    await db.update('viaje', {'activo': 1},
+        where: 'id_viaje = ?', whereArgs: [idTrip]);
+  }
+
+  static Future<bool> verifyActiveTrips(Database db) async {
+    List<Map<String, dynamic>> Q =
+        await db.query('viaje', where: 'activo = ?', whereArgs: [1]);
+    if (Q.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
