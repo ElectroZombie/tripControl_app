@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/gasto_model.dart';
+import 'package:trip_control_app/models/trip_model.dart';
 
-Widget updateGastoDialog(context, gasto, gastoDescripcion, gastoCosto) {
+Widget updateGastoDialog(
+    context, GastoModel gasto, gastoDescripcion, gastoCosto) {
   return AlertDialog(
     title: const Text('Actualizar gasto'),
     content: Column(
@@ -35,10 +37,11 @@ Widget updateGastoDialog(context, gasto, gastoDescripcion, gastoCosto) {
 }
 
 _actualizarGasto(
-    context,
-    GastoModel gasto,
-    TextEditingController gastoDescripcion,
-    TextEditingController gastoCosto) async {
+  context,
+  GastoModel gasto,
+  TextEditingController gastoDescripcion,
+  TextEditingController gastoCosto,
+) async {
   GastoModel gastoAct = GastoModel(
       id: gasto.id,
       tripID: gasto.tripID,

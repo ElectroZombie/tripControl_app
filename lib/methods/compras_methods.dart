@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/compra_model.dart';
+import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/widgets/compra_widgets/add_compra_widget.dart';
 import 'package:trip_control_app/widgets/compra_widgets/delete_compra_widget.dart';
 import 'package:trip_control_app/widgets/compra_widgets/update_compra_widget.dart';
@@ -16,7 +17,8 @@ Future<void> actualizarCompra(
     TextEditingController cantU,
     TextEditingController pesoT,
     TextEditingController costoM2,
-    TextEditingController ventaM1) async {
+    TextEditingController ventaM1,
+    TripModel trip) async {
   nombreCompra.value = TextEditingValue(text: compra.compraNombre);
   cantU.value = TextEditingValue(text: compra.cantU.toString());
   pesoT.value = TextEditingValue(text: compra.pesoT.toString());
@@ -38,7 +40,8 @@ Future<void> agregarCompra(
     TextEditingController cantU,
     TextEditingController pesoT,
     TextEditingController costoM2,
-    TextEditingController ventaM1) async {
+    TextEditingController ventaM1,
+    TripModel trip) async {
   nombreCompra.clear;
   cantU.clear;
   pesoT.clear;
@@ -54,7 +57,7 @@ Future<void> agregarCompra(
   );
 }
 
-Future<void> eliminarCompra(context, CompraModel compra) async {
+Future<void> eliminarCompra(context, CompraModel compra, TripModel trip) async {
   await showDialog(
     context: context,
     builder: (context) {

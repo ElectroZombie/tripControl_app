@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/compra_model.dart';
+import 'package:trip_control_app/models/trip_model.dart';
 
-_agregarCompra(context, nombreCompra, cantU, pesoT, costoM2, ventaM1) async {
+_agregarCompra(
+  context,
+  nombreCompra,
+  cantU,
+  pesoT,
+  costoM2,
+  ventaM1,
+) async {
   CompraModel compraAct = CompraModel(
       tripID: await DB.getLastIDTrip(),
       id: (await DB.getLastIDCompra()) + 1,

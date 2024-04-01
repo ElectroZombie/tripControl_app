@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
+import 'package:trip_control_app/frames/trip_control.dart';
 import 'package:trip_control_app/models/compra_model.dart';
+import 'package:trip_control_app/models/trip_model.dart';
 
 Widget updateCompraDialog(
     context, nombreCompra, cantU, pesoT, costoM2, ventaM1, compra) {
@@ -46,7 +48,14 @@ Widget updateCompraDialog(
 }
 
 _actualizarCompra(
-    context, compra, nombreCompra, cantU, pesoT, costoM2, ventaM1) async {
+  context,
+  compra,
+  nombreCompra,
+  cantU,
+  pesoT,
+  costoM2,
+  ventaM1,
+) async {
   CompraModel compraAct = CompraModel(
       tripID: compra.tripID,
       id: compra.id,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/gasto_model.dart';
+import 'package:trip_control_app/models/trip_model.dart';
 
 Widget addGastoDialog(context, gastoDescripcion, gastoCosto) {
   return AlertDialog(
