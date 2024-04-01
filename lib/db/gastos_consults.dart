@@ -20,7 +20,7 @@ class GastoConsults {
 
   static Future<void> updateGasto(db, GastoModel gasto) async {
     db.update('gasto', gasto.toMap(),
-        where: 'id_viaje = ?', whereArgs: [gasto.tripID]);
+        where: 'id_gasto = ?', whereArgs: [gasto.id]);
   }
 
   static Future<void> deleteGasto(db, int idGasto) async {

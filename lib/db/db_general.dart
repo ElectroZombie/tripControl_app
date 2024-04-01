@@ -17,7 +17,7 @@ class DB {
         join(await getDatabasesPath(), 'tripControl.db'),
         onCreate: (db, version) async {
           await db.execute(
-              "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE, gasto_total DOUBLE, gasto_compras DOUBLE, gasto_otros DOUBLE, gananciaCompraReal DOUBLE, gananciaCompraKilo DOUBLE, gastoCompraKilo DOUBLE, rentabilidad DOUBLE, rentabilidadKilo DOUBLE, rentabilidadPorcentual DOUBLE)");
+              "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE)");
           await db.execute(
               "CREATE TABLE compra (id_compra INTEGER PRIMARY KEY, id_viaje INTEGER, nombre_compra TEXT, peso_total DOUBLE, cant_unidades INTEGER, compra_precio DOUBLE, ventaCUP DOUBLE)");
           await db.execute(
@@ -34,7 +34,7 @@ class DB {
           version: 1,
           onCreate: (db, version) async {
             await db.execute(
-                "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE, gasto_total DOUBLE, gasto_compras DOUBLE, gasto_otros DOUBLE, gananciaCompraReal DOUBLE, gananciaCompraKilo DOUBLE, gastoCompraKilo DOUBLE, rentabilidad DOUBLE, rentabilidadKilo DOUBLE, rentabilidadPorcentual DOUBLE)");
+                "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE)");
             await db.execute(
                 "CREATE TABLE compra (id_compra INTEGER PRIMARY KEY, id_viaje INTEGER, nombre_compra TEXT, peso_total DOUBLE, cant_unidades INTEGER, compra_precio DOUBLE, ventaCUP DOUBLE)");
             await db.execute(
@@ -60,9 +60,9 @@ class DB {
     TripConsults.insertNewTrip(db, T);
   }
 
-  static Future<TripModel> updateTrip(TripModel T) async {
+  static Future<void> updateTrip(TripModel T) async {
     Database db = await _openDB();
-    return TripConsults.updateTrip(db, T);
+    TripConsults.updateTrip(db, T);
   }
 
   static Future<void> deleteTrip(int idTrip) async {
@@ -88,6 +88,21 @@ class DB {
   static Future<TripModel> getTripByID(int id) async {
     Database db = await _openDB();
     return TripConsults.getTripByID(db, id);
+  }
+
+  static Future<void> endTrip(int idTrip) async {
+    Database db = await _openDB();
+    TripConsults.endTrip(db, idTrip);
+  }
+
+  static Future<bool> activateTrip(int idTrip) async {
+    Database db = await _openDB();
+    if (await TripConsults.verifyActiveTrips(db)) {
+      await TripConsults.activateTrip(db, idTrip);
+      return true;
+    } else {
+      return false;
+    }
   }
   //Consultas de viaje
 
