@@ -131,7 +131,7 @@ class TripControlState extends State<TripControl> {
       return newTripWidget(selectedDate, paisSeleccionado, paises, context,
           callbackDate, callbackPais);
     } else {
-      return currentTripWidget(tupla.K!, context);
+      return currentTripWidget(tupla.K!, paises, context);
     }
   }
 }

@@ -88,6 +88,23 @@ class DB {
     TripConsults.updateTrip(db, T);
   }
 
+  static Future<void> updatePaisTrip(int idTrip, String pais) async {
+    Database db = await _openDB();
+    await TripConsults.updatePaisTrip(db, idTrip, pais);
+  }
+
+  static Future<void> updateFechaInicioTrip(
+      int idTrip, DateTime fechaInicio) async {
+    Database db = await _openDB();
+    await TripConsults.updateFechaInicioTrip(db, idTrip, fechaInicio);
+  }
+
+  static Future<void> updateFechaFinalTrip(
+      int idTrip, DateTime fechaFinal) async {
+    Database db = await _openDB();
+    await TripConsults.updateFechaFinalTrip(db, idTrip, fechaFinal);
+  }
+
   static Future<void> deleteTrip(int idTrip) async {
     Database db = await _openDB();
     TripConsults.deleteTrip(db, idTrip);

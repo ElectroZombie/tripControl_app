@@ -4,7 +4,7 @@ import 'package:trip_control_app/methods/compras_methods.dart';
 import 'package:trip_control_app/methods/gastos_methods.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 
-Widget currentTripWidget(TripModel trip, context) {
+Widget currentTripWidget(TripModel trip, List<String> paises, context) {
   TextEditingController nombreViaje = TextEditingController();
   TextEditingController precioM1 = TextEditingController();
   TextEditingController precioM2 = TextEditingController();
@@ -49,6 +49,40 @@ Widget currentTripWidget(TripModel trip, context) {
           keyboardType: TextInputType.text,
           style: const TextStyle(fontSize: 14),
         ),
+      ),
+      ListTile(
+        subtitle: DropdownButtonFormField<String>(
+          items: List.generate(
+              paises.length,
+              (i) => DropdownMenuItem(
+                    child: Text(paises[i]),
+                    value: paises[i],
+                  )),
+          decoration: const InputDecoration(
+            labelText: 'Pais',
+            border: InputBorder.none,
+          ),
+          value: trip.nombrePais,
+          onChanged: (value) {
+            _updatePais(value!, trip.tripID, context);
+          },
+        ),
+      ),
+      ListTile(
+        title: Text("Fecha de inicio"),
+        subtitle: Text(trip.fechaInicioViaje.toString()),
+        leading: TextButton(
+            onPressed: () =>
+                _selectDateInicio(context, trip.tripID, trip.fechaInicioViaje),
+            child: Text("Seleccionar fecha de inicio del viaje")),
+      ),
+      ListTile(
+        title: Text("Fecha de final"),
+        subtitle: Text(trip.fechaFinalViaje.toString()),
+        leading: TextButton(
+            onPressed: () =>
+                _selectDateFinal(context, trip.tripID, trip.fechaFinalViaje),
+            child: Text("Seleccionar fecha de final del viaje")),
       ),
       TextButton(
           onPressed: () {
@@ -140,4 +174,43 @@ Widget currentTripWidget(TripModel trip, context) {
       Text(trip.rentabilidadPorcentual.toString()),
     ],
   ));
+}
+
+Future<void> _selectDateInicio(context, int idTrip, selectedDate) async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: selectedDate,
+    firstDate: DateTime(2000),
+    lastDate: DateTime(2101),
+  );
+  if (picked != null && picked != selectedDate) {
+    _updateFechaInicio(picked, idTrip, context);
+  }
+}
+
+Future<void> _selectDateFinal(context, int idTrip, selectedDate) async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: selectedDate,
+    firstDate: DateTime(2000),
+    lastDate: DateTime(2101),
+  );
+  if (picked != null && picked != selectedDate) {
+    _updateFechaFinal(picked, idTrip, context);
+  }
+}
+
+Future<void> _updatePais(String pais, int idTrip, context) async {
+  await DB.updatePaisTrip(idTrip, pais);
+  Navigator.pushReplacementNamed(context, '/trip_control');
+}
+
+Future<void> _updateFechaInicio(DateTime date, int idTrip, context) async {
+  await DB.updateFechaInicioTrip(idTrip, date);
+  Navigator.pushReplacementNamed(context, '/trip_control');
+}
+
+Future<void> _updateFechaFinal(DateTime date, int idTrip, context) async {
+  await DB.updateFechaFinalTrip(idTrip, date);
+  Navigator.pushReplacementNamed(context, '/trip_control');
 }

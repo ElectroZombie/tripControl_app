@@ -14,8 +14,26 @@ class TripConsults {
 
   static Future<void> updateTrip(Database db, TripModel T) async {
     await db.rawUpdate(
-        "UPDATE viaje SET nombre_viaje = ?, precio_M1 = ?, precio_M2 = ?, nombre_pais = ?, fecha_inicio_viaje = ?, fecha_final_viaje = ? WHERE id_viaje = ${T.tripID}",
+        "UPDATE viaje SET nombre_viaje = ?, precio_M1 = ?, precio_M2 = ? WHERE id_viaje = ${T.tripID}",
         [T.tripName, T.coin1Price, T.coin2Price]);
+  }
+
+  static Future<void> updatePaisTrip(
+      Database db, int idTrip, String pais) async {
+    await db.update('viaje', {'nombre_pais': pais},
+        where: 'id_viaje = ?', whereArgs: [idTrip]);
+  }
+
+  static Future<void> updateFechaInicioTrip(
+      Database db, int idTrip, DateTime fechaInicio) async {
+    await db.update('viaje', {'fecha_inicio_viaje': fechaInicio.toString()},
+        where: 'id_viaje = ?', whereArgs: [idTrip]);
+  }
+
+  static Future<void> updateFechaFinalTrip(
+      Database db, int idTrip, DateTime fechaFinal) async {
+    await db.update('viaje', {'fecha_final_viaje': fechaFinal.toString()},
+        where: 'id_viaje = ?', whereArgs: [idTrip]);
   }
 
   static Future<void> deleteTrip(Database db, int idTrip) async {
