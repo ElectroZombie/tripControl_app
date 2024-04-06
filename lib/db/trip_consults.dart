@@ -14,7 +14,7 @@ class TripConsults {
 
   static Future<void> updateTrip(Database db, TripModel T) async {
     await db.rawUpdate(
-        "UPDATE viaje SET nombre_viaje = ?, precio_M1 = ?, precio_M2 = ? WHERE id_viaje = ${T.tripID}",
+        "UPDATE viaje SET nombre_viaje = ?, precio_M1 = ?, precio_M2 = ?, nombre_pais = ?, fecha_inicio_viaje = ?, fecha_final_viaje = ? WHERE id_viaje = ${T.tripID}",
         [T.tripName, T.coin1Price, T.coin2Price]);
   }
 
@@ -31,7 +31,10 @@ class TripConsults {
         (i) => TripModel(
             tripID: Q[i]['id_viaje'],
             tripName: Q[i]['nombre_viaje'],
-            activo: Q[i]['activo']));
+            activo: Q[i]['activo'],
+            fechaInicioViaje: Q[i]['fecha_inicio_viaje'],
+            fechaFinalViaje: Q[i]['fecha_final_viaje'],
+            nombrePais: Q[i]['nombre_pais']));
   }
 
   static Future<int> getLastIDTrip(db) async {
@@ -69,7 +72,10 @@ class TripConsults {
         otrosGastos: 0,
         rentabilidad: 0,
         rentabilidadPorcentual: 0,
-        rentabilidadXKilo: 0);
+        rentabilidadXKilo: 0,
+        fechaInicioViaje: Q[0]['fecha_inicio_viaje'],
+        fechaFinalViaje: Q[0]['fecha_final_viaje'],
+        nombrePais: Q[0]['nombre_pais']);
     viaje.coin1Price = Q[0]['precio_M1'];
     viaje.coin2Price = Q[0]['precio_M2'];
 
@@ -86,13 +92,14 @@ class TripConsults {
     return viaje;
   }
 
-  static Future<void> endTrip(Database db, int idTrip) async {
-    await db.update('viaje', {'activo': 0},
+  static Future<void> endTrip(
+      Database db, int idTrip, String fechaFinal) async {
+    await db.update('viaje', {'activo': 0, 'fecha_final_viaje': fechaFinal},
         where: 'id_viaje = ?', whereArgs: [idTrip]);
   }
 
   static Future<void> activateTrip(Database db, int idTrip) async {
-    await db.update('viaje', {'activo': 1},
+    await db.update('viaje', {'activo': 1, 'fecha_final_viaje': ""},
         where: 'id_viaje = ?', whereArgs: [idTrip]);
   }
 

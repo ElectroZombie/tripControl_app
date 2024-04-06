@@ -36,34 +36,52 @@ class TripListState extends State<TripList> {
               );
             } else {
               return SingleChildScrollView(
-                  child: Column(
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, r) {
-                      return Column(
-                        children: [
-                          ListTile(
-                            title: Text(snapshot.data[r].tripName),
-                            leading: IconButton(
-                                onPressed: () => {
-                                      Navigator.pushNamed(context, '/trip_data',
-                                          arguments: snapshot.data[r].tripID)
-                                    },
-                                icon: const Icon(
-                                    Icons.arrow_circle_right_outlined)),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                  nuevoViaje(snapshot, context),
-                ],
-              ));
+                  child: Center(
+                      child: SizedBox(
+                          width: (MediaQuery.of(context).size.width * 7) / 10,
+                          child: Column(
+                            children: [
+                              ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (context, r) {
+                                  TripModel viaje = snapshot.data[r];
+                                  return Column(
+                                    children: [
+                                      ListTile(
+                                          tileColor: const Color.fromARGB(
+                                              104, 105, 89, 112),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30)),
+                                          title: Text(
+                                            "Nombre del viaje: ${viaje.tripName}"
+                                            "\n Pais del viaje: ${viaje.nombrePais}"
+                                            "\n Fechas del viaje: ${viaje.fechaInicioViaje} - ${viaje.fechaFinalViaje}",
+                                            style: TextStyle(fontSize: 16),
+                                          ),
+                                          leading: IconButton(
+                                              onPressed: () => {
+                                                    Navigator.pushNamed(
+                                                        context, '/trip_data',
+                                                        arguments: snapshot
+                                                            .data[r].tripID)
+                                                  },
+                                              hoverColor: Color.fromARGB(
+                                                  143, 14, 100, 139),
+                                              tooltip: "Ver informacion",
+                                              icon: const Icon(Icons
+                                                  .arrow_circle_right_outlined))),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                              nuevoViaje(snapshot, context),
+                            ],
+                          ))));
             }
           },
         ),

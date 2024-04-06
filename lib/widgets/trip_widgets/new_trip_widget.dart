@@ -3,7 +3,8 @@ import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/utils/tuple.dart';
 
-Widget newTripWidget(context) {
+Widget newTripWidget(selectedDate, paisSeleccionado, paises, context,
+    callbackDate, callbackPais) {
   TextEditingController nombreViaje = TextEditingController();
   TextEditingController precioM1 = TextEditingController();
   TextEditingController precioM2 = TextEditingController();
@@ -42,8 +43,34 @@ Widget newTripWidget(context) {
                   ))),
             ],
           )),
+      /*  ListTile(
+        subtitle: DropdownButtonFormField<String>(
+          value: paisSeleccionado,
+          onChanged: (value) {
+            callbackPais(value);
+          },
+          items: paises.map((item) {
+            return DropdownMenuItem<String>(
+              value: item,
+              child: Text(item),
+            );
+          }).toList(),
+          decoration: const InputDecoration(
+            labelText: 'Pais',
+            border: InputBorder.none,
+          ),
+        ),
+      ),*/
+      ListTile(
+        title: Text("Fecha de inicio"),
+        subtitle: Text(selectedDate.toString()),
+        leading: TextButton(
+            onPressed: () => _selectDate(context, selectedDate, callbackDate),
+            child: Text("Seleccionar fecha de inicio del viaje")),
+      ),
       TextButton(
-          onPressed: () => crearViaje(nombreViaje, precioM1, precioM2, context),
+          onPressed: () => crearViaje(nombreViaje, precioM1, precioM2,
+              paisSeleccionado, selectedDate, context),
           child: const Text("Crear viaje"))
     ],
   ));
@@ -53,10 +80,13 @@ void crearViaje(
     TextEditingController nombreViaje,
     TextEditingController precioM1,
     TextEditingController precioM2,
+    String pais,
+    selectedDate,
     context) async {
   if (nombreViaje.value.text == "" ||
       precioM1.value.text == "" ||
-      precioM2.value.text == "") {
+      precioM2.value.text == "" ||
+      pais == "") {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -85,12 +115,26 @@ void crearViaje(
         otrosGastos: 0,
         rentabilidad: 0,
         rentabilidadPorcentual: 0,
-        rentabilidadXKilo: 0);
+        rentabilidadXKilo: 0,
+        nombrePais: pais,
+        fechaInicioViaje: selectedDate.toString());
     trip.coin1Price = double.tryParse(precioM1.value.text);
     trip.coin2Price = double.tryParse(precioM2.value.text);
     await DB.insertNewTrip(trip);
 
     Navigator.pushReplacementNamed(context, '/trip_control',
         arguments: Tuple(T: 1, K: trip));
+  }
+}
+
+Future<void> _selectDate(context, selectedDate, callbackDate) async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: selectedDate,
+    firstDate: DateTime(2000),
+    lastDate: DateTime(2101),
+  );
+  if (picked != null && picked != selectedDate) {
+    callbackDate(picked);
   }
 }

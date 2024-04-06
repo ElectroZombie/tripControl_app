@@ -28,9 +28,9 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => Principal(),
+        '/': (context) => const Principal(),
         '/calculator': (BuildContext context) => const Calculator(),
-        '/trip_control': (BuildContext context) => TripControl(),
+        '/trip_control': (BuildContext context) => const TripControl(),
         '/trip_data': (BuildContext context) => const TripData(),
         '/trip_list': (BuildContext context) => const TripList()
       },

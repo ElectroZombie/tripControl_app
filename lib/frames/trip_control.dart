@@ -15,6 +15,9 @@ class TripControl extends StatefulWidget {
 
 class TripControlState extends State<TripControl> {
   Tuple<int, TripModel> tupla = Tuple(T: 0, K: TripModel.nullTrip());
+  String paisSeleccionado = "";
+  DateTime? selectedDate;
+  List<String> paises = [];
 
   Future<void> revisarViaje() async {
     int activo = 0;
@@ -24,14 +27,32 @@ class TripControlState extends State<TripControl> {
     }
     if (activo == 1) {
       tupla = Tuple(T: activo, K: await DB.getTripByID(e));
-      setState(() {});
     }
+  }
+
+  _getCountries() async {
+    paises = await DB.getCountries();
+  }
+
+  callbackDate(date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
+  callbackPais(pais) {
+    setState(() {
+      paisSeleccionado = pais;
+    });
   }
 
   @override
   void initState() {
     super.initState();
     revisarViaje();
+    // _getCountries();
+    selectedDate = DateTime.now();
+    setState(() {});
   }
 
   @override
@@ -49,7 +70,7 @@ class TripControlState extends State<TripControl> {
           children: [
             gradient(),
             Form(
-              child: widgetTrip(tupla, context),
+              child: widgetTrip(tupla, context, callbackDate, callbackPais),
             )
           ],
         ));
@@ -57,7 +78,7 @@ class TripControlState extends State<TripControl> {
 
   Future<void> endTrip(Tuple<int, TripModel> tupla, context) async {
     _endTrip(int idTrip) async {
-      await DB.endTrip(idTrip);
+      await DB.endTrip(idTrip, DateTime.now().toString());
       Navigator.pushReplacementNamed(context, '/trip_control');
     }
 
@@ -102,9 +123,11 @@ class TripControlState extends State<TripControl> {
     }
   }
 
-  Widget widgetTrip(Tuple<int, TripModel> tupla, context) {
+  Widget widgetTrip(
+      Tuple<int, TripModel> tupla, context, callbackDate, callbackPais) {
     if (tupla.T == 0) {
-      return newTripWidget(context);
+      return newTripWidget(selectedDate, paisSeleccionado, paises, context,
+          callbackDate, callbackPais);
     } else {
       return currentTripWidget(tupla.K!, context);
     }

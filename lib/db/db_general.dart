@@ -17,11 +17,13 @@ class DB {
         join(await getDatabasesPath(), 'tripControl.db'),
         onCreate: (db, version) async {
           await db.execute(
-              "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE)");
+              "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE, nombre_pais TEXT, fecha_inicio_viaje TEXT, fecha_final_viaje TEXT)");
           await db.execute(
               "CREATE TABLE compra (id_compra INTEGER PRIMARY KEY, id_viaje INTEGER, nombre_compra TEXT, peso_total DOUBLE, cant_unidades INTEGER, compra_precio DOUBLE, ventaCUP DOUBLE)");
           await db.execute(
               "CREATE TABLE gasto (id_gasto INTEGER PRIMARY KEY, id_viaje INTEGER, descripcion_gasto TEXT, gasto_money DOUBLE)");
+          await db.execute(
+              "CREATE TABLE pais (id_pais INTEGER PRIMARY KEY, nombre_pais TEXT)");
         },
         version: 1,
       );
@@ -34,11 +36,13 @@ class DB {
           version: 1,
           onCreate: (db, version) async {
             await db.execute(
-                "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE)");
+                "CREATE TABLE viaje (id_viaje INTEGER PRIMARY KEY, nombre_viaje TEXT, activo INTEGER, precio_M1 DOUBLE, precio_M2 DOUBLE, nombre_pais TEXT, fecha_inicio_viaje TEXT, fecha_final_viaje TEXT)");
             await db.execute(
                 "CREATE TABLE compra (id_compra INTEGER PRIMARY KEY, id_viaje INTEGER, nombre_compra TEXT, peso_total DOUBLE, cant_unidades INTEGER, compra_precio DOUBLE, ventaCUP DOUBLE)");
             await db.execute(
                 "CREATE TABLE gasto (id_gasto INTEGER PRIMARY KEY, id_viaje INTEGER, descripcion_gasto TEXT, gasto_money DOUBLE)");
+            await db.execute(
+                "CREATE TABLE pais (id_pais INTEGER PRIMARY KEY, nombre_pais TEXT)");
           },
         ));
   }
@@ -52,6 +56,15 @@ class DB {
     } else {
       return false;
     }
+  }
+
+  static Future<List<String>> getCountries() async {
+    Database db = await _openDB();
+    List<Map<String, dynamic>> Q = await db.query("pais");
+    if (Q.isEmpty) {
+      return [];
+    }
+    return List.generate(Q.length, (i) => Q[i]['nombre_pais']);
   }
 
 //Consultas de viaje
@@ -90,9 +103,9 @@ class DB {
     return TripConsults.getTripByID(db, id);
   }
 
-  static Future<void> endTrip(int idTrip) async {
+  static Future<void> endTrip(int idTrip, String fechaFinal) async {
     Database db = await _openDB();
-    TripConsults.endTrip(db, idTrip);
+    TripConsults.endTrip(db, idTrip, fechaFinal);
   }
 
   static Future<bool> activateTrip(int idTrip) async {

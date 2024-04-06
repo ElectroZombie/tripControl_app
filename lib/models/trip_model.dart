@@ -16,14 +16,17 @@ class TripModel {
   double? rentabilidad; //Dollar
   double? rentabilidadXKilo;
   double? rentabilidadPorcentual;
-
-  //List<GastoModel> gastos = List.empty();
-  //List<CompraModel> compras = List.empty();
+  String? nombrePais;
+  String? fechaInicioViaje;
+  String? fechaFinalViaje;
 
   TripModel(
       {required this.tripID,
       required this.tripName,
       required this.activo,
+      required this.nombrePais,
+      required this.fechaInicioViaje,
+      this.fechaFinalViaje,
       this.coin1Price,
       this.coin2Price,
       this.gastoCompras,
@@ -36,7 +39,12 @@ class TripModel {
       this.rentabilidadPorcentual});
 
   static TripModel nullTrip() {
-    return TripModel(tripID: -1, tripName: "", activo: 0);
+    return TripModel(
+        tripID: -1,
+        tripName: "",
+        activo: 0,
+        fechaInicioViaje: "",
+        nombrePais: "");
   }
 
   Map<String, dynamic> toMap() {
@@ -46,6 +54,9 @@ class TripModel {
       'activo': activo,
       'precio_M1': coin1Price,
       'precio_M2': coin2Price,
+      'nombre_pais': nombrePais,
+      'fecha_inicio_viaje': fechaInicioViaje,
+      'fecha_final_viaje': fechaFinalViaje
     };
   }
 
