@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trip_control_app/db/initialize_db.dart';
 import 'package:trip_control_app/frames/calculator.dart';
 import 'package:trip_control_app/frames/principal.dart';
 import 'package:trip_control_app/frames/trip_control.dart';
@@ -13,9 +15,19 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 void main() async {
   runApp(const MainApp());
 
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
   if (Platform.isLinux) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
+    await initializeCountries();
+  }
+
+  if (isFirstTime) {
+    await initializeCountries();
+    await prefs.setBool('isFirstTime', false);
   }
 }
 

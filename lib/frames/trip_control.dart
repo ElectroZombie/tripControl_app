@@ -32,6 +32,8 @@ class TripControlState extends State<TripControl> {
 
   _getCountries() async {
     paises = await DB.getCountries();
+    paisSeleccionado = paises[0];
+    setState(() {});
   }
 
   callbackDate(date) {
@@ -50,7 +52,7 @@ class TripControlState extends State<TripControl> {
   void initState() {
     super.initState();
     revisarViaje();
-    // _getCountries();
+    _getCountries();
     selectedDate = DateTime.now();
     setState(() {});
   }

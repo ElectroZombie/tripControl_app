@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart';
+import 'package:trip_control_app/db/countries_consults.dart';
 import 'package:trip_control_app/models/compra_model.dart';
 import 'package:trip_control_app/models/gasto_model.dart';
 import 'package:trip_control_app/models/trip_model.dart';
@@ -58,14 +59,23 @@ class DB {
     }
   }
 
+//Consultas de pais
   static Future<List<String>> getCountries() async {
     Database db = await _openDB();
-    List<Map<String, dynamic>> Q = await db.query("pais");
-    if (Q.isEmpty) {
-      return [];
-    }
-    return List.generate(Q.length, (i) => Q[i]['nombre_pais']);
+
+    return await CountriesConsults.getCountries(db);
   }
+
+  static Future<void> insertCountries() async {
+    Database db = await _openDB();
+    await CountriesConsults.insertCountries(db);
+  }
+
+  static Future<bool> hasCountries() async {
+    Database db = await _openDB();
+    return await CountriesConsults.hasCountries(db);
+  }
+//Consultas de pais
 
 //Consultas de viaje
   static Future<void> insertNewTrip(TripModel T) async {

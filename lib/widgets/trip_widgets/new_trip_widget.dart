@@ -3,8 +3,8 @@ import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/utils/tuple.dart';
 
-Widget newTripWidget(selectedDate, paisSeleccionado, paises, context,
-    callbackDate, callbackPais) {
+Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
+    context, callbackDate, callbackPais) {
   TextEditingController nombreViaje = TextEditingController();
   TextEditingController precioM1 = TextEditingController();
   TextEditingController precioM2 = TextEditingController();
@@ -43,24 +43,24 @@ Widget newTripWidget(selectedDate, paisSeleccionado, paises, context,
                   ))),
             ],
           )),
-      /*  ListTile(
+      ListTile(
         subtitle: DropdownButtonFormField<String>(
-          value: paisSeleccionado,
-          onChanged: (value) {
-            callbackPais(value);
-          },
-          items: paises.map((item) {
-            return DropdownMenuItem<String>(
-              value: item,
-              child: Text(item),
-            );
-          }).toList(),
+          items: List.generate(
+              paises.length,
+              (i) => DropdownMenuItem(
+                    child: Text(paises[i]),
+                    value: paises[i],
+                  )),
           decoration: const InputDecoration(
             labelText: 'Pais',
             border: InputBorder.none,
           ),
+          value: paisSeleccionado,
+          onChanged: (value) {
+            callbackPais(value);
+          },
         ),
-      ),*/
+      ),
       ListTile(
         title: Text("Fecha de inicio"),
         subtitle: Text(selectedDate.toString()),
