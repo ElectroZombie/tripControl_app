@@ -81,7 +81,7 @@ class TripControlState extends State<TripControl> {
   Future<void> endTrip(Tuple<int, TripModel> tupla, context) async {
     _endTrip(int idTrip) async {
       await DB.endTrip(idTrip, DateTime.now().toString());
-      Navigator.pushReplacementNamed(context, '/trip_control');
+      Navigator.pushReplacementNamed(context, '/', arguments: 1);
     }
 
     if (tupla.T == 0) {

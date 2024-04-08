@@ -7,9 +7,14 @@ class Principal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int initIndex = 0;
+    var escultura = ModalRoute.of(context)!.settings.arguments;
+    if (escultura != null) {
+      initIndex = 1;
+    }
     return DefaultTabController(
       length: 2,
-      initialIndex: 0,
+      initialIndex: initIndex,
       child: Scaffold(
         appBar: AppBar(
           actions: [
