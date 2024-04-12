@@ -8,8 +8,6 @@ Autores:
 =
  Eric Michel Villavicencio Reyes (https://github.com/ElectroZombie)
 
- Joan Manuel Molina Gómez (https://github.com/JoanManuel16)
-
 Especificaciones del proyecto:
 -
  Java Version: 17.0.10+7
@@ -34,8 +32,6 @@ v...
 Authors:
 =
  Eric Michel Villavicencio Reyes (https://github.com/ElectroZombie)
-
- Joan Manuel Molina Gómez (https://github.com/JoanManuel16)
 
 Buildig Specs:
 -
