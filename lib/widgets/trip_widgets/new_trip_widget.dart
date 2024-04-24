@@ -10,70 +10,164 @@ Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
   TextEditingController precioM2 = TextEditingController();
 
   return SingleChildScrollView(
-      child: Column(
-    children: [
-      ListTile(
-          subtitle: TextFormField(
-        controller: nombreViaje,
-        maxLength: 20,
-        keyboardType: TextInputType.text,
-        style: const TextStyle(fontSize: 14),
-      )),
-      SizedBox(
-          width: 500,
-          child: Row(
-            children: [
-              SizedBox(
-                  width: 200,
-                  child: ListTile(
-                      subtitle: TextFormField(
-                    controller: precioM1,
-                    maxLength: 6,
-                    keyboardType: TextInputType.number,
-                    style: const TextStyle(fontSize: 14),
-                  ))),
-              SizedBox(
-                  width: 200,
-                  child: ListTile(
-                      subtitle: TextFormField(
-                    controller: precioM2,
-                    maxLength: 6,
-                    keyboardType: TextInputType.number,
-                    style: const TextStyle(fontSize: 14),
-                  ))),
-            ],
-          )),
-      ListTile(
-        subtitle: DropdownButtonFormField<String>(
-          items: List.generate(
-              paises.length,
-              (i) => DropdownMenuItem(
-                    child: Text(paises[i]),
-                    value: paises[i],
-                  )),
-          decoration: const InputDecoration(
-            labelText: 'Pais',
-            border: InputBorder.none,
-          ),
-          value: paisSeleccionado,
-          onChanged: (value) {
-            callbackPais(value);
-          },
-        ),
-      ),
-      ListTile(
-        title: Text("Fecha de inicio"),
-        subtitle: Text(selectedDate.toString()),
-        leading: TextButton(
-            onPressed: () => _selectDate(context, selectedDate, callbackDate),
-            child: Text("Seleccionar fecha de inicio del viaje")),
-      ),
-      TextButton(
-          onPressed: () => crearViaje(nombreViaje, precioM1, precioM2,
-              paisSeleccionado, selectedDate, context),
-          child: const Text("Crear viaje"))
-    ],
-  ));
+      child: Center(
+          child: SizedBox(
+              width: (MediaQuery.of(context).size.width * 7) / 10,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ListTile(
+                    title: const Text(
+                      "Nombre del viaje:",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    subtitle: TextFormField(
+                      controller: nombreViaje,
+                      maxLength: 20,
+                      keyboardType: TextInputType.text,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                    tileColor: Color.fromARGB(255, 160, 121, 177),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                      width: (MediaQuery.of(context).size.width * 4) / 10,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                              width: (MediaQuery.of(context).size.width * 1.6) /
+                                  10,
+                              child: ListTile(
+                                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  title: Text("Precio de la moneda nacional",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255))),
+                                  subtitle: TextFormField(
+                                    controller: precioM1,
+                                    maxLength: 6,
+                                    keyboardType: TextInputType.number,
+                                    style: const TextStyle(fontSize: 14),
+                                  ))),
+                          SizedBox(
+                            width:
+                                (MediaQuery.of(context).size.width * 0.5) / 10,
+                          ),
+                          SizedBox(
+                              width: (MediaQuery.of(context).size.width * 1.6) /
+                                  10,
+                              child: ListTile(
+                                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  title: Text("Precio de la moneda extranjera",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255))),
+                                  subtitle: TextFormField(
+                                    controller: precioM2,
+                                    maxLength: 6,
+                                    keyboardType: TextInputType.number,
+                                    style: const TextStyle(fontSize: 14),
+                                  ))),
+                        ],
+                      )),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ListTile(
+                    title: Text(
+                      "País de destino",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    tileColor: Color.fromARGB(255, 160, 121, 177),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    subtitle: DropdownButtonFormField<String>(
+                      items: List.generate(
+                          paises.length,
+                          (i) => DropdownMenuItem(
+                                child: Text(paises[i]),
+                                value: paises[i],
+                              )),
+                      decoration: const InputDecoration(
+                        labelText: 'Pais',
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.black,
+                                width: 10,
+                                style: BorderStyle.solid)),
+                      ),
+                      value: paisSeleccionado,
+                      onChanged: (value) {
+                        callbackPais(value);
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ListTile(
+                    title: Text(
+                      "Fecha de inicio del viaje",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    tileColor: Color.fromARGB(255, 160, 121, 177),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    subtitle: Text(
+                      selectedDate.toString(),
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Color.fromARGB(200, 200, 200, 200)),
+                    ),
+                    leading: TextButton(
+                        onPressed: () =>
+                            _selectDate(context, selectedDate, callbackDate),
+                        child: Icon(
+                          Icons.event_note_rounded,
+                          color: Color.fromRGBO(2, 0, 102, 0.878),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextButton(
+                      style: ButtonStyle(
+                          fixedSize:
+                              const MaterialStatePropertyAll(Size(150, 50)),
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) =>
+                                  const Color.fromARGB(161, 255, 255, 255)),
+                          overlayColor: MaterialStateColor.resolveWith(
+                              (states) =>
+                                  const Color.fromARGB(99, 104, 58, 183))),
+                      onPressed: () => crearViaje(nombreViaje, precioM1,
+                          precioM2, paisSeleccionado, selectedDate, context),
+                      child: const Text(
+                        "Crear viaje",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ))
+                ],
+              ))));
 }
 
 void crearViaje(

@@ -80,6 +80,9 @@ class TripListState extends State<TripList> {
                               },
                             ),
                             nuevoViaje(snapshot, context),
+                            const SizedBox(
+                              height: 10,
+                            )
                           ],
                         )));
               }
@@ -94,10 +97,19 @@ class TripListState extends State<TripList> {
 Widget nuevoViaje(snapshot, context) {
   if (snapshot.data[snapshot.data.length - 1].activo == 0) {
     return TextButton(
+        style: ButtonStyle(
+            fixedSize: const MaterialStatePropertyAll(Size(150, 50)),
+            backgroundColor: MaterialStateColor.resolveWith(
+                (states) => const Color.fromARGB(161, 255, 255, 255)),
+            overlayColor: MaterialStateColor.resolveWith(
+                (states) => const Color.fromARGB(99, 104, 58, 183))),
         onPressed: () => {Navigator.pushNamed(context, '/trip_control')},
-        child: const Text("Crear viaje"));
+        child: const Text(
+          "Crear viaje",
+          style: TextStyle(fontSize: 24),
+        ));
   }
   return const SizedBox(
-    height: 1,
+    height: 10,
   );
 }
