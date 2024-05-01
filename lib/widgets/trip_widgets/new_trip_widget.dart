@@ -49,7 +49,7 @@ Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
                                   tileColor: Color.fromARGB(255, 160, 121, 177),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20)),
-                                  title: Text("Precio de la moneda nacional",
+                                  title: Text("Precio de la moneda nacional:",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Color.fromARGB(
@@ -71,7 +71,7 @@ Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
                                   tileColor: Color.fromARGB(255, 160, 121, 177),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20)),
-                                  title: Text("Precio de la moneda extranjera",
+                                  title: Text("Precio de la moneda extranjera:",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Color.fromARGB(
@@ -88,12 +88,6 @@ Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
                     height: 20,
                   ),
                   ListTile(
-                    title: Text(
-                      "País de destino",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Color.fromARGB(255, 255, 255, 255)),
-                    ),
                     tileColor: Color.fromARGB(255, 160, 121, 177),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
@@ -104,13 +98,13 @@ Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
                                 child: Text(paises[i]),
                                 value: paises[i],
                               )),
-                      decoration: const InputDecoration(
-                        labelText: 'Pais',
+                      decoration: InputDecoration(
+                        labelStyle: TextStyle(
+                            fontSize: 20,
+                            color: Color.fromARGB(255, 255, 255, 255)),
+                        labelText: 'País de destino:',
                         border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Colors.black,
-                                width: 10,
-                                style: BorderStyle.solid)),
+                            borderRadius: BorderRadius.circular(40)),
                       ),
                       value: paisSeleccionado,
                       onChanged: (value) {
@@ -123,7 +117,7 @@ Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
                   ),
                   ListTile(
                     title: Text(
-                      "Fecha de inicio del viaje",
+                      "Fecha de inicio del viaje:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255)),

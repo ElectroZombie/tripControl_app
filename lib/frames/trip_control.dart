@@ -18,6 +18,7 @@ class TripControlState extends State<TripControl> {
   String paisSeleccionado = "";
   DateTime? selectedDate;
   List<String> paises = [];
+  String textoViaje = "Nuevo viaje";
 
   Future<void> revisarViaje() async {
     int activo = 0;
@@ -27,6 +28,8 @@ class TripControlState extends State<TripControl> {
     }
     if (activo == 1) {
       tupla = Tuple(T: activo, K: await DB.getTripByID(e));
+      textoViaje =
+          "Viaje actual: ${tupla.K!.tripName} / ${tupla.K!.nombrePais} / ${tupla.K!.fechaInicioViaje}";
     }
   }
 
@@ -67,6 +70,12 @@ class TripControlState extends State<TripControl> {
                 onPressed: () => endTrip(tupla, context),
                 child: Text("Finalizar Viaje"))
           ],
+          title: Text(
+            textoViaje,
+            style: TextStyle(fontSize: 20),
+          ),
+          centerTitle: true,
+          backgroundColor: const Color.fromARGB(255, 47, 128, 182),
         ),
         body: Stack(
           children: [
@@ -89,6 +98,7 @@ class TripControlState extends State<TripControl> {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Color.fromARGB(255, 111, 129, 155),
             title: Text("Todavia no se ha creado el viaje"),
             actions: [
               TextButton(
@@ -105,6 +115,7 @@ class TripControlState extends State<TripControl> {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Color.fromARGB(255, 111, 129, 155),
             title: Text("Desea finalizar este viaje?"),
             actions: [
               TextButton(
