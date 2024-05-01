@@ -21,9 +21,11 @@ Future<void> actualizarCompra(
     TripModel trip) async {
   nombreCompra.value = TextEditingValue(text: compra.compraNombre);
   cantU.value = TextEditingValue(text: compra.cantU.toString());
-  pesoT.value = TextEditingValue(text: compra.pesoT.toString());
-  costoM2.value = TextEditingValue(text: compra.compraPrecio.toString());
-  ventaM1.value = TextEditingValue(text: compra.ventaCUPXUnidad.toString());
+  pesoT.value = TextEditingValue(text: compra.pesoT.toStringAsFixed(2));
+  costoM2.value =
+      TextEditingValue(text: compra.compraPrecio.toStringAsFixed(2));
+  ventaM1.value =
+      TextEditingValue(text: compra.ventaCUPXUnidad.toStringAsFixed(2));
 
   await showDialog<String>(
     context: context,

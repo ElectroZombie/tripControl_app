@@ -25,28 +25,51 @@ _agregarCompra(
 
 Widget addCompraDialog(context, nombreCompra, cantU, pesoT, costoM2, ventaM1) {
   return AlertDialog(
-    title: const Text('Actualizar compra'),
+    title: const Text('Agregar compra'),
+    backgroundColor: Color.fromARGB(255, 111, 129, 155),
     content: Column(
       children: [
-        Text("Nombre del producto"),
         TextFormField(
           controller: nombreCompra,
+          decoration: InputDecoration(
+              label: Text("Nombre del producto"),
+              labelStyle: TextStyle(fontSize: 16)),
         ),
-        Text("Cantidad de unidades"),
+        SizedBox(
+          height: 5,
+        ),
         TextFormField(
           controller: cantU,
+          decoration: InputDecoration(
+              label: Text("Cantidad de unidades"),
+              labelStyle: TextStyle(fontSize: 16)),
         ),
-        Text("Peso total"),
+        SizedBox(
+          height: 5,
+        ),
         TextFormField(
           controller: pesoT,
+          decoration: InputDecoration(
+              label: Text("Peso total (En kilogramos)"),
+              labelStyle: TextStyle(fontSize: 16)),
         ),
-        Text("Costo en moneda foranea"),
+        SizedBox(
+          height: 5,
+        ),
         TextFormField(
           controller: costoM2,
+          decoration: InputDecoration(
+              label: Text("Costo del producto en la moneda extranjera"),
+              labelStyle: TextStyle(fontSize: 16)),
         ),
-        Text("Precio de venta en moneda nacional"),
+        SizedBox(
+          height: 5,
+        ),
         TextFormField(
           controller: ventaM1,
+          decoration: InputDecoration(
+              label: Text("Precio de venta del producto en CUP"),
+              labelStyle: TextStyle(fontSize: 16)),
         ),
       ],
     ),

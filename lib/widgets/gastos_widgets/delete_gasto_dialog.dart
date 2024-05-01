@@ -11,7 +11,8 @@ _eliminarGasto(context, GastoModel gasto) async {
 Widget deleteGastoDialog(context, GastoModel gasto) {
   return AlertDialog(
     title: Text("Eliminar compra"),
-    content: Text("Esta seguro de que desea eliminar el gasto?"),
+    backgroundColor: Color.fromARGB(255, 111, 129, 155),
+    content: Text("¿Esta seguro de que desea eliminar el gasto?"),
     actions: [
       TextButton(
         onPressed: () {

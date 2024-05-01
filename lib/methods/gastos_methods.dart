@@ -13,7 +13,8 @@ Future<void> actualizarGasto(
     TextEditingController gastoCosto,
     TripModel trip) async {
   gastoDescripcion.value = TextEditingValue(text: gasto.gastoDescripcion);
-  gastoCosto.value = TextEditingValue(text: gasto.gastoMoney.toString());
+  gastoCosto.value =
+      TextEditingValue(text: gasto.gastoMoney.toStringAsFixed(2));
   await showDialog(
     context: context,
     builder: (context) {

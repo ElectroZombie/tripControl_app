@@ -7,13 +7,20 @@ Widget updateGastoDialog(
     context, GastoModel gasto, gastoDescripcion, gastoCosto) {
   return AlertDialog(
     title: const Text('Actualizar gasto'),
+    backgroundColor: Color.fromARGB(255, 111, 129, 155),
     content: Column(
       children: [
         TextFormField(
           controller: gastoDescripcion,
+          decoration: InputDecoration(
+              label: Text("Descripción del gasto"),
+              labelStyle: TextStyle(fontSize: 16)),
         ),
         TextFormField(
           controller: gastoCosto,
+          decoration: InputDecoration(
+              label: Text("Costo del gasto"),
+              labelStyle: TextStyle(fontSize: 16)),
         ),
       ],
     ),

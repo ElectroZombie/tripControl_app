@@ -1,29 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/frames/trip_control.dart';
 import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
 
 Widget updateCompraDialog(
     context, nombreCompra, cantU, pesoT, costoM2, ventaM1, compra) {
   return AlertDialog(
     title: const Text('Actualizar compra'),
+    backgroundColor: Color.fromARGB(255, 111, 129, 155),
     content: Column(
       children: [
         TextFormField(
           controller: nombreCompra,
+          decoration: InputDecoration(
+              label: Text("Nombre del producto"),
+              labelStyle: TextStyle(fontSize: 16)),
+        ),
+        SizedBox(
+          height: 5,
         ),
         TextFormField(
           controller: cantU,
+          decoration: InputDecoration(
+              label: Text("Cantidad de unidades"),
+              labelStyle: TextStyle(fontSize: 16)),
+        ),
+        SizedBox(
+          height: 5,
         ),
         TextFormField(
           controller: pesoT,
+          decoration: InputDecoration(
+              label: Text("Peso total (En kilogramos)"),
+              labelStyle: TextStyle(fontSize: 16)),
+        ),
+        SizedBox(
+          height: 5,
         ),
         TextFormField(
           controller: costoM2,
+          decoration: InputDecoration(
+              label: Text("Costo del producto en la moneda extranjera"),
+              labelStyle: TextStyle(fontSize: 16)),
+        ),
+        SizedBox(
+          height: 5,
         ),
         TextFormField(
           controller: ventaM1,
+          decoration: InputDecoration(
+              label: Text("Precio de venta del producto en CUP"),
+              labelStyle: TextStyle(fontSize: 16)),
         ),
       ],
     ),

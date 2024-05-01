@@ -10,6 +10,7 @@ _eliminarCompra(context, CompraModel compra) async {
 
 Widget deleteCompraDialog(context, compra) {
   return AlertDialog(
+    backgroundColor: Color.fromARGB(255, 111, 129, 155),
     title: Text("Eliminar compra"),
     content: Text("Esta seguro de que desea eliminar la compra?"),
     actions: [
