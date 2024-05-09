@@ -64,8 +64,9 @@ class TripListState extends State<TripList> {
                                             onPressed: () => {
                                                   Navigator.pushNamed(
                                                       context, '/trip_data',
-                                                      arguments: snapshot
-                                                          .data[r].tripID)
+                                                      arguments:
+                                                          getCompleteTrip(
+                                                              viaje.tripID))
                                                 },
                                             hoverColor: Color.fromARGB(
                                                 202, 14, 99, 139),
@@ -112,4 +113,8 @@ Widget nuevoViaje(snapshot, context) {
   return const SizedBox(
     height: 10,
   );
+}
+
+Future<TripModel> getCompleteTrip(int idTrip) async {
+  return DB.getTripByID(idTrip);
 }
