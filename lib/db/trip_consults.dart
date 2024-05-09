@@ -97,6 +97,8 @@ class TripConsults {
     viaje.coin1Price = Q[0]['precio_M1'];
     viaje.coin2Price = Q[0]['precio_M2'];
 
+    viaje.fechaFinalViaje ??= "";
+
     List<CompraModel> compras = await CompraConsults.getComprasTrip(db, id);
     for (var compra in compras) {
       viaje.addCompra(compra);
