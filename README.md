@@ -12,7 +12,7 @@ Especificaciones del proyecto:
 -
  Java Version: 17.0.11
 
- SQLite 3 Version: 3.45.1
+ SQLite 3 Version: 3.45.3
 
  Dart SDK: 3.4.0
 
@@ -22,7 +22,7 @@ Construido con:
  
  Android SDK: 31.0.0
 
- Code-OSS: 1.86.0
+ Code-OSS: 1.89.0
 
 ------------------------------------------------------------------
 A mobile application to support travel checks for purchasing items
@@ -37,7 +37,7 @@ Buildig Specs:
 -
  Java Version: 17.0.11
 
- SQLite 3 Version: 3.45.1
+ SQLite 3 Version: 3.45.3
 
  Dart SDK: 3.4.0
 
@@ -47,4 +47,4 @@ Built on:
  
  Android SDK: 31.0.0
 
- Code-OSS: 1.86.0
+ Code-OSS: 1.89.0
