@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/methods/compras_methods.dart';
 import 'package:trip_control_app/methods/gastos_methods.dart';
+import 'package:trip_control_app/models/gasto_model.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 
 Widget dataTripWidget(TripModel data, context) {
   return SingleChildScrollView(
       child: Center(
           child: SizedBox(
-              width: (MediaQuery.of(context).size.width * 7) / 10,
+              width: (MediaQuery.of(context).size.width * 9.2) / 10,
               child: Column(children: [
                 SizedBox(
                   height: 20,
@@ -127,7 +128,8 @@ Widget dataTripWidget(TripModel data, context) {
                 ),
                 FutureBuilder(
                   future: getCompras(data.tripID),
-                  initialData: null,
+                  initialData: Text("Sin compras",
+                      style: TextStyle(fontSize: 20, color: Colors.redAccent)),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (!snapshot.hasData) {
                       return const Text(
@@ -179,7 +181,8 @@ Widget dataTripWidget(TripModel data, context) {
                 ),
                 FutureBuilder(
                   future: getGastos(data.tripID),
-                  initialData: null,
+                  initialData: Text("Sin gastos",
+                      style: TextStyle(fontSize: 20, color: Colors.redAccent)),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return const Text(
@@ -189,7 +192,7 @@ Widget dataTripWidget(TripModel data, context) {
                     } else {
                       return ListView.builder(
                         shrinkWrap: true,
-                        itemCount: snapshot.data!.length,
+                        itemCount: (snapshot.data! as List<GastoModel>).length,
                         itemBuilder: (context, i) {
                           return ListTile(
                             tileColor: Color.fromARGB(255, 63, 53, 92),
@@ -198,11 +201,12 @@ Widget dataTripWidget(TripModel data, context) {
                                     left: Radius.elliptical(200, 85),
                                     right: Radius.elliptical(200, 85))),
                             title: Text(
-                              snapshot.data![i].gastoDescripcion,
+                              (snapshot.data! as List<GastoModel>)[i]
+                                  .gastoDescripcion,
                               style: TextStyle(color: Colors.black),
                             ),
                             subtitle: Text(
-                              "Costo: ${snapshot.data![i].gastoMoney.toStringAsFixed(2)}",
+                              "Costo: ${(snapshot.data! as List<GastoModel>)[i].gastoMoney.toStringAsFixed(2)}",
                               style: TextStyle(color: Colors.black),
                             ),
                             leading: SizedBox(
@@ -221,7 +225,7 @@ Widget dataTripWidget(TripModel data, context) {
                   child: Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 22 / 100,
+                        width: MediaQuery.of(context).size.width * 30 / 100,
                         child: Column(
                           children: [
                             Text(
@@ -279,10 +283,10 @@ Widget dataTripWidget(TripModel data, context) {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 2 / 100,
+                        width: MediaQuery.of(context).size.width * 0.5 / 100,
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 22 / 100,
+                        width: MediaQuery.of(context).size.width * 30 / 100,
                         child: ListTile(
                           tileColor: const Color.fromARGB(162, 90, 64, 102),
                           shape: RoundedRectangleBorder(
@@ -297,10 +301,10 @@ Widget dataTripWidget(TripModel data, context) {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 2 / 100,
+                        width: MediaQuery.of(context).size.width * 0.5 / 100,
                       ),
                       SizedBox(
-                          width: MediaQuery.of(context).size.width * 22 / 100,
+                          width: MediaQuery.of(context).size.width * 30 / 100,
                           child: Column(
                             children: [
                               Text(
@@ -359,7 +363,7 @@ Widget dataTripWidget(TripModel data, context) {
                 Row(
                   children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 22 / 100,
+                      width: MediaQuery.of(context).size.width * 30 / 100,
                       child: ListTile(
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
@@ -374,10 +378,10 @@ Widget dataTripWidget(TripModel data, context) {
                       ),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 2 / 100,
+                      width: MediaQuery.of(context).size.width * 0.5 / 100,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 22 / 100,
+                      width: MediaQuery.of(context).size.width * 30 / 100,
                       child: ListTile(
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
@@ -393,10 +397,10 @@ Widget dataTripWidget(TripModel data, context) {
                       ),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 2 / 100,
+                      width: MediaQuery.of(context).size.width * 0.5 / 100,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 22 / 100,
+                      width: MediaQuery.of(context).size.width * 30 / 100,
                       child: ListTile(
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(

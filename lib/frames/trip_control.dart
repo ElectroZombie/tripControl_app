@@ -20,6 +20,10 @@ class TripControlState extends State<TripControl> {
   List<String> paises = [];
   String textoViaje = "Nuevo viaje";
 
+  TextEditingController nombreViaje = TextEditingController();
+  TextEditingController precioM1 = TextEditingController();
+  TextEditingController precioM2 = TextEditingController();
+
   Future<void> revisarViaje() async {
     int activo = 0;
     int e = await DB.getLastIDTrip();
@@ -140,7 +144,7 @@ class TripControlState extends State<TripControl> {
       Tuple<int, TripModel> tupla, context, callbackDate, callbackPais) {
     if (tupla.T == 0) {
       return newTripWidget(selectedDate, paisSeleccionado, paises, context,
-          callbackDate, callbackPais);
+          callbackDate, callbackPais, nombreViaje, precioM1, precioM2);
     } else {
       return currentTripWidget(tupla.K!, paises, context);
     }

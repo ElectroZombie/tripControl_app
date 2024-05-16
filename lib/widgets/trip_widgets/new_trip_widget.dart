@@ -3,16 +3,20 @@ import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/utils/tuple.dart';
 
-Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
-    context, callbackDate, callbackPais) {
-  TextEditingController nombreViaje = TextEditingController();
-  TextEditingController precioM1 = TextEditingController();
-  TextEditingController precioM2 = TextEditingController();
-
+Widget newTripWidget(
+    selectedDate,
+    String paisSeleccionado,
+    List<String> paises,
+    context,
+    callbackDate,
+    callbackPais,
+    TextEditingController nombreViaje,
+    TextEditingController precioM1,
+    TextEditingController precioM2) {
   return SingleChildScrollView(
       child: Center(
           child: SizedBox(
-              width: (MediaQuery.of(context).size.width * 7) / 10,
+              width: (MediaQuery.of(context).size.width * 9) / 10,
               child: Column(
                 children: [
                   SizedBox(
@@ -39,12 +43,13 @@ Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
                     height: 20,
                   ),
                   SizedBox(
-                      width: (MediaQuery.of(context).size.width * 4) / 10,
+                      width: (MediaQuery.of(context).size.width * 7) / 10,
                       child: Row(
                         children: [
                           SizedBox(
-                              width: (MediaQuery.of(context).size.width * 1.6) /
-                                  10,
+                              width:
+                                  (MediaQuery.of(context).size.width * 3.25) /
+                                      10,
                               child: ListTile(
                                   tileColor: Color.fromARGB(255, 160, 121, 177),
                                   shape: RoundedRectangleBorder(
@@ -65,8 +70,9 @@ Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
                                 (MediaQuery.of(context).size.width * 0.5) / 10,
                           ),
                           SizedBox(
-                              width: (MediaQuery.of(context).size.width * 1.6) /
-                                  10,
+                              width:
+                                  (MediaQuery.of(context).size.width * 3.25) /
+                                      10,
                               child: ListTile(
                                   tileColor: Color.fromARGB(255, 160, 121, 177),
                                   shape: RoundedRectangleBorder(
@@ -159,7 +165,10 @@ Widget newTripWidget(selectedDate, String paisSeleccionado, List<String> paises,
                         style: TextStyle(
                           fontSize: 16,
                         ),
-                      ))
+                      )),
+                  SizedBox(
+                    height: 20,
+                  ),
                 ],
               ))));
 }

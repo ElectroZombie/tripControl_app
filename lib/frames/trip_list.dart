@@ -28,11 +28,23 @@ class TripListState extends State<TripList> {
               if (!snapshot.hasData || snapshot.data.length == 0) {
                 return Column(
                   children: [
-                    const Text("No hay viajes disponibles"),
-                    TextButton(
-                        onPressed: () =>
-                            {Navigator.pushNamed(context, '/trip_control')},
-                        child: const Text("Crear viaje"))
+                    Center(
+                      child: Column(
+                        children: [
+                          const Text(
+                            "No hay viajes disponibles",
+                            style: TextStyle(
+                                fontSize: 24, fontFamily: 'Times new roman'),
+                          ),
+                          TextButton(
+                              onPressed: () => {
+                                    Navigator.pushNamed(
+                                        context, '/trip_control')
+                                  },
+                              child: const Text("Crear viaje"))
+                        ],
+                      ),
+                    )
                   ],
                 );
               } else {

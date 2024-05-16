@@ -23,6 +23,8 @@ void main() async {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
     await initializeCountries();
+  } else {
+    await initializeCountries();
   }
 
   if (isFirstTime) {
