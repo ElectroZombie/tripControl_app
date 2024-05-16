@@ -10,15 +10,15 @@ Autores:
 
 Especificaciones del proyecto:
 -
- Java Version: 17.0.10+7
+ Java Version: 17.0.11
 
  SQLite 3 Version: 3.45.1
 
- Dart SDK: 3.1.0
+ Dart SDK: 3.4.0
 
 Construido con:
 -
- Flutter SDK: 3.13.0
+ Flutter SDK: 3.22.0
  
  Android SDK: 31.0.0
 
@@ -35,15 +35,15 @@ Authors:
 
 Buildig Specs:
 -
- Java Version: 17.0.10+7
+ Java Version: 17.0.11
 
  SQLite 3 Version: 3.45.1
 
- Dart SDK: 3.1.0
+ Dart SDK: 3.4.0
 
 Built on:
 -
- Flutter SDK: 3.13.0
+ Flutter SDK: 3.22.0
  
  Android SDK: 31.0.0
 
