@@ -148,17 +148,20 @@ Widget dataTripWidget(TripModel data, context) {
                                   left: Radius.elliptical(200, 85),
                                   right: Radius.elliptical(200, 85))),
                           title: Text(
-                              "Nombre del producto: ${snapshot.data[i].compraNombre}"),
+                              "Producto: ${snapshot.data[i].compraNombre}"),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 "Costo de la compra en la moneda extranjera: ${snapshot.data[i].compraPrecio.toStringAsFixed(2)}",
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(
+                                    color: Colors.black, letterSpacing: -1.5),
                               ),
                               Text(
                                   "Precio de venta en CUP: ${snapshot.data[i].ventaCUPXUnidad.toStringAsFixed(2)},",
-                                  style: TextStyle(color: Colors.black)),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      letterSpacing: -1.5)),
                             ],
                           ),
                           leading: SizedBox(
@@ -203,11 +206,13 @@ Widget dataTripWidget(TripModel data, context) {
                             title: Text(
                               (snapshot.data! as List<GastoModel>)[i]
                                   .gastoDescripcion,
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(
+                                  color: Colors.black, letterSpacing: -1.5),
                             ),
                             subtitle: Text(
                               "Costo: ${(snapshot.data! as List<GastoModel>)[i].gastoMoney.toStringAsFixed(2)}",
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(
+                                  color: Colors.black, letterSpacing: -1.5),
                             ),
                             leading: SizedBox(
                               width: 20,
@@ -229,7 +234,7 @@ Widget dataTripWidget(TripModel data, context) {
                         child: Column(
                           children: [
                             Text(
-                              "Gastos",
+                              "Gastos (USD)",
                               style: TextStyle(
                                 fontSize: 24,
                                 fontFamily: "Times new roman",
@@ -239,9 +244,9 @@ Widget dataTripWidget(TripModel data, context) {
                               tileColor: const Color.fromARGB(162, 90, 64, 102),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
-                              title: const Text(
-                                  "Gasto ocupado en compras (En dólares)",
-                                  style: TextStyle(fontSize: 14)),
+                              title: const Text("Gasto ocupado en compras",
+                                  style: TextStyle(
+                                      fontSize: 14, letterSpacing: -1.5)),
                               subtitle: Text(
                                 data.gastoCompras!.toStringAsFixed(2),
                                 style: const TextStyle(
@@ -256,8 +261,9 @@ Widget dataTripWidget(TripModel data, context) {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
                               title: const Text(
-                                  "Gasto ocupado en compras, por kilogramo (En dólares)",
-                                  style: TextStyle(fontSize: 14)),
+                                  "Gasto ocupado en compras, por KG",
+                                  style: TextStyle(
+                                      fontSize: 14, letterSpacing: -1.5)),
                               subtitle: Text(
                                 data.gastoComprasXKilo!.toStringAsFixed(2),
                                 style: const TextStyle(
@@ -271,8 +277,9 @@ Widget dataTripWidget(TripModel data, context) {
                               tileColor: const Color.fromARGB(162, 90, 64, 102),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
-                              title: const Text("Otros gastos (En dólares)",
-                                  style: TextStyle(fontSize: 14)),
+                              title: const Text("Otros gastos",
+                                  style: TextStyle(
+                                      fontSize: 14, letterSpacing: -1.5)),
                               subtitle: Text(
                                 data.otrosGastos!.toStringAsFixed(2),
                                 style: const TextStyle(
@@ -291,8 +298,9 @@ Widget dataTripWidget(TripModel data, context) {
                           tileColor: const Color.fromARGB(162, 90, 64, 102),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
-                          title: const Text("Gasto total (En dólares)",
-                              style: TextStyle(fontSize: 14)),
+                          title: const Text("Gasto total",
+                              style:
+                                  TextStyle(fontSize: 14, letterSpacing: -1.5)),
                           subtitle: Text(
                             data.gastoTotal.toStringAsFixed(2),
                             style: const TextStyle(
@@ -308,7 +316,7 @@ Widget dataTripWidget(TripModel data, context) {
                           child: Column(
                             children: [
                               Text(
-                                "Ganancia",
+                                "Ganancia (USD)",
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontFamily: "Times new roman",
@@ -319,9 +327,9 @@ Widget dataTripWidget(TripModel data, context) {
                                     const Color.fromARGB(162, 90, 64, 102),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)),
-                                title: const Text(
-                                    "Ganancia real de las compras (En dólares)",
-                                    style: TextStyle(fontSize: 14)),
+                                title: const Text("Ganancia real de compras",
+                                    style: TextStyle(
+                                        fontSize: 14, letterSpacing: -1.5)),
                                 subtitle: Text(
                                   data.gananciaComprasReal!.toStringAsFixed(2),
                                   style: const TextStyle(
@@ -336,9 +344,9 @@ Widget dataTripWidget(TripModel data, context) {
                                     const Color.fromARGB(162, 90, 64, 102),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)),
-                                title: const Text(
-                                    "Ganancia de las compras, por kilogramo (En dólares)",
-                                    style: TextStyle(fontSize: 14)),
+                                title: const Text("Ganancia de compras, por KG",
+                                    style: TextStyle(
+                                        fontSize: 14, letterSpacing: -1.5)),
                                 subtitle: Text(
                                   data.gananciaComprasXKilo!.toStringAsFixed(2),
                                   style: const TextStyle(
@@ -354,7 +362,7 @@ Widget dataTripWidget(TripModel data, context) {
                   height: 10,
                 ),
                 Text(
-                  "Rentabilidad",
+                  "Rentabilidad (USD)",
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: "Times new roman",
@@ -368,8 +376,9 @@ Widget dataTripWidget(TripModel data, context) {
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        title: const Text("Rentabilidad (En dólares)",
-                            style: TextStyle(fontSize: 14)),
+                        title: const Text("Rentabilidad",
+                            style:
+                                TextStyle(fontSize: 14, letterSpacing: -1.5)),
                         subtitle: Text(
                           data.rentabilidad!.toStringAsFixed(2),
                           style: const TextStyle(
@@ -386,9 +395,9 @@ Widget dataTripWidget(TripModel data, context) {
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        title: const Text(
-                            "Rentabilidad por kilogramo (En dólares)",
-                            style: TextStyle(fontSize: 14)),
+                        title: const Text("Rentabilidad por KG",
+                            style:
+                                TextStyle(fontSize: 14, letterSpacing: -1.5)),
                         subtitle: Text(
                           data.rentabilidadXKilo!.toStringAsFixed(2),
                           style: const TextStyle(
@@ -405,9 +414,9 @@ Widget dataTripWidget(TripModel data, context) {
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        title: const Text(
-                            "Rentabilidad porcentual (En dólares)",
-                            style: TextStyle(fontSize: 14)),
+                        title: const Text("Rentabilidad porcentual",
+                            style:
+                                TextStyle(fontSize: 14, letterSpacing: -1.5)),
                         subtitle: Text(
                           data.rentabilidadPorcentual!.toStringAsFixed(2),
                           style: const TextStyle(

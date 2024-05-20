@@ -27,7 +27,8 @@ Widget addCompraDialog(context, nombreCompra, cantU, pesoT, costoM2, ventaM1) {
   return AlertDialog(
     title: const Text('Agregar compra'),
     backgroundColor: Color.fromARGB(255, 111, 129, 155),
-    content: Column(
+    content: SingleChildScrollView(
+        child: Column(
       children: [
         TextFormField(
           controller: nombreCompra,
@@ -72,7 +73,7 @@ Widget addCompraDialog(context, nombreCompra, cantU, pesoT, costoM2, ventaM1) {
               labelStyle: TextStyle(fontSize: 16)),
         ),
       ],
-    ),
+    )),
     actions: [
       TextButton(
         onPressed: () {

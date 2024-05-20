@@ -23,6 +23,13 @@ class TripControlState extends State<TripControl> {
   TextEditingController nombreViaje = TextEditingController();
   TextEditingController precioM1 = TextEditingController();
   TextEditingController precioM2 = TextEditingController();
+  TextEditingController nombreCompra = TextEditingController();
+  TextEditingController cantU = TextEditingController();
+  TextEditingController pesoT = TextEditingController();
+  TextEditingController costoM2 = TextEditingController();
+  TextEditingController ventaM1 = TextEditingController();
+  TextEditingController descripcionGasto = TextEditingController();
+  TextEditingController costoGastoD = TextEditingController();
 
   Future<void> revisarViaje() async {
     int activo = 0;
@@ -33,8 +40,9 @@ class TripControlState extends State<TripControl> {
     if (activo == 1) {
       tupla = Tuple(T: activo, K: await DB.getTripByID(e));
       textoViaje =
-          "Viaje actual: ${tupla.K!.tripName} / ${tupla.K!.nombrePais} / ${tupla.K!.fechaInicioViaje}";
+          "${tupla.K!.tripName} / ${tupla.K!.nombrePais} / ${tupla.K!.fechaInicioViaje}";
     }
+    setState(() {});
   }
 
   _getCountries() async {
@@ -72,13 +80,12 @@ class TripControlState extends State<TripControl> {
           actions: [
             TextButton(
                 onPressed: () => endTrip(tupla, context),
-                child: Text("Finalizar Viaje"))
+                child: Text("Terminar Viaje"))
           ],
           title: Text(
             textoViaje,
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20, letterSpacing: -2),
           ),
-          centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 47, 128, 182),
         ),
         body: Stack(
@@ -142,11 +149,25 @@ class TripControlState extends State<TripControl> {
 
   Widget widgetTrip(
       Tuple<int, TripModel> tupla, context, callbackDate, callbackPais) {
+    setState(() {});
     if (tupla.T == 0) {
       return newTripWidget(selectedDate, paisSeleccionado, paises, context,
           callbackDate, callbackPais, nombreViaje, precioM1, precioM2);
     } else {
-      return currentTripWidget(tupla.K!, paises, context);
+      return currentTripWidget(
+          tupla.K!,
+          paises,
+          context,
+          nombreViaje,
+          precioM1,
+          precioM2,
+          nombreCompra,
+          cantU,
+          pesoT,
+          costoM2,
+          ventaM1,
+          descripcionGasto,
+          costoGastoD);
     }
   }
 }

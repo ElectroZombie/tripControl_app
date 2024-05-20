@@ -8,7 +8,8 @@ Widget updateGastoDialog(
   return AlertDialog(
     title: const Text('Actualizar gasto'),
     backgroundColor: Color.fromARGB(255, 111, 129, 155),
-    content: Column(
+    content: SingleChildScrollView(
+        child: Column(
       children: [
         TextFormField(
           controller: gastoDescripcion,
@@ -23,7 +24,7 @@ Widget updateGastoDialog(
               labelStyle: TextStyle(fontSize: 16)),
         ),
       ],
-    ),
+    )),
     actions: [
       TextButton(
         onPressed: () {

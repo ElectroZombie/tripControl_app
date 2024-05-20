@@ -7,7 +7,8 @@ Widget addGastoDialog(context, gastoDescripcion, gastoCosto) {
   return AlertDialog(
     title: const Text('Agregar gasto'),
     backgroundColor: Color.fromARGB(255, 111, 129, 155),
-    content: Column(
+    content: SingleChildScrollView(
+        child: Column(
       children: [
         TextFormField(
           controller: gastoDescripcion,
@@ -22,7 +23,7 @@ Widget addGastoDialog(context, gastoDescripcion, gastoCosto) {
               labelStyle: TextStyle(fontSize: 16)),
         ),
       ],
-    ),
+    )),
     actions: [
       TextButton(
         onPressed: () {

@@ -7,7 +7,8 @@ Widget updateCompraDialog(
   return AlertDialog(
     title: const Text('Actualizar compra'),
     backgroundColor: Color.fromARGB(255, 111, 129, 155),
-    content: Column(
+    content: SingleChildScrollView(
+        child: Column(
       children: [
         TextFormField(
           controller: nombreCompra,
@@ -52,7 +53,7 @@ Widget updateCompraDialog(
               labelStyle: TextStyle(fontSize: 16)),
         ),
       ],
-    ),
+    )),
     actions: [
       TextButton(
         onPressed: () {

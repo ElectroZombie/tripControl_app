@@ -4,18 +4,20 @@ import 'package:trip_control_app/methods/compras_methods.dart';
 import 'package:trip_control_app/methods/gastos_methods.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 
-Widget currentTripWidget(TripModel trip, List<String> paises, context) {
-  TextEditingController nombreViaje = TextEditingController();
-  TextEditingController precioM1 = TextEditingController();
-  TextEditingController precioM2 = TextEditingController();
-  TextEditingController nombreCompra = TextEditingController();
-  TextEditingController cantU = TextEditingController();
-  TextEditingController pesoT = TextEditingController();
-  TextEditingController costoM2 = TextEditingController();
-  TextEditingController ventaM1 = TextEditingController();
-  TextEditingController descripcionGasto = TextEditingController();
-  TextEditingController costoGastoD = TextEditingController();
-
+Widget currentTripWidget(
+    TripModel trip,
+    List<String> paises,
+    context,
+    TextEditingController nombreViaje,
+    TextEditingController precioM1,
+    TextEditingController precioM2,
+    TextEditingController nombreCompra,
+    TextEditingController cantU,
+    TextEditingController pesoT,
+    TextEditingController costoM2,
+    TextEditingController ventaM1,
+    TextEditingController descripcionGasto,
+    TextEditingController costoGastoD) {
   nombreViaje.value = TextEditingValue(text: trip.tripName);
   precioM1.value = TextEditingValue(text: trip.coin1Price!.toStringAsFixed(2));
   precioM2.value = TextEditingValue(text: trip.coin2Price!.toStringAsFixed(2));
@@ -23,7 +25,7 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
   return SingleChildScrollView(
       child: Center(
           child: SizedBox(
-              width: (MediaQuery.of(context).size.width * 7) / 10,
+              width: (MediaQuery.of(context).size.width * 9.2) / 10,
               child: Column(children: [
                 SizedBox(
                   height: 20,
@@ -206,17 +208,20 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                                   left: Radius.elliptical(200, 85),
                                   right: Radius.elliptical(200, 85))),
                           title: Text(
-                              "Nombre del producto: ${snapshot.data[i].compraNombre}"),
+                              "Producto: ${snapshot.data[i].compraNombre}"),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 "Costo de la compra en la moneda extranjera: ${snapshot.data[i].compraPrecio.toStringAsFixed(2)}",
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(
+                                    color: Colors.black, letterSpacing: -1.5),
                               ),
                               Text(
                                   "Precio de venta en CUP: ${snapshot.data[i].ventaCUPXUnidad.toStringAsFixed(2)},",
-                                  style: TextStyle(color: Colors.black)),
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      letterSpacing: -1.5)),
                             ],
                           ),
                           leading: IconButton(
@@ -292,11 +297,13 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                                     right: Radius.elliptical(200, 85))),
                             title: Text(
                               snapshot.data![i].gastoDescripcion,
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(
+                                  color: Colors.black, letterSpacing: -1.5),
                             ),
                             subtitle: Text(
                               "Costo: ${snapshot.data![i].gastoMoney.toStringAsFixed(2)}",
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(
+                                  color: Colors.black, letterSpacing: -1.5),
                             ),
                             leading: IconButton(
                                 onPressed: () => actualizarGasto(
@@ -344,11 +351,11 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                   child: Row(
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 22 / 100,
+                        width: MediaQuery.of(context).size.width * 30 / 100,
                         child: Column(
                           children: [
                             Text(
-                              "Gastos",
+                              "Gastos (USD)",
                               style: TextStyle(
                                 fontSize: 24,
                                 fontFamily: "Times new roman",
@@ -358,9 +365,9 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                               tileColor: const Color.fromARGB(162, 90, 64, 102),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
-                              title: const Text(
-                                  "Gasto ocupado en compras (En dólares)",
-                                  style: TextStyle(fontSize: 14)),
+                              title: const Text("Gasto ocupado en compras",
+                                  style: TextStyle(
+                                      fontSize: 14, letterSpacing: -1.5)),
                               subtitle: Text(
                                 trip.gastoCompras!.toStringAsFixed(2),
                                 style: const TextStyle(
@@ -375,8 +382,9 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
                               title: const Text(
-                                  "Gasto ocupado en compras, por kilogramo (En dólares)",
-                                  style: TextStyle(fontSize: 14)),
+                                  "Gasto ocupado en compras, por KG",
+                                  style: TextStyle(
+                                      fontSize: 14, letterSpacing: -1.5)),
                               subtitle: Text(
                                 trip.gastoComprasXKilo!.toStringAsFixed(2),
                                 style: const TextStyle(
@@ -390,8 +398,9 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                               tileColor: const Color.fromARGB(162, 90, 64, 102),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
-                              title: const Text("Otros gastos (En dólares)",
-                                  style: TextStyle(fontSize: 14)),
+                              title: const Text("Otros gastos",
+                                  style: TextStyle(
+                                      fontSize: 14, letterSpacing: -1.5)),
                               subtitle: Text(
                                 trip.otrosGastos!.toStringAsFixed(2),
                                 style: const TextStyle(
@@ -402,16 +411,17 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 2 / 100,
+                        width: MediaQuery.of(context).size.width * 0.5 / 100,
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 22 / 100,
+                        width: MediaQuery.of(context).size.width * 30 / 100,
                         child: ListTile(
                           tileColor: const Color.fromARGB(162, 90, 64, 102),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
-                          title: const Text("Gasto total (En dólares)",
-                              style: TextStyle(fontSize: 14)),
+                          title: const Text("Gasto total",
+                              style:
+                                  TextStyle(fontSize: 14, letterSpacing: -1.5)),
                           subtitle: Text(
                             trip.gastoTotal.toStringAsFixed(2),
                             style: const TextStyle(
@@ -420,14 +430,14 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 2 / 100,
+                        width: MediaQuery.of(context).size.width * 0.5 / 100,
                       ),
                       SizedBox(
-                          width: MediaQuery.of(context).size.width * 22 / 100,
+                          width: MediaQuery.of(context).size.width * 30 / 100,
                           child: Column(
                             children: [
                               Text(
-                                "Ganancia",
+                                "Ganancia (USD)",
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontFamily: "Times new roman",
@@ -438,9 +448,9 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                                     const Color.fromARGB(162, 90, 64, 102),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)),
-                                title: const Text(
-                                    "Ganancia real de las compras (En dólares)",
-                                    style: TextStyle(fontSize: 14)),
+                                title: const Text("Ganancia real de compras",
+                                    style: TextStyle(
+                                        fontSize: 14, letterSpacing: -1.5)),
                                 subtitle: Text(
                                   trip.gananciaComprasReal!.toStringAsFixed(2),
                                   style: const TextStyle(
@@ -455,9 +465,9 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                                     const Color.fromARGB(162, 90, 64, 102),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)),
-                                title: const Text(
-                                    "Ganancia de las compras, por kilogramo (En dólares)",
-                                    style: TextStyle(fontSize: 14)),
+                                title: const Text("Ganancia de compras, por KG",
+                                    style: TextStyle(
+                                        fontSize: 14, letterSpacing: -1.5)),
                                 subtitle: Text(
                                   trip.gananciaComprasXKilo!.toStringAsFixed(2),
                                   style: const TextStyle(
@@ -473,7 +483,7 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                   height: 10,
                 ),
                 Text(
-                  "Rentabilidad",
+                  "Rentabilidad (USD)",
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: "Times new roman",
@@ -482,13 +492,14 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                 Row(
                   children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 22 / 100,
+                      width: MediaQuery.of(context).size.width * 30 / 100,
                       child: ListTile(
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        title: const Text("Rentabilidad (En dólares)",
-                            style: TextStyle(fontSize: 14)),
+                        title: const Text("Rentabilidad",
+                            style:
+                                TextStyle(fontSize: 14, letterSpacing: -1.5)),
                         subtitle: Text(
                           trip.rentabilidad!.toStringAsFixed(2),
                           style: const TextStyle(
@@ -497,17 +508,17 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                       ),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 2 / 100,
+                      width: MediaQuery.of(context).size.width * 0.5 / 100,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 22 / 100,
+                      width: MediaQuery.of(context).size.width * 30 / 100,
                       child: ListTile(
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        title: const Text(
-                            "Rentabilidad por kilogramo (En dólares)",
-                            style: TextStyle(fontSize: 14)),
+                        title: const Text("Rentabilidad por KG",
+                            style:
+                                TextStyle(fontSize: 14, letterSpacing: -1.5)),
                         subtitle: Text(
                           trip.rentabilidadXKilo!.toStringAsFixed(2),
                           style: const TextStyle(
@@ -516,17 +527,17 @@ Widget currentTripWidget(TripModel trip, List<String> paises, context) {
                       ),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 2 / 100,
+                      width: MediaQuery.of(context).size.width * 0.5 / 100,
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 22 / 100,
+                      width: MediaQuery.of(context).size.width * 30 / 100,
                       child: ListTile(
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        title: const Text(
-                            "Rentabilidad porcentual (En dólares)",
-                            style: TextStyle(fontSize: 14)),
+                        title: const Text("Rentabilidad porcentual",
+                            style:
+                                TextStyle(fontSize: 14, letterSpacing: -1.5)),
                         subtitle: Text(
                           trip.rentabilidadPorcentual!.toStringAsFixed(2),
                           style: const TextStyle(
