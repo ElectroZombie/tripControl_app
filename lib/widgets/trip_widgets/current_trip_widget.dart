@@ -45,6 +45,8 @@ Widget currentTripWidget(
                     controller: nombreViaje,
                     keyboardType: TextInputType.text,
                     style: const TextStyle(fontSize: 14),
+                    onFieldSubmitted: (value) =>
+                        _updateNombreViaje(trip, value, context),
                   ),
                 ),
                 SizedBox(
@@ -63,6 +65,8 @@ Widget currentTripWidget(
                     maxLength: 20,
                     keyboardType: TextInputType.number,
                     style: const TextStyle(fontSize: 14),
+                    onFieldSubmitted: (value) =>
+                        _updatePrecioM1(trip, value, context),
                   ),
                 ),
                 SizedBox(
@@ -81,6 +85,8 @@ Widget currentTripWidget(
                     maxLength: 20,
                     keyboardType: TextInputType.number,
                     style: const TextStyle(fontSize: 14),
+                    onFieldSubmitted: (value) =>
+                        _updatePrecioM2(trip, value, context),
                   ),
                 ),
                 SizedBox(
@@ -155,29 +161,6 @@ Widget currentTripWidget(
                         color: Colors.black,
                       )),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextButton(
-                    style: ButtonStyle(
-                        fixedSize: const WidgetStatePropertyAll(Size(150, 50)),
-                        backgroundColor: WidgetStateColor.resolveWith(
-                            (states) =>
-                                const Color.fromARGB(161, 255, 255, 255)),
-                        overlayColor: WidgetStateColor.resolveWith((states) =>
-                            const Color.fromARGB(99, 104, 58, 183))),
-                    onPressed: () {
-                      trip.setCoin2Price(double.parse(precioM2.value.text));
-                      trip.setCoin1Price(double.parse(precioM1.value.text));
-                      trip.tripName = nombreViaje.value.text;
-                      DB.updateTrip(trip);
-                      Navigator.pushReplacementNamed(
-                          context, '/current_trip_control');
-                    },
-                    child: Text(
-                      "Actualizar Valores",
-                      style: TextStyle(fontSize: 16, letterSpacing: -0.9),
-                    )),
                 SizedBox(
                   height: 20,
                 ),
@@ -593,5 +576,24 @@ Future<void> _updateFechaInicio(DateTime date, int idTrip, context) async {
 
 Future<void> _updateFechaFinal(DateTime date, int idTrip, context) async {
   await DB.updateFechaFinalTrip(idTrip, date);
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
+}
+
+Future<void> _updateNombreViaje(
+    TripModel trip, String nombreViaje, context) async {
+  trip.tripName = nombreViaje;
+  DB.updateTrip(trip);
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
+}
+
+Future<void> _updatePrecioM1(TripModel trip, String precioM1, context) async {
+  trip.setCoin1Price(double.parse(precioM1));
+  DB.updateTrip(trip);
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
+}
+
+Future<void> _updatePrecioM2(TripModel trip, String precioM2, context) async {
+  trip.setCoin2Price(double.parse(precioM2));
+  DB.updateTrip(trip);
   Navigator.pushReplacementNamed(context, '/current_trip_control');
 }
