@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trip_control_app/db/initialize_db.dart';
 import 'package:trip_control_app/frames/calculator.dart';
-import 'package:trip_control_app/frames/new_trip_control.dart';
+import 'package:trip_control_app/frames/trip_frames/new_trip_control.dart';
 import 'package:trip_control_app/frames/principal.dart';
-import 'package:trip_control_app/frames/current_trip_control.dart';
-import 'package:trip_control_app/frames/trip_data.dart';
-import 'package:trip_control_app/frames/trip_list.dart';
+import 'package:trip_control_app/frames/trip_frames/current_trip_control.dart';
+import 'package:trip_control_app/frames/trip_frames/trip_data.dart';
+import 'package:trip_control_app/frames/trip_frames/trip_list.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';

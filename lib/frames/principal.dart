@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/frames/calculator.dart';
-import 'package:trip_control_app/frames/trip_list.dart';
+import 'package:trip_control_app/frames/trip_frames/trip_list.dart';
 
 class Principal extends StatelessWidget {
   const Principal({Key? key}) : super(key: key);

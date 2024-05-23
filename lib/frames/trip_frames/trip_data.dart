@@ -14,7 +14,7 @@ class TripDataState extends State<TripData> {
   TripModel data = TripModel.nullTrip();
   String textoViaje = "Nuevo viaje";
 
-  void actViaje(Future<TripModel> trip) async {
+  void _updateTrip(Future<TripModel> trip) async {
     data = await trip;
     textoViaje =
         "Viaje actual: ${data.tripName} / ${data.nombrePais} / ${data.fechaInicioViaje}";
@@ -26,16 +26,41 @@ class TripDataState extends State<TripData> {
   Widget build(BuildContext context) {
     Future<TripModel> trip =
         ModalRoute.of(context)!.settings.arguments as Future<TripModel>;
-    actViaje(trip);
+    _updateTrip(trip);
     return Scaffold(
         appBar: AppBar(
           actions: [
             PopupMenuButton(
+              tooltip: "Mostrar menú",
+              iconColor: Colors.white60,
+              iconSize: 25,
+              style: ButtonStyle(
+                  overlayColor: WidgetStateColor.resolveWith(
+                      (states) => const Color.fromARGB(99, 104, 58, 183))),
               itemBuilder: (context) {
                 return [
-                  PopupMenuItem(child: Text("Activar viaje")),
-                  PopupMenuItem(child: Text("Eliminar viaje")),
-                  PopupMenuItem(child: Text("Exportar PDF"))
+                  PopupMenuItem(
+                    child: Text("Exportar PDF"),
+                    onTap: () => _exportPDF(),
+                  ),
+                  PopupMenuItem(
+                    child: PopupMenuDivider(),
+                    height: 10,
+                    enabled: false,
+                  ),
+                  PopupMenuItem(
+                    child: Text("Activar viaje"),
+                    onTap: () => _activateTrip(trip),
+                  ),
+                  PopupMenuItem(
+                    child: PopupMenuDivider(),
+                    height: 10,
+                    enabled: false,
+                  ),
+                  PopupMenuItem(
+                    child: Text("Eliminar viaje"),
+                    onTap: () => _deleteTrip(trip),
+                  ),
                 ];
               },
             )
