@@ -5,7 +5,7 @@ import 'package:trip_control_app/models/trip_model.dart';
 
 _eliminarGasto(context, GastoModel gasto) async {
   await DB.deleteGasto(gasto.id);
-  Navigator.pushReplacementNamed(context, '/trip_control');
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
 }
 
 Widget deleteGastoDialog(context, GastoModel gasto) {

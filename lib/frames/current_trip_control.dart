@@ -6,19 +6,19 @@ import 'package:trip_control_app/utils/tuple.dart';
 import 'package:trip_control_app/widgets/trip_widgets/current_trip_widget.dart';
 import 'package:trip_control_app/widgets/trip_widgets/new_trip_widget.dart';
 
-class TripControl extends StatefulWidget {
-  const TripControl({Key? key}) : super(key: key);
+class CurrentTripControl extends StatefulWidget {
+  const CurrentTripControl({Key? key}) : super(key: key);
 
   @override
-  TripControlState createState() => TripControlState();
+  CurrentTripControlState createState() => CurrentTripControlState();
 }
 
-class TripControlState extends State<TripControl> {
+class CurrentTripControlState extends State<CurrentTripControl> {
   Tuple<int, TripModel> tupla = Tuple(T: 0, K: TripModel.nullTrip());
   String paisSeleccionado = "";
   DateTime? selectedDate;
   List<String> paises = [];
-  String textoViaje = "Nuevo viaje";
+  Map<String, Function> callbacks = {};
 
   TextEditingController nombreViaje = TextEditingController();
   TextEditingController precioM1 = TextEditingController();
@@ -32,16 +32,8 @@ class TripControlState extends State<TripControl> {
   TextEditingController costoGastoD = TextEditingController();
 
   Future<void> revisarViaje() async {
-    int activo = 0;
     int e = await DB.getLastIDTrip();
-    if (await DB.verifyActiveTrip(e)) {
-      activo = 1;
-    }
-    if (activo == 1) {
-      tupla = Tuple(T: activo, K: await DB.getTripByID(e));
-      textoViaje =
-          "${tupla.K!.tripName} / ${tupla.K!.nombrePais} / ${tupla.K!.fechaInicioViaje}";
-    }
+    tupla = Tuple(T: 1, K: await DB.getTripByID(e));
     setState(() {});
   }
 
@@ -63,12 +55,38 @@ class TripControlState extends State<TripControl> {
     });
   }
 
+  callbackNombreViaje(nombre) {
+    setState(() {
+      nombreViaje.value = TextEditingValue(text: nombre);
+    });
+  }
+
+  callbackPrecioM1(precio) {
+    setState(() {
+      precioM1.value = TextEditingValue(text: precio);
+    });
+  }
+
+  callbackPrecioM2(precio) {
+    setState(() {
+      precioM2.value = TextEditingValue(text: precio);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     revisarViaje();
     _getCountries();
     selectedDate = DateTime.now();
+
+    callbacks = {
+      "date": callbackDate,
+      "pais": callbackPais,
+      "nombreViaje": callbackNombreViaje,
+      "precioM1": callbackPrecioM1,
+      "precioM2": callbackPrecioM2
+    };
     setState(() {});
   }
 
@@ -83,7 +101,7 @@ class TripControlState extends State<TripControl> {
                 child: Text("Terminar Viaje"))
           ],
           title: Text(
-            textoViaje,
+            "${tupla.K!.tripName} / ${tupla.K!.nombrePais} / ${tupla.K!.fechaInicioViaje}",
             style: TextStyle(fontSize: 20, letterSpacing: -2),
           ),
           backgroundColor: const Color.fromARGB(255, 47, 128, 182),
@@ -92,15 +110,32 @@ class TripControlState extends State<TripControl> {
           children: [
             gradient(),
             Form(
-              child: widgetTrip(tupla, context, callbackDate, callbackPais),
+              child: currentTripWidget(
+                  tupla.K!,
+                  paises,
+                  nombreViaje,
+                  precioM1,
+                  precioM2,
+                  nombreCompra,
+                  cantU,
+                  pesoT,
+                  costoM2,
+                  ventaM1,
+                  descripcionGasto,
+                  costoGastoD,
+                  callbacks,
+                  context),
             )
           ],
         ));
   }
 
   Future<void> endTrip(Tuple<int, TripModel> tupla, context) async {
-    _endTrip(int idTrip) async {
-      await DB.endTrip(idTrip, DateTime.now().toString());
+    _endTrip(int idTrip, String fecha) async {
+      if (fecha == "") {
+        fecha = DateTime.now().toString();
+      }
+      await DB.endTrip(idTrip, fecha);
       Navigator.pushReplacementNamed(context, '/', arguments: 1);
     }
 
@@ -131,7 +166,7 @@ class TripControlState extends State<TripControl> {
             actions: [
               TextButton(
                   onPressed: () {
-                    _endTrip(tupla.K!.tripID);
+                    _endTrip(tupla.K!.tripID, tupla.K!.fechaFinalViaje!);
                     Navigator.pop(context);
                   },
                   child: Text("Si")),
@@ -144,30 +179,6 @@ class TripControlState extends State<TripControl> {
           );
         },
       );
-    }
-  }
-
-  Widget widgetTrip(
-      Tuple<int, TripModel> tupla, context, callbackDate, callbackPais) {
-    setState(() {});
-    if (tupla.T == 0) {
-      return newTripWidget(selectedDate, paisSeleccionado, paises, context,
-          callbackDate, callbackPais, nombreViaje, precioM1, precioM2);
-    } else {
-      return currentTripWidget(
-          tupla.K!,
-          paises,
-          context,
-          nombreViaje,
-          precioM1,
-          precioM2,
-          nombreCompra,
-          cantU,
-          pesoT,
-          costoM2,
-          ventaM1,
-          descripcionGasto,
-          costoGastoD);
     }
   }
 }

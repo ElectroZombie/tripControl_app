@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/frames/calculator.dart';
 import 'package:trip_control_app/frames/trip_list.dart';
 
 class Principal extends StatelessWidget {
   const Principal({Key? key}) : super(key: key);
 
+  void goToTripControl(context) async {
+    int idTrip = await DB.getLastIDTrip();
+    await DB.verifyActiveTrip(idTrip).then((value) {
+      if (value) {
+        Navigator.pushNamed(context, '/current_trip_control');
+      } else {
+        Navigator.pushNamed(context, '/new_trip_control');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     int initIndex = 0;
-    var escultura = ModalRoute.of(context)!.settings.arguments;
-    if (escultura != null) {
+    var arg = ModalRoute.of(context)!.settings.arguments;
+    if (arg != null) {
       initIndex = 1;
     }
     return DefaultTabController(
@@ -19,8 +31,7 @@ class Principal extends StatelessWidget {
         appBar: AppBar(
           actions: [
             TextButton(
-                onPressed: () =>
-                    {Navigator.pushNamed(context, '/trip_control')},
+                onPressed: () => goToTripControl(context),
                 child: const Text("Control de viaje actual"))
           ],
           title: const Text(

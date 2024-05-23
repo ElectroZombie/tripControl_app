@@ -51,5 +51,5 @@ _agregarGasto(context, TextEditingController gastoDescripcion,
       gastoDescripcion: gastoDescripcion.value.text,
       gastoMoney: double.parse(gastoCosto.value.text));
   await DB.insertNewGasto(gastoAct);
-  Navigator.pushReplacementNamed(context, '/trip_control');
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
 }

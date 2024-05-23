@@ -7,12 +7,11 @@ Widget newTripWidget(
     selectedDate,
     String paisSeleccionado,
     List<String> paises,
-    context,
-    callbackDate,
-    callbackPais,
     TextEditingController nombreViaje,
     TextEditingController precioM1,
-    TextEditingController precioM2) {
+    TextEditingController precioM2,
+    Map<String, Function> callbacks,
+    context) {
   return SingleChildScrollView(
       child: Center(
           child: SizedBox(
@@ -114,7 +113,7 @@ Widget newTripWidget(
                       ),
                       value: paisSeleccionado,
                       onChanged: (value) {
-                        callbackPais(value);
+                        callbacks["pais"]!(value);
                       },
                     ),
                   ),
@@ -138,8 +137,8 @@ Widget newTripWidget(
                           color: Color.fromARGB(200, 200, 200, 200)),
                     ),
                     leading: TextButton(
-                        onPressed: () =>
-                            _selectDate(context, selectedDate, callbackDate),
+                        onPressed: () => _selectDate(
+                            context, selectedDate, callbacks["date"]),
                         child: Icon(
                           Icons.event_note_rounded,
                           color: Color.fromRGBO(2, 0, 102, 0.878),
@@ -155,9 +154,8 @@ Widget newTripWidget(
                           backgroundColor: MaterialStateColor.resolveWith(
                               (states) =>
                                   const Color.fromARGB(161, 255, 255, 255)),
-                          overlayColor: MaterialStateColor.resolveWith(
-                              (states) =>
-                                  const Color.fromARGB(99, 104, 58, 183))),
+                          overlayColor: WidgetStateColor.resolveWith((states) =>
+                              const Color.fromARGB(99, 104, 58, 183))),
                       onPressed: () => crearViaje(nombreViaje, precioM1,
                           precioM2, paisSeleccionado, selectedDate, context),
                       child: const Text(
@@ -219,8 +217,7 @@ void crearViaje(
     trip.coin2Price = double.tryParse(precioM2.value.text);
     await DB.insertNewTrip(trip);
 
-    Navigator.pushReplacementNamed(context, '/trip_control',
-        arguments: Tuple(T: 1, K: trip));
+    Navigator.pushReplacementNamed(context, '/current_trip_control');
   }
 }
 

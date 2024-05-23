@@ -20,7 +20,7 @@ _agregarCompra(
       compraPrecio: double.parse(costoM2.value.text),
       ventaCUPXUnidad: double.parse(ventaM1.value.text));
   await DB.insertNewCompra(compraAct);
-  Navigator.pushReplacementNamed(context, '/trip_control');
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
 }
 
 Widget addCompraDialog(context, nombreCompra, cantU, pesoT, costoM2, ventaM1) {

@@ -5,7 +5,7 @@ import 'package:trip_control_app/models/trip_model.dart';
 
 _eliminarCompra(context, CompraModel compra) async {
   await DB.deleteCompra(compra.id);
-  Navigator.pushReplacementNamed(context, '/trip_control');
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
 }
 
 Widget deleteCompraDialog(context, compra) {

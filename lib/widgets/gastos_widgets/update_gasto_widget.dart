@@ -56,5 +56,5 @@ _actualizarGasto(
       gastoDescripcion: gastoDescripcion.value.text,
       gastoMoney: double.parse(gastoCosto.value.text));
   await DB.updateGasto(gastoAct);
-  Navigator.pushReplacementNamed(context, '/trip_control');
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
 }

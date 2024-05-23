@@ -92,5 +92,5 @@ _actualizarCompra(
       compraPrecio: double.parse(costoM2.value.text),
       ventaCUPXUnidad: double.parse(ventaM1.value.text));
   await DB.updateCompra(compraAct);
-  Navigator.pushReplacementNamed(context, '/trip_control');
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
 }

@@ -7,7 +7,6 @@ import 'package:trip_control_app/models/trip_model.dart';
 Widget currentTripWidget(
     TripModel trip,
     List<String> paises,
-    context,
     TextEditingController nombreViaje,
     TextEditingController precioM1,
     TextEditingController precioM2,
@@ -17,7 +16,9 @@ Widget currentTripWidget(
     TextEditingController costoM2,
     TextEditingController ventaM1,
     TextEditingController descripcionGasto,
-    TextEditingController costoGastoD) {
+    TextEditingController costoGastoD,
+    Map<String, Function> callbacks,
+    context) {
   nombreViaje.value = TextEditingValue(text: trip.tripName);
   precioM1.value = TextEditingValue(text: trip.coin1Price!.toStringAsFixed(2));
   precioM2.value = TextEditingValue(text: trip.coin2Price!.toStringAsFixed(2));
@@ -60,7 +61,7 @@ Widget currentTripWidget(
                   subtitle: TextFormField(
                     controller: precioM1,
                     maxLength: 20,
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.number,
                     style: const TextStyle(fontSize: 14),
                   ),
                 ),
@@ -78,7 +79,7 @@ Widget currentTripWidget(
                   subtitle: TextFormField(
                     controller: precioM2,
                     maxLength: 20,
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.number,
                     style: const TextStyle(fontSize: 14),
                   ),
                 ),
@@ -128,7 +129,7 @@ Widget currentTripWidget(
                   subtitle: Text(trip.fechaInicioViaje.toString()),
                   leading: TextButton(
                       onPressed: () => _selectDateInicio(
-                          context, trip.tripID, trip.fechaInicioViaje),
+                          context, trip.tripID, trip.fechaInicioViaje!),
                       child: Icon(
                         Icons.calendar_month_rounded,
                         color: Colors.black,
@@ -148,7 +149,7 @@ Widget currentTripWidget(
                   subtitle: Text(trip.fechaFinalViaje.toString()),
                   leading: TextButton(
                       onPressed: () => _selectDateFinal(
-                          context, trip.tripID, trip.fechaFinalViaje),
+                          context, trip.tripID, trip.fechaFinalViaje!),
                       child: Icon(
                         Icons.calendar_month_rounded,
                         color: Colors.black,
@@ -159,19 +160,19 @@ Widget currentTripWidget(
                 ),
                 TextButton(
                     style: ButtonStyle(
-                        fixedSize:
-                            const MaterialStatePropertyAll(Size(150, 50)),
-                        backgroundColor: MaterialStateColor.resolveWith(
+                        fixedSize: const WidgetStatePropertyAll(Size(150, 50)),
+                        backgroundColor: WidgetStateColor.resolveWith(
                             (states) =>
                                 const Color.fromARGB(161, 255, 255, 255)),
-                        overlayColor: MaterialStateColor.resolveWith((states) =>
+                        overlayColor: WidgetStateColor.resolveWith((states) =>
                             const Color.fromARGB(99, 104, 58, 183))),
                     onPressed: () {
                       trip.setCoin2Price(double.parse(precioM2.value.text));
                       trip.setCoin1Price(double.parse(precioM1.value.text));
                       trip.tripName = nombreViaje.value.text;
                       DB.updateTrip(trip);
-                      Navigator.pushReplacementNamed(context, '/trip_control');
+                      Navigator.pushReplacementNamed(
+                          context, '/current_trip_control');
                     },
                     child: Text(
                       "Actualizar Valores",
@@ -553,10 +554,10 @@ Widget currentTripWidget(
               ]))));
 }
 
-Future<void> _selectDateInicio(context, int idTrip, selectedDate) async {
+Future<void> _selectDateInicio(context, int idTrip, String selectedDate) async {
   final DateTime? picked = await showDatePicker(
     context: context,
-    initialDate: selectedDate,
+    initialDate: DateTime.parse(selectedDate),
     firstDate: DateTime(2000),
     lastDate: DateTime(2101),
   );
@@ -565,10 +566,13 @@ Future<void> _selectDateInicio(context, int idTrip, selectedDate) async {
   }
 }
 
-Future<void> _selectDateFinal(context, int idTrip, selectedDate) async {
+Future<void> _selectDateFinal(context, int idTrip, String selectedDate) async {
+  if (selectedDate == "") {
+    selectedDate = DateTime.now().toString();
+  }
   final DateTime? picked = await showDatePicker(
     context: context,
-    initialDate: selectedDate,
+    initialDate: DateTime.parse(selectedDate),
     firstDate: DateTime(2000),
     lastDate: DateTime(2101),
   );
@@ -579,15 +583,15 @@ Future<void> _selectDateFinal(context, int idTrip, selectedDate) async {
 
 Future<void> _updatePais(String pais, int idTrip, context) async {
   await DB.updatePaisTrip(idTrip, pais);
-  Navigator.pushReplacementNamed(context, '/trip_control');
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
 }
 
 Future<void> _updateFechaInicio(DateTime date, int idTrip, context) async {
   await DB.updateFechaInicioTrip(idTrip, date);
-  Navigator.pushReplacementNamed(context, '/trip_control');
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
 }
 
 Future<void> _updateFechaFinal(DateTime date, int idTrip, context) async {
   await DB.updateFechaFinalTrip(idTrip, date);
-  Navigator.pushReplacementNamed(context, '/trip_control');
+  Navigator.pushReplacementNamed(context, '/current_trip_control');
 }

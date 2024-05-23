@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trip_control_app/db/initialize_db.dart';
 import 'package:trip_control_app/frames/calculator.dart';
+import 'package:trip_control_app/frames/new_trip_control.dart';
 import 'package:trip_control_app/frames/principal.dart';
-import 'package:trip_control_app/frames/trip_control.dart';
+import 'package:trip_control_app/frames/current_trip_control.dart';
 import 'package:trip_control_app/frames/trip_data.dart';
 import 'package:trip_control_app/frames/trip_list.dart';
 
@@ -44,7 +45,9 @@ class MainApp extends StatelessWidget {
       routes: {
         '/': (context) => const Principal(),
         '/calculator': (BuildContext context) => const Calculator(),
-        '/trip_control': (BuildContext context) => const TripControl(),
+        '/new_trip_control': (BuildContext context) => const NewTripControl(),
+        '/current_trip_control': (BuildContext context) =>
+            const CurrentTripControl(),
         '/trip_data': (BuildContext context) => const TripData(),
         '/trip_list': (BuildContext context) => const TripList()
       },
