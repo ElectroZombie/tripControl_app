@@ -39,7 +39,7 @@ class TripListState extends State<TripList> {
                           TextButton(
                               onPressed: () => {
                                     Navigator.pushNamed(
-                                        context, '/trip_control')
+                                        context, '/new_trip_control')
                                   },
                               child: const Text("Crear viaje"))
                         ],
@@ -116,7 +116,7 @@ Widget nuevoViaje(snapshot, context) {
                 (states) => const Color.fromARGB(161, 255, 255, 255)),
             overlayColor: MaterialStateColor.resolveWith(
                 (states) => const Color.fromARGB(99, 104, 58, 183))),
-        onPressed: () => {Navigator.pushNamed(context, '/trip_control')},
+        onPressed: () => {Navigator.pushNamed(context, '/new_trip_control')},
         child: const Text(
           "Crear viaje",
           style: TextStyle(fontSize: 24),

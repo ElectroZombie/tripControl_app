@@ -41,36 +41,12 @@ class NewTripControlState extends State<NewTripControl> {
     });
   }
 
-  callbackNombreViaje(nombre) {
-    setState(() {
-      nombreViaje.value = TextEditingValue(text: nombre);
-    });
-  }
-
-  callbackPrecioM1(precio) {
-    setState(() {
-      precioM1.value = TextEditingValue(text: precio);
-    });
-  }
-
-  callbackPrecioM2(precio) {
-    setState(() {
-      precioM2.value = TextEditingValue(text: precio);
-    });
-  }
-
   @override
   void initState() {
     super.initState();
     _getCountries();
     selectedDate = DateTime.now();
-    callbacks = {
-      "date": callbackDate,
-      "pais": callbackPais,
-      "nombreViaje": callbackNombreViaje,
-      "precioM1": callbackPrecioM1,
-      "precioM2": callbackPrecioM2
-    };
+    callbacks = {"date": callbackDate, "pais": callbackPais};
 
     setState(() {});
   }

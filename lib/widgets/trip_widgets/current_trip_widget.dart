@@ -17,7 +17,6 @@ Widget currentTripWidget(
     TextEditingController ventaM1,
     TextEditingController descripcionGasto,
     TextEditingController costoGastoD,
-    Map<String, Function> callbacks,
     context) {
   nombreViaje.value = TextEditingValue(text: trip.tripName);
   precioM1.value = TextEditingValue(text: trip.coin1Price!.toStringAsFixed(2));

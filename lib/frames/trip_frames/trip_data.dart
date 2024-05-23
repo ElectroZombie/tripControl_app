@@ -29,6 +29,17 @@ class TripDataState extends State<TripData> {
     actViaje(trip);
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem(child: Text("Activar viaje")),
+                  PopupMenuItem(child: Text("Eliminar viaje")),
+                  PopupMenuItem(child: Text("Exportar PDF"))
+                ];
+              },
+            )
+          ],
           leading: const BackButton(),
           title: Text(
             textoViaje,
