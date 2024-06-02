@@ -12,6 +12,7 @@ import 'package:trip_control_app/frames/trip_frames/trip_list.dart';
 
 // ignore: depend_on_referenced_packages
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:trip_control_app/frames/trip_frames/update_trip_singleton.dart';
 
 void main() async {
   runApp(const MainApp());
@@ -48,6 +49,8 @@ class MainApp extends StatelessWidget {
         '/new_trip_control': (BuildContext context) => const NewTripControl(),
         '/current_trip_control': (BuildContext context) =>
             const CurrentTripControl(),
+        '/update_trip_singleton': (BuildContext context) =>
+            const UpdateTripSingleton(),
         '/trip_data': (BuildContext context) => const TripData(),
         '/trip_list': (BuildContext context) => const TripList()
       },
