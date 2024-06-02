@@ -56,7 +56,7 @@ class NewTripControlState extends State<NewTripControl> {
     return Scaffold(
         appBar: AppBar(
           leading: const BackButton(),
-          title: Text(
+          title: const Text(
             "Crear viaje",
             style: TextStyle(fontSize: 20, letterSpacing: -2),
           ),

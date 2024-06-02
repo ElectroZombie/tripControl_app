@@ -39,27 +39,27 @@ class TripDataState extends State<TripData> {
                       (states) => const Color.fromARGB(99, 104, 58, 183))),
               itemBuilder: (context) {
                 return [
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     child: Text("Exportar PDF"),
-                    onTap: () => _exportPDF(),
+                   // onTap: () => _exportPDF(),
                   ),
-                  PopupMenuItem(
-                    child: PopupMenuDivider(),
+                  const PopupMenuItem(
                     height: 10,
                     enabled: false,
+                    child: PopupMenuDivider(),
                   ),
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     child: Text("Activar viaje"),
-                    onTap: () => _activateTrip(trip),
+                   // onTap: () => _activateTrip(trip),
                   ),
-                  PopupMenuItem(
-                    child: PopupMenuDivider(),
+                  const PopupMenuItem(
                     height: 10,
                     enabled: false,
+                    child: PopupMenuDivider(),
                   ),
-                  PopupMenuItem(
+                  const PopupMenuItem(
                     child: Text("Eliminar viaje"),
-                    onTap: () => _deleteTrip(trip),
+                //    onTap: () => _deleteTrip(trip),
                   ),
                 ];
               },
@@ -68,7 +68,7 @@ class TripDataState extends State<TripData> {
           leading: const BackButton(),
           title: Text(
             textoViaje,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 47, 128, 182),

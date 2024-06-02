@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/gasto_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
 
 _eliminarGasto(context, GastoModel gasto) async {
   await DB.deleteGasto(gasto.id);
@@ -10,9 +9,9 @@ _eliminarGasto(context, GastoModel gasto) async {
 
 Widget deleteGastoDialog(context, GastoModel gasto) {
   return AlertDialog(
-    title: Text("Eliminar compra"),
-    backgroundColor: Color.fromARGB(255, 111, 129, 155),
-    content: Text("¿Esta seguro de que desea eliminar el gasto?"),
+    title: const Text("Eliminar compra"),
+    backgroundColor: const Color.fromARGB(255, 111, 129, 155),
+    content: const Text("¿Esta seguro de que desea eliminar el gasto?"),
     actions: [
       TextButton(
         onPressed: () {

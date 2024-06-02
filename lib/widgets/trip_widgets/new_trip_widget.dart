@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/utils/tuple.dart';
 
 Widget newTripWidget(
     selectedDate,
@@ -18,7 +17,7 @@ Widget newTripWidget(
               width: (MediaQuery.of(context).size.width * 9) / 10,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   ListTile(
@@ -34,11 +33,11 @@ Widget newTripWidget(
                       keyboardType: TextInputType.text,
                       style: const TextStyle(fontSize: 14),
                     ),
-                    tileColor: Color.fromARGB(255, 160, 121, 177),
+                    tileColor: const Color.fromARGB(255, 160, 121, 177),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   SizedBox(
@@ -50,10 +49,10 @@ Widget newTripWidget(
                                   (MediaQuery.of(context).size.width * 3.25) /
                                       10,
                               child: ListTile(
-                                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                                  tileColor: const Color.fromARGB(255, 160, 121, 177),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20)),
-                                  title: Text("Precio de la moneda nacional:",
+                                  title: const Text("Precio de la moneda nacional:",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Color.fromARGB(
@@ -73,10 +72,10 @@ Widget newTripWidget(
                                   (MediaQuery.of(context).size.width * 3.25) /
                                       10,
                               child: ListTile(
-                                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                                  tileColor: const Color.fromARGB(255, 160, 121, 177),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20)),
-                                  title: Text("Precio de la moneda extranjera:",
+                                  title: const Text("Precio de la moneda extranjera:",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Color.fromARGB(
@@ -89,22 +88,22 @@ Widget newTripWidget(
                                   ))),
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ListTile(
-                    tileColor: Color.fromARGB(255, 160, 121, 177),
+                    tileColor: const Color.fromARGB(255, 160, 121, 177),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     subtitle: DropdownButtonFormField<String>(
                       items: List.generate(
                           paises.length,
                           (i) => DropdownMenuItem(
-                                child: Text(paises[i]),
                                 value: paises[i],
+                                child: Text(paises[i]),
                               )),
                       decoration: InputDecoration(
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                             fontSize: 20,
                             color: Color.fromARGB(255, 255, 255, 255)),
                         labelText: 'País de destino:',
@@ -117,41 +116,41 @@ Widget newTripWidget(
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ListTile(
-                    title: Text(
+                    title: const Text(
                       "Fecha de inicio del viaje:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255)),
                     ),
-                    tileColor: Color.fromARGB(255, 160, 121, 177),
+                    tileColor: const Color.fromARGB(255, 160, 121, 177),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     subtitle: Text(
                       selectedDate.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 14,
                           color: Color.fromARGB(200, 200, 200, 200)),
                     ),
                     leading: TextButton(
                         onPressed: () => _selectDate(
                             context, selectedDate, callbacks["date"]),
-                        child: Icon(
+                        child: const Icon(
                           Icons.event_note_rounded,
                           color: Color.fromRGBO(2, 0, 102, 0.878),
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextButton(
                       style: ButtonStyle(
                           fixedSize:
-                              const MaterialStatePropertyAll(Size(150, 50)),
-                          backgroundColor: MaterialStateColor.resolveWith(
+                              const WidgetStatePropertyAll(Size(150, 50)),
+                          backgroundColor: WidgetStateColor.resolveWith(
                               (states) =>
                                   const Color.fromARGB(161, 255, 255, 255)),
                           overlayColor: WidgetStateColor.resolveWith((states) =>
@@ -164,7 +163,7 @@ Widget newTripWidget(
                           fontSize: 16,
                         ),
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],

@@ -27,7 +27,7 @@ Widget currentTripWidget(
           child: SizedBox(
               width: (MediaQuery.of(context).size.width * 9.2) / 10,
               child: Column(children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ListTile(
@@ -37,7 +37,7 @@ Widget currentTripWidget(
                         fontSize: 16,
                         color: Color.fromARGB(255, 255, 255, 255)),
                   ),
-                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                  tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   subtitle: TextFormField(
@@ -48,11 +48,11 @@ Widget currentTripWidget(
                         _updateNombreViaje(trip, value, context),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ListTile(
-                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                  tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   title: const Text("Precio de la moneda nacional: (En CUP)",
@@ -68,11 +68,11 @@ Widget currentTripWidget(
                         _updatePrecioM1(trip, value, context),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ListTile(
-                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                  tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   title: const Text("Precio de la moneda extranjera:",
@@ -88,26 +88,26 @@ Widget currentTripWidget(
                         _updatePrecioM2(trip, value, context),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ListTile(
-                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                  tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   subtitle: DropdownButtonFormField<String>(
                     items: List.generate(
                         paises.length,
                         (i) => DropdownMenuItem(
-                              child: Text(paises[i]),
                               value: paises[i],
+                              child: Text(paises[i]),
                             )),
                     decoration: InputDecoration(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.map_outlined,
                         color: Colors.black,
                       ),
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                           fontSize: 20,
                           color: Color.fromARGB(255, 255, 255, 255)),
                       labelText: 'País de destino:',
@@ -120,14 +120,14 @@ Widget currentTripWidget(
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ListTile(
-                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                  tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  title: Text("Fecha de inicio del viaje:",
+                  title: const Text("Fecha de inicio del viaje:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
@@ -135,19 +135,19 @@ Widget currentTripWidget(
                   leading: TextButton(
                       onPressed: () => _selectDateInicio(
                           context, trip.tripID, trip.fechaInicioViaje!),
-                      child: Icon(
+                      child: const Icon(
                         Icons.calendar_month_rounded,
                         color: Colors.black,
                       )),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ListTile(
-                  tileColor: Color.fromARGB(255, 160, 121, 177),
+                  tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  title: Text("Fecha de final del viaje:",
+                  title: const Text("Fecha de final del viaje:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
@@ -155,15 +155,15 @@ Widget currentTripWidget(
                   leading: TextButton(
                       onPressed: () => _selectDateFinal(
                           context, trip.tripID, trip.fechaFinalViaje!),
-                      child: Icon(
+                      child: const Icon(
                         Icons.calendar_month_rounded,
                         color: Colors.black,
                       )),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Compras",
                   style: TextStyle(
                     fontSize: 24,
@@ -185,8 +185,8 @@ Widget currentTripWidget(
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int i) {
                         return ListTile(
-                          tileColor: Color.fromARGB(255, 63, 53, 92),
-                          shape: RoundedRectangleBorder(
+                          tileColor: const Color.fromARGB(255, 63, 53, 92),
+                          shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.horizontal(
                                   left: Radius.elliptical(200, 85),
                                   right: Radius.elliptical(200, 85))),
@@ -197,12 +197,12 @@ Widget currentTripWidget(
                             children: [
                               Text(
                                 "Costo de la compra en la moneda extranjera: ${snapshot.data[i].compraPrecio.toStringAsFixed(2)}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black, letterSpacing: -1.5),
                               ),
                               Text(
                                   "Precio de venta en CUP: ${snapshot.data[i].ventaCUPXUnidad.toStringAsFixed(2)},",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.black,
                                       letterSpacing: -1.5)),
                             ],
@@ -228,17 +228,17 @@ Widget currentTripWidget(
                     );
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextButton(
                     style: ButtonStyle(
                         fixedSize:
-                            const MaterialStatePropertyAll(Size(150, 50)),
-                        backgroundColor: MaterialStateColor.resolveWith(
+                            const WidgetStatePropertyAll(Size(150, 50)),
+                        backgroundColor: WidgetStateColor.resolveWith(
                             (states) =>
                                 const Color.fromARGB(161, 255, 255, 255)),
-                        overlayColor: MaterialStateColor.resolveWith((states) =>
+                        overlayColor: WidgetStateColor.resolveWith((states) =>
                             const Color.fromARGB(99, 104, 58, 183))),
                     onPressed: () => agregarCompra(context, nombreCompra, cantU,
                         pesoT, costoM2, ventaM1, trip),
@@ -251,7 +251,7 @@ Widget currentTripWidget(
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Gastos",
                   style: TextStyle(
                     fontSize: 24,
@@ -273,19 +273,19 @@ Widget currentTripWidget(
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, i) {
                           return ListTile(
-                            tileColor: Color.fromARGB(255, 63, 53, 92),
-                            shape: RoundedRectangleBorder(
+                            tileColor: const Color.fromARGB(255, 63, 53, 92),
+                            shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.horizontal(
                                     left: Radius.elliptical(200, 85),
                                     right: Radius.elliptical(200, 85))),
                             title: Text(
                               snapshot.data![i].gastoDescripcion,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black, letterSpacing: -1.5),
                             ),
                             subtitle: Text(
                               "Costo: ${snapshot.data![i].gastoMoney.toStringAsFixed(2)}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black, letterSpacing: -1.5),
                             ),
                             leading: IconButton(
@@ -307,17 +307,17 @@ Widget currentTripWidget(
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextButton(
                     style: ButtonStyle(
                         fixedSize:
-                            const MaterialStatePropertyAll(Size(150, 50)),
-                        backgroundColor: MaterialStateColor.resolveWith(
+                            const WidgetStatePropertyAll(Size(150, 50)),
+                        backgroundColor: WidgetStateColor.resolveWith(
                             (states) =>
                                 const Color.fromARGB(161, 255, 255, 255)),
-                        overlayColor: MaterialStateColor.resolveWith((states) =>
+                        overlayColor: WidgetStateColor.resolveWith((states) =>
                             const Color.fromARGB(99, 104, 58, 183))),
                     onPressed: () => agregarGasto(
                         context, descripcionGasto, costoGastoD, trip),
@@ -327,7 +327,7 @@ Widget currentTripWidget(
                         fontSize: 16,
                       ),
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Center(
@@ -337,7 +337,7 @@ Widget currentTripWidget(
                         width: MediaQuery.of(context).size.width * 30 / 100,
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                               "Gastos (USD)",
                               style: TextStyle(
                                 fontSize: 24,
@@ -357,7 +357,7 @@ Widget currentTripWidget(
                                     fontSize: 16, color: Colors.black),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             ListTile(
@@ -374,7 +374,7 @@ Widget currentTripWidget(
                                     fontSize: 16, color: Colors.black),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             ListTile(
@@ -419,7 +419,7 @@ Widget currentTripWidget(
                           width: MediaQuery.of(context).size.width * 30 / 100,
                           child: Column(
                             children: [
-                              Text(
+                              const Text(
                                 "Ganancia (USD)",
                                 style: TextStyle(
                                   fontSize: 24,
@@ -440,7 +440,7 @@ Widget currentTripWidget(
                                       fontSize: 16, color: Colors.black),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               ListTile(
@@ -462,10 +462,10 @@ Widget currentTripWidget(
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   "Rentabilidad (USD)",
                   style: TextStyle(
                     fontSize: 24,
@@ -530,7 +530,7 @@ Widget currentTripWidget(
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 )
               ]))));

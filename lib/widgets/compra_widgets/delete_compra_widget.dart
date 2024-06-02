@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
 
 _eliminarCompra(context, CompraModel compra) async {
   await DB.deleteCompra(compra.id);
@@ -10,9 +9,9 @@ _eliminarCompra(context, CompraModel compra) async {
 
 Widget deleteCompraDialog(context, compra) {
   return AlertDialog(
-    backgroundColor: Color.fromARGB(255, 111, 129, 155),
-    title: Text("Eliminar compra"),
-    content: Text("Esta seguro de que desea eliminar la compra?"),
+    backgroundColor: const Color.fromARGB(255, 111, 129, 155),
+    title: const Text("Eliminar compra"),
+    content: const Text("Esta seguro de que desea eliminar la compra?"),
     actions: [
       TextButton(
         onPressed: () {

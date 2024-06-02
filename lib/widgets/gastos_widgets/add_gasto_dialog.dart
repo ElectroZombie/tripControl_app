@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/gasto_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
 
 Widget addGastoDialog(context, gastoDescripcion, gastoCosto) {
   return AlertDialog(
     title: const Text('Agregar gasto'),
-    backgroundColor: Color.fromARGB(255, 111, 129, 155),
+    backgroundColor: const Color.fromARGB(255, 111, 129, 155),
     content: SingleChildScrollView(
         child: Column(
       children: [
         TextFormField(
           controller: gastoDescripcion,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               label: Text("Descripción del gasto"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
         TextFormField(
           controller: gastoCosto,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               label: Text("Costo del gasto"),
               labelStyle: TextStyle(fontSize: 16)),
         ),

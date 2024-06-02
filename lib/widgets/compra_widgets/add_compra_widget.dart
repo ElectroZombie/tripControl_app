@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
 
 _agregarCompra(
   context,
@@ -26,49 +25,49 @@ _agregarCompra(
 Widget addCompraDialog(context, nombreCompra, cantU, pesoT, costoM2, ventaM1) {
   return AlertDialog(
     title: const Text('Agregar compra'),
-    backgroundColor: Color.fromARGB(255, 111, 129, 155),
+    backgroundColor: const Color.fromARGB(255, 111, 129, 155),
     content: SingleChildScrollView(
         child: Column(
       children: [
         TextFormField(
           controller: nombreCompra,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               label: Text("Nombre del producto"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         TextFormField(
           controller: cantU,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               label: Text("Cantidad de unidades"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         TextFormField(
           controller: pesoT,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               label: Text("Peso total (En kilogramos)"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         TextFormField(
           controller: costoM2,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               label: Text("Costo del producto en la moneda extranjera"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         TextFormField(
           controller: ventaM1,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               label: Text("Precio de venta del producto en CUP"),
               labelStyle: TextStyle(fontSize: 16)),
         ),

@@ -4,7 +4,6 @@ import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/utils/gradient.dart';
 import 'package:trip_control_app/utils/tuple.dart';
 import 'package:trip_control_app/widgets/trip_widgets/current_trip_widget.dart';
-import 'package:trip_control_app/widgets/trip_widgets/new_trip_widget.dart';
 
 class CurrentTripControl extends StatefulWidget {
   const CurrentTripControl({Key? key}) : super(key: key);
@@ -61,11 +60,11 @@ class CurrentTripControlState extends State<CurrentTripControl> {
           actions: [
             TextButton(
                 onPressed: () => endTrip(tupla, context),
-                child: Text("Terminar Viaje"))
+                child: const Text("Terminar Viaje"))
           ],
           title: Text(
             "${tupla.K!.tripName} / ${tupla.K!.nombrePais} / ${tupla.K!.fechaInicioViaje}",
-            style: TextStyle(fontSize: 20, letterSpacing: -2),
+            style: const TextStyle(fontSize: 20, letterSpacing: -2),
           ),
           backgroundColor: const Color.fromARGB(255, 47, 128, 182),
         ),
@@ -93,7 +92,7 @@ class CurrentTripControlState extends State<CurrentTripControl> {
   }
 
   Future<void> endTrip(Tuple<int, TripModel> tupla, context) async {
-    _endTrip(int idTrip, String fecha) async {
+    endTrip(int idTrip, String fecha) async {
       if (fecha == "") {
         fecha = DateTime.now().toString();
       }
@@ -106,14 +105,14 @@ class CurrentTripControlState extends State<CurrentTripControl> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            backgroundColor: Color.fromARGB(255, 111, 129, 155),
-            title: Text("Todavia no se ha creado el viaje"),
+            backgroundColor: const Color.fromARGB(255, 111, 129, 155),
+            title: const Text("Todavia no se ha creado el viaje"),
             actions: [
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("Aceptar"))
+                  child: const Text("Aceptar"))
             ],
           );
         },
@@ -123,20 +122,20 @@ class CurrentTripControlState extends State<CurrentTripControl> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            backgroundColor: Color.fromARGB(255, 111, 129, 155),
-            title: Text("Desea finalizar este viaje?"),
+            backgroundColor: const Color.fromARGB(255, 111, 129, 155),
+            title: const Text("Desea finalizar este viaje?"),
             actions: [
               TextButton(
                   onPressed: () {
-                    _endTrip(tupla.K!.tripID, tupla.K!.fechaFinalViaje!);
+                    endTrip(tupla.K!.tripID, tupla.K!.fechaFinalViaje!);
                     Navigator.pop(context);
                   },
-                  child: Text("Si")),
+                  child: const Text("Si")),
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("No"))
+                  child: const Text("No"))
             ],
           );
         },

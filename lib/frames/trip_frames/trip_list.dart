@@ -62,7 +62,7 @@ class TripListState extends State<TripList> {
                                   children: [
                                     ListTile(
                                         tileColor:
-                                            Color.fromARGB(255, 105, 89, 112),
+                                            const Color.fromARGB(255, 105, 89, 112),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(30)),
@@ -70,7 +70,7 @@ class TripListState extends State<TripList> {
                                           "Nombre del viaje: ${viaje.tripName}"
                                           "\n Pais del viaje: ${viaje.nombrePais}"
                                           "\n Fechas del viaje: ${viaje.fechaInicioViaje} - ${viaje.fechaFinalViaje}",
-                                          style: TextStyle(fontSize: 16),
+                                          style: const TextStyle(fontSize: 16),
                                         ),
                                         leading: IconButton(
                                             onPressed: () => {
@@ -80,7 +80,7 @@ class TripListState extends State<TripList> {
                                                           getCompleteTrip(
                                                               viaje.tripID))
                                                 },
-                                            hoverColor: Color.fromARGB(
+                                            hoverColor: const Color.fromARGB(
                                                 202, 14, 99, 139),
                                             tooltip: "Ver informacion",
                                             icon: const Icon(Icons
@@ -111,10 +111,10 @@ Widget nuevoViaje(snapshot, context) {
   if (snapshot.data[snapshot.data.length - 1].activo == 0) {
     return TextButton(
         style: ButtonStyle(
-            fixedSize: const MaterialStatePropertyAll(Size(150, 50)),
-            backgroundColor: MaterialStateColor.resolveWith(
+            fixedSize: const WidgetStatePropertyAll(Size(150, 50)),
+            backgroundColor: WidgetStateColor.resolveWith(
                 (states) => const Color.fromARGB(161, 255, 255, 255)),
-            overlayColor: MaterialStateColor.resolveWith(
+            overlayColor: WidgetStateColor.resolveWith(
                 (states) => const Color.fromARGB(99, 104, 58, 183))),
         onPressed: () => {Navigator.pushNamed(context, '/new_trip_control')},
         child: const Text(

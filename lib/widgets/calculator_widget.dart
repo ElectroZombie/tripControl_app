@@ -124,10 +124,10 @@ Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2, rentR,
     const SizedBox(height: 5),
     TextButton(
       style: ButtonStyle(
-          fixedSize: const MaterialStatePropertyAll(Size(150, 50)),
-          backgroundColor: MaterialStateColor.resolveWith(
+          fixedSize: const WidgetStatePropertyAll(Size(150, 50)),
+          backgroundColor: WidgetStateColor.resolveWith(
               (states) => const Color.fromARGB(161, 255, 255, 255)),
-          overlayColor: MaterialStateColor.resolveWith(
+          overlayColor: WidgetStateColor.resolveWith(
               (states) => const Color.fromARGB(99, 104, 58, 183))),
       onPressed: () => save(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
           rentR, rentKg, context),
