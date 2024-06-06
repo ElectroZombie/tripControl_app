@@ -65,9 +65,9 @@ class DB {
     return await CountriesConsults.getCountries(db);
   }
 
-  static Future<void> insertCountries() async {
+  static Future<void> insertCountries(List<String> paises) async {
     Database db = await _openDB();
-    await CountriesConsults.insertCountries(db);
+    await CountriesConsults.insertCountries(db, paises);
   }
 
   static Future<bool> hasCountries() async {

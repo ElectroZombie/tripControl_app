@@ -9,9 +9,10 @@ class CountriesConsults {
     return List.generate(Q.length, (i) => Q[i]['nombre_pais']);
   }
 
-  static Future<void> insertCountries(Database db) async {
-    await db.insert('pais', {'id_pais': 1, 'nombre_pais': "Cuba"});
-    await db.insert('pais', {'id_pais': 2, 'nombre_pais': "Haiti"});
+  static Future<void> insertCountries(Database db, List<String> paises) async {
+    for (int i = 0; i < paises.length; i++) {
+      await db.insert('pais', {'id_pais': i, 'nombre_pais': paises[i]});
+    }
   }
 
   static Future<bool> hasCountries(Database db) async {
