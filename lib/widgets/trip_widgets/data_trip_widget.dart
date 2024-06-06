@@ -102,7 +102,7 @@ Widget dataTripWidget(TripModel data, context) {
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
-                  subtitle: Text(data.fechaInicioViaje.toString()),
+                  subtitle: Text(data.fechaInicioViaje!.split(" ").first),
                 ),
                 const SizedBox(
                   height: 20,
@@ -115,7 +115,8 @@ Widget dataTripWidget(TripModel data, context) {
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
-                  subtitle: fechaFinalWidget(data.fechaFinalViaje!),
+                  subtitle:
+                      fechaFinalWidget(data.fechaFinalViaje!.split(" ").first),
                 ),
                 const SizedBox(
                   height: 20,

@@ -133,7 +133,7 @@ Widget newTripWidget(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     subtitle: Text(
-                      selectedDate.toString(),
+                      selectedDate.toString().split(" ").first,
                       style: const TextStyle(
                           fontSize: 14,
                           color: Color.fromARGB(200, 200, 200, 200)),

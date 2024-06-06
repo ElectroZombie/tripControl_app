@@ -69,8 +69,7 @@ class TripListState extends State<TripList> {
                                         title: Text(
                                           "${viaje.tripName}"
                                           "\n PAÍS DE DESTINO: ${viaje.nombrePais}"
-                                          "\n FECHAS DEL VIAJE: ${viaje.fechaInicioViaje} -> ${viaje.fechaFinalViaje}"
-                                          "\n RENTABILIDAD: ${viaje.rentabilidad}",
+                                          "\n FECHAS DEL VIAJE: ${viaje.fechaInicioViaje!.split(" ").first} -> ${viaje.fechaFinalViaje!.split(" ").first}",
                                           style: const TextStyle(fontSize: 16),
                                         ),
                                         leading: IconButton(

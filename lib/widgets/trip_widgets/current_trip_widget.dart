@@ -132,7 +132,7 @@ Widget currentTripWidget(
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
-                  subtitle: Text(trip.fechaInicioViaje.toString()),
+                  subtitle: Text(trip.fechaInicioViaje!.split(" ").first),
                   leading: TextButton(
                       onPressed: () => _selectDateInicio(
                           context, trip.tripID, trip.fechaInicioViaje!),
@@ -152,7 +152,7 @@ Widget currentTripWidget(
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
-                  subtitle: Text(trip.fechaFinalViaje.toString()),
+                  subtitle: Text(trip.fechaFinalViaje!.split(" ").first),
                   leading: TextButton(
                       onPressed: () => _selectDateFinal(
                           context, trip.tripID, trip.fechaFinalViaje!),
