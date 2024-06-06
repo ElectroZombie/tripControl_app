@@ -58,14 +58,13 @@ class CurrentTripControlState extends State<CurrentTripControl> {
         appBar: AppBar(
           leading: const BackButton(),
           actions: [
-            TextButton(
-                onPressed: () => endTrip(tupla, context),
-                child: const Text("Terminar Viaje"))
+            IconButton(
+              onPressed: () => endTrip(tupla, context),
+              icon: const Icon(Icons.do_not_disturb_on_total_silence_sharp),
+              tooltip: "FINALIZAR VIAJE",
+            )
           ],
-          title: Text(
-            "${tupla.K!.tripName} / ${tupla.K!.nombrePais} / ${tupla.K!.fechaInicioViaje}",
-            style: const TextStyle(fontSize: 20, letterSpacing: -2),
-          ),
+          title: const Text("CONTROL DE VIAJE"),
           backgroundColor: const Color.fromARGB(255, 47, 128, 182),
         ),
         body: Stack(
@@ -106,13 +105,13 @@ class CurrentTripControlState extends State<CurrentTripControl> {
         builder: (context) {
           return AlertDialog(
             backgroundColor: const Color.fromARGB(255, 111, 129, 155),
-            title: const Text("Todavia no se ha creado el viaje"),
+            title: const Text("TODAVÍA NO SE HA CREADO UN VIAJE"),
             actions: [
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text("Aceptar"))
+                  child: const Text("ACEPTAR"))
             ],
           );
         },
@@ -123,19 +122,19 @@ class CurrentTripControlState extends State<CurrentTripControl> {
         builder: (context) {
           return AlertDialog(
             backgroundColor: const Color.fromARGB(255, 111, 129, 155),
-            title: const Text("Desea finalizar este viaje?"),
+            title: const Text("¿DESEA FINALIZAR EL VIAJE?"),
             actions: [
               TextButton(
                   onPressed: () {
                     endTrip(tupla.K!.tripID, tupla.K!.fechaFinalViaje!);
                     Navigator.pop(context);
                   },
-                  child: const Text("Si")),
+                  child: const Text("SI")),
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text("No"))
+                  child: const Text("NO"))
             ],
           );
         },

@@ -24,9 +24,6 @@ void main() async {
   if (Platform.isLinux) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
-    await initializeCountries();
-  } else {
-    await initializeCountries();
   }
 
   if (isFirstTime) {

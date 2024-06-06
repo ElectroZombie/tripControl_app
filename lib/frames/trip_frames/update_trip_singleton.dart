@@ -49,9 +49,11 @@ class UpdateTripSingletonState extends State<UpdateTripSingleton> {
         appBar: AppBar(
           leading: const BackButton(),
           actions: [
-            TextButton(
-                onPressed: () => endTrip(T, context),
-                child: const Text("Terminar Viaje"))
+            IconButton(
+              onPressed: () => endTrip(T, context),
+              icon: const Icon(Icons.do_not_disturb_on_total_silence_sharp),
+              tooltip: "FINALIZAR VIAJE",
+            )
           ],
           title: Text(
             "${T.tripName} / ${T.nombrePais} / ${T.fechaInicioViaje}",
@@ -97,19 +99,19 @@ class UpdateTripSingletonState extends State<UpdateTripSingleton> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: const Color.fromARGB(255, 111, 129, 155),
-          title: const Text("Desea finalizar este viaje?"),
+          title: const Text("¿DESEA FINALIZAR ESTE VIAJE?"),
           actions: [
             TextButton(
                 onPressed: () {
                   endTrip(T.tripID, T.fechaFinalViaje!);
                   Navigator.pop(context);
                 },
-                child: const Text("Si")),
+                child: const Text("SI")),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("No"))
+                child: const Text("NO"))
           ],
         );
       },

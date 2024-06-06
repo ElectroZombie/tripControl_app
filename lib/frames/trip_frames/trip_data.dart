@@ -14,13 +14,9 @@ class TripData extends StatefulWidget {
 
 class TripDataState extends State<TripData> {
   TripModel data = TripModel.nullTrip();
-  String textoViaje = "Nuevo viaje";
 
   void _updateTrip(Future<TripModel> trip) async {
     data = await trip;
-    textoViaje =
-        "Viaje actual: ${data.tripName} / ${data.nombrePais} / ${data.fechaInicioViaje}";
-
     setState(() {});
   }
 
@@ -33,7 +29,7 @@ class TripDataState extends State<TripData> {
         return AlertDialog(
           backgroundColor: const Color.fromARGB(255, 111, 129, 155),
           title: const Text(
-              "¿Desea eliminar el viaje? \n Se perderán todos los datos"),
+              "¿DESEA ELIMINAR EL VIAJE? \n SE  PERDERÁN TODOS LOS DATOS"),
           actions: [
             TextButton(
                 onPressed: () {
@@ -42,12 +38,12 @@ class TripDataState extends State<TripData> {
                       context, '/', (route) => false,
                       arguments: true);
                 },
-                child: const Text("Aceptar")),
+                child: const Text("ACEPTAR")),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Cancelar"))
+                child: const Text("CANCELAR"))
           ],
         );
       },
@@ -64,7 +60,7 @@ class TripDataState extends State<TripData> {
         return AlertDialog(
           backgroundColor: const Color.fromARGB(255, 111, 129, 155),
           title: const Text(
-              "¿Desea volver a activar el viaje? \n Esta es una activación de una sola vez"),
+              "¿DESEA VOLVER A ACTIVAR EL VIAJE? \n ESTA ES UNA ACTIVACIÓN DE UNA SOLA VEZ"),
           actions: [
             TextButton(
                 onPressed: () {
@@ -72,12 +68,12 @@ class TripDataState extends State<TripData> {
                       context, '/update_trip_singleton',
                       arguments: data);
                 },
-                child: const Text("Aceptar")),
+                child: const Text("ACEPTAR")),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Cancelar"))
+                child: const Text("CANCELAR"))
           ],
         );
       },
@@ -93,7 +89,7 @@ class TripDataState extends State<TripData> {
         appBar: AppBar(
           actions: [
             PopupMenuButton(
-              tooltip: "Mostrar menú",
+              tooltip: "MOSTRAR MENÚ",
               iconColor: Colors.white60,
               iconSize: 25,
               style: ButtonStyle(
@@ -102,7 +98,7 @@ class TripDataState extends State<TripData> {
               itemBuilder: (context) {
                 return [
                   PopupMenuItem(
-                    child: const Text("Exportar PDF"),
+                    child: const Text("EXPORTAR PDF"),
                     onTap: () => exportToPDF(trip, context),
                   ),
                   const PopupMenuItem(
@@ -111,7 +107,7 @@ class TripDataState extends State<TripData> {
                     child: PopupMenuDivider(),
                   ),
                   PopupMenuItem(
-                    child: const Text("Activar viaje"),
+                    child: const Text("ACTIVAR VIAJE"),
                     onTap: () => _activateTrip(trip),
                   ),
                   const PopupMenuItem(
@@ -120,7 +116,7 @@ class TripDataState extends State<TripData> {
                     child: PopupMenuDivider(),
                   ),
                   PopupMenuItem(
-                    child: const Text("Eliminar viaje"),
+                    child: const Text("ELIMINAR VIAJE"),
                     onTap: () => _deleteTrip(trip),
                   ),
                 ];
@@ -128,10 +124,6 @@ class TripDataState extends State<TripData> {
             )
           ],
           leading: const BackButton(),
-          title: Text(
-            textoViaje,
-            style: const TextStyle(fontSize: 20),
-          ),
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 47, 128, 182),
         ),

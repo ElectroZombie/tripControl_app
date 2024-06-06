@@ -22,7 +22,7 @@ Widget newTripWidget(
                   ),
                   ListTile(
                     title: const Text(
-                      "Nombre del viaje:",
+                      "NOMBRE DEL VIAJE:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255)),
@@ -49,10 +49,11 @@ Widget newTripWidget(
                                   (MediaQuery.of(context).size.width * 3.25) /
                                       10,
                               child: ListTile(
-                                  tileColor: const Color.fromARGB(255, 160, 121, 177),
+                                  tileColor:
+                                      const Color.fromARGB(255, 160, 121, 177),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20)),
-                                  title: const Text("Precio de la moneda nacional:",
+                                  title: const Text("PRECIO DEL USD EN CUP:",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Color.fromARGB(
@@ -72,10 +73,12 @@ Widget newTripWidget(
                                   (MediaQuery.of(context).size.width * 3.25) /
                                       10,
                               child: ListTile(
-                                  tileColor: const Color.fromARGB(255, 160, 121, 177),
+                                  tileColor:
+                                      const Color.fromARGB(255, 160, 121, 177),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20)),
-                                  title: const Text("Precio de la moneda extranjera:",
+                                  title: const Text(
+                                      "PRECIO DEL USD EN MONEDA EXTRANJERA:",
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Color.fromARGB(
@@ -106,7 +109,7 @@ Widget newTripWidget(
                         labelStyle: const TextStyle(
                             fontSize: 20,
                             color: Color.fromARGB(255, 255, 255, 255)),
-                        labelText: 'País de destino:',
+                        labelText: 'PAÍS DE DESTINO:',
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40)),
                       ),
@@ -121,7 +124,7 @@ Widget newTripWidget(
                   ),
                   ListTile(
                     title: const Text(
-                      "Fecha de inicio del viaje:",
+                      "FECHA DE INICIO DEL VIAJE:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255)),
@@ -158,7 +161,7 @@ Widget newTripWidget(
                       onPressed: () => crearViaje(nombreViaje, precioM1,
                           precioM2, paisSeleccionado, selectedDate, context),
                       child: const Text(
-                        "Crear viaje",
+                        "CREAR VIAJE",
                         style: TextStyle(
                           fontSize: 16,
                         ),
@@ -185,14 +188,14 @@ void crearViaje(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text("Rellene todos los campos"),
+            title: const Text("RELLENE TODOS LOS CAMPOS"),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.of(context)
                       .pop(); // Cerrar el diálogo sin guardar los cambios
                 },
-                child: const Text('Aceptar'),
+                child: const Text('ACEPTAR'),
               ),
             ],
           );

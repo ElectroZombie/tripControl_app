@@ -4,7 +4,7 @@ import 'package:trip_control_app/models/gasto_model.dart';
 
 Widget addGastoDialog(context, gastoDescripcion, gastoCosto) {
   return AlertDialog(
-    title: const Text('Agregar gasto'),
+    title: const Text('AGREGAR GASTO (USD)'),
     backgroundColor: const Color.fromARGB(255, 111, 129, 155),
     content: SingleChildScrollView(
         child: Column(
@@ -12,14 +12,13 @@ Widget addGastoDialog(context, gastoDescripcion, gastoCosto) {
         TextFormField(
           controller: gastoDescripcion,
           decoration: const InputDecoration(
-              label: Text("Descripción del gasto"),
+              label: Text("DESCRIPCIÓN DEL GASTO:"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
         TextFormField(
           controller: gastoCosto,
           decoration: const InputDecoration(
-              label: Text("Costo del gasto"),
-              labelStyle: TextStyle(fontSize: 16)),
+              label: Text("GASTO:"), labelStyle: TextStyle(fontSize: 16)),
         ),
       ],
     )),
@@ -28,7 +27,7 @@ Widget addGastoDialog(context, gastoDescripcion, gastoCosto) {
         onPressed: () {
           Navigator.pop(context); // Cerrar el diálogo sin agregar la unidad
         },
-        child: const Text('Cancelar'),
+        child: const Text('CANCELAR'),
       ),
       TextButton(
         onPressed: () {
@@ -36,7 +35,7 @@ Widget addGastoDialog(context, gastoDescripcion, gastoCosto) {
           Navigator.pop(
               context); // Cerrar el diálogo y pasar la unidad ingresada
         },
-        child: const Text('Confirmar'),
+        child: const Text('CONFIRMAR'),
       ),
     ],
   );

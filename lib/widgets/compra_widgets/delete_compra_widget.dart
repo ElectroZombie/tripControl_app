@@ -10,14 +10,14 @@ _eliminarCompra(context, CompraModel compra) async {
 Widget deleteCompraDialog(context, compra) {
   return AlertDialog(
     backgroundColor: const Color.fromARGB(255, 111, 129, 155),
-    title: const Text("Eliminar compra"),
-    content: const Text("Esta seguro de que desea eliminar la compra?"),
+    title: const Text("ELIMINAR COMPRA"),
+    content: const Text("¿ESTÁ SEGURO DE ELIMINAR LA COMPRA?"),
     actions: [
       TextButton(
         onPressed: () {
           Navigator.pop(context); // Cerrar el diálogo sin agregar la unidad
         },
-        child: const Text('Cancelar'),
+        child: const Text('CANCELAR'),
       ),
       TextButton(
         onPressed: () {
@@ -25,7 +25,7 @@ Widget deleteCompraDialog(context, compra) {
           Navigator.pop(
               context); // Cerrar el diálogo y pasar la unidad ingresada
         },
-        child: const Text('Confirmar'),
+        child: const Text('CONFIRMAR'),
       ),
     ],
   );

@@ -3,6 +3,7 @@ import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/methods/compras_methods.dart';
 import 'package:trip_control_app/methods/gastos_methods.dart';
 import 'package:trip_control_app/models/trip_model.dart';
+import 'package:trip_control_app/utils/calculo_rentabilidad.dart';
 
 Widget currentTripWidget(
     TripModel trip,
@@ -32,7 +33,7 @@ Widget currentTripWidget(
                 ),
                 ListTile(
                   title: const Text(
-                    "Nombre del viaje:",
+                    "NOMBRE DEL VIAJE:",
                     style: TextStyle(
                         fontSize: 16,
                         color: Color.fromARGB(255, 255, 255, 255)),
@@ -55,7 +56,7 @@ Widget currentTripWidget(
                   tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  title: const Text("Precio de la moneda nacional: (En CUP)",
+                  title: const Text("PRECIO DEL USD EN CUP:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
@@ -75,7 +76,7 @@ Widget currentTripWidget(
                   tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  title: const Text("Precio de la moneda extranjera:",
+                  title: const Text("PRECIO DEL USD EN MONEDA EXTRANJERA:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
@@ -110,7 +111,7 @@ Widget currentTripWidget(
                       labelStyle: const TextStyle(
                           fontSize: 20,
                           color: Color.fromARGB(255, 255, 255, 255)),
-                      labelText: 'País de destino:',
+                      labelText: 'PAÍS DE DESTINO:',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(40)),
                     ),
@@ -127,7 +128,7 @@ Widget currentTripWidget(
                   tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  title: const Text("Fecha de inicio del viaje:",
+                  title: const Text("FECHA DE INICIO DEL VIAJE:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
@@ -147,7 +148,7 @@ Widget currentTripWidget(
                   tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  title: const Text("Fecha de final del viaje:",
+                  title: const Text("FECHA DE FINAL DEL VIAJE:",
                       style: TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 255, 255, 255))),
@@ -164,7 +165,7 @@ Widget currentTripWidget(
                   height: 20,
                 ),
                 const Text(
-                  "Compras",
+                  "COMPRAS:",
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: "Times new roman",
@@ -176,7 +177,7 @@ Widget currentTripWidget(
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (!snapshot.hasData) {
                       return const Text(
-                        "Sin compras",
+                        "SIN COMPRAS",
                         style: TextStyle(fontSize: 20, color: Colors.redAccent),
                       );
                     }
@@ -191,20 +192,15 @@ Widget currentTripWidget(
                                   left: Radius.elliptical(200, 85),
                                   right: Radius.elliptical(200, 85))),
                           title: Text(
-                              "Producto: ${snapshot.data[i].compraNombre}"),
+                              "PRODUCTO: ${snapshot.data[i].compraNombre}"),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Costo de la compra en la moneda extranjera: ${snapshot.data[i].compraPrecio.toStringAsFixed(2)}",
+                                "RENTABILIDAD DEL PRODUCTO: ${calculoRentabilidad(snapshot.data[i].cantU, snapshot.data[i].pesoT, snapshot.data[i].compraPrecio, snapshot.data[i].ventaCUPXUnidad, double.parse(precioM1.value.text), double.parse(precioM2.value.text))}",
                                 style: const TextStyle(
                                     color: Colors.black, letterSpacing: -1.5),
-                              ),
-                              Text(
-                                  "Precio de venta en CUP: ${snapshot.data[i].ventaCUPXUnidad.toStringAsFixed(2)},",
-                                  style: const TextStyle(
-                                      color: Colors.black,
-                                      letterSpacing: -1.5)),
+                              )
                             ],
                           ),
                           leading: IconButton(
@@ -233,8 +229,7 @@ Widget currentTripWidget(
                 ),
                 TextButton(
                     style: ButtonStyle(
-                        fixedSize:
-                            const WidgetStatePropertyAll(Size(150, 50)),
+                        fixedSize: const WidgetStatePropertyAll(Size(150, 50)),
                         backgroundColor: WidgetStateColor.resolveWith(
                             (states) =>
                                 const Color.fromARGB(161, 255, 255, 255)),
@@ -243,7 +238,7 @@ Widget currentTripWidget(
                     onPressed: () => agregarCompra(context, nombreCompra, cantU,
                         pesoT, costoM2, ventaM1, trip),
                     child: const Text(
-                      "Agregar compra",
+                      "AGREGAR COMPRA",
                       style: TextStyle(
                         fontSize: 16,
                       ),
@@ -252,7 +247,7 @@ Widget currentTripWidget(
                   height: 20,
                 ),
                 const Text(
-                  "Gastos",
+                  "GASTOS:",
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: "Times new roman",
@@ -264,7 +259,7 @@ Widget currentTripWidget(
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return const Text(
-                        "Sin gastos",
+                        "SIN GASTOS",
                         style: TextStyle(fontSize: 20, color: Colors.redAccent),
                       );
                     } else {
@@ -284,7 +279,7 @@ Widget currentTripWidget(
                                   color: Colors.black, letterSpacing: -1.5),
                             ),
                             subtitle: Text(
-                              "Costo: ${snapshot.data![i].gastoMoney.toStringAsFixed(2)}",
+                              "GASTO: ${snapshot.data![i].gastoMoney.toStringAsFixed(2)}",
                               style: const TextStyle(
                                   color: Colors.black, letterSpacing: -1.5),
                             ),
@@ -312,8 +307,7 @@ Widget currentTripWidget(
                 ),
                 TextButton(
                     style: ButtonStyle(
-                        fixedSize:
-                            const WidgetStatePropertyAll(Size(150, 50)),
+                        fixedSize: const WidgetStatePropertyAll(Size(150, 50)),
                         backgroundColor: WidgetStateColor.resolveWith(
                             (states) =>
                                 const Color.fromARGB(161, 255, 255, 255)),
@@ -322,7 +316,7 @@ Widget currentTripWidget(
                     onPressed: () => agregarGasto(
                         context, descripcionGasto, costoGastoD, trip),
                     child: const Text(
-                      "Agregar gasto",
+                      "AGREGAR GASTO",
                       style: TextStyle(
                         fontSize: 16,
                       ),
@@ -338,7 +332,7 @@ Widget currentTripWidget(
                         child: Column(
                           children: [
                             const Text(
-                              "Gastos (USD)",
+                              "GASTOS (USD)",
                               style: TextStyle(
                                 fontSize: 24,
                                 fontFamily: "Times new roman",
@@ -348,7 +342,7 @@ Widget currentTripWidget(
                               tileColor: const Color.fromARGB(162, 90, 64, 102),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
-                              title: const Text("Gasto ocupado en compras",
+                              title: const Text("GASTO OCUPADO EN COMPRAS",
                                   style: TextStyle(
                                       fontSize: 14, letterSpacing: -1.5)),
                               subtitle: Text(
@@ -364,8 +358,7 @@ Widget currentTripWidget(
                               tileColor: const Color.fromARGB(162, 90, 64, 102),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
-                              title: const Text(
-                                  "Gasto ocupado en compras, por KG",
+                              title: const Text("GASTO OCUPADO EN COMPRAS (KG)",
                                   style: TextStyle(
                                       fontSize: 14, letterSpacing: -1.5)),
                               subtitle: Text(
@@ -381,7 +374,7 @@ Widget currentTripWidget(
                               tileColor: const Color.fromARGB(162, 90, 64, 102),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30)),
-                              title: const Text("Otros gastos",
+                              title: const Text("OTROS GASTOS",
                                   style: TextStyle(
                                       fontSize: 14, letterSpacing: -1.5)),
                               subtitle: Text(
@@ -402,7 +395,7 @@ Widget currentTripWidget(
                           tileColor: const Color.fromARGB(162, 90, 64, 102),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
-                          title: const Text("Gasto total",
+                          title: const Text("GASTO TOTAL",
                               style:
                                   TextStyle(fontSize: 14, letterSpacing: -1.5)),
                           subtitle: Text(
@@ -420,7 +413,7 @@ Widget currentTripWidget(
                           child: Column(
                             children: [
                               const Text(
-                                "Ganancia (USD)",
+                                "GANANCIA (USD)",
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontFamily: "Times new roman",
@@ -431,7 +424,7 @@ Widget currentTripWidget(
                                     const Color.fromARGB(162, 90, 64, 102),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)),
-                                title: const Text("Ganancia real de compras",
+                                title: const Text("GANANCIA DE COMPRAS",
                                     style: TextStyle(
                                         fontSize: 14, letterSpacing: -1.5)),
                                 subtitle: Text(
@@ -448,7 +441,7 @@ Widget currentTripWidget(
                                     const Color.fromARGB(162, 90, 64, 102),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)),
-                                title: const Text("Ganancia de compras, por KG",
+                                title: const Text("GANANCIA DE COMPRAS (KG)",
                                     style: TextStyle(
                                         fontSize: 14, letterSpacing: -1.5)),
                                 subtitle: Text(
@@ -466,7 +459,7 @@ Widget currentTripWidget(
                   height: 10,
                 ),
                 const Text(
-                  "Rentabilidad (USD)",
+                  "RENTABILIDAD (USD)",
                   style: TextStyle(
                     fontSize: 24,
                     fontFamily: "Times new roman",
@@ -480,7 +473,7 @@ Widget currentTripWidget(
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        title: const Text("Rentabilidad",
+                        title: const Text("RENTABILIDAD",
                             style:
                                 TextStyle(fontSize: 14, letterSpacing: -1.5)),
                         subtitle: Text(
@@ -499,7 +492,7 @@ Widget currentTripWidget(
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        title: const Text("Rentabilidad por KG",
+                        title: const Text("RENTABILIDAD (KG)",
                             style:
                                 TextStyle(fontSize: 14, letterSpacing: -1.5)),
                         subtitle: Text(
@@ -518,7 +511,7 @@ Widget currentTripWidget(
                         tileColor: const Color.fromARGB(162, 90, 64, 102),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        title: const Text("Rentabilidad porcentual",
+                        title: const Text("RENTABILIDAD (%)",
                             style:
                                 TextStyle(fontSize: 14, letterSpacing: -1.5)),
                         subtitle: Text(

@@ -5,7 +5,7 @@ import 'package:trip_control_app/models/compra_model.dart';
 Widget updateCompraDialog(
     context, nombreCompra, cantU, pesoT, costoM2, ventaM1, compra) {
   return AlertDialog(
-    title: const Text('Actualizar compra'),
+    title: const Text('ACTUALIZAR COMPRA'),
     backgroundColor: const Color.fromARGB(255, 111, 129, 155),
     content: SingleChildScrollView(
         child: Column(
@@ -13,7 +13,7 @@ Widget updateCompraDialog(
         TextFormField(
           controller: nombreCompra,
           decoration: const InputDecoration(
-              label: Text("Nombre del producto"),
+              label: Text("NOMBRE DEL PRODUCTO:"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
         const SizedBox(
@@ -22,7 +22,7 @@ Widget updateCompraDialog(
         TextFormField(
           controller: cantU,
           decoration: const InputDecoration(
-              label: Text("Cantidad de unidades"),
+              label: Text("CANTIDAD DE UNIDADES:"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
         const SizedBox(
@@ -31,7 +31,7 @@ Widget updateCompraDialog(
         TextFormField(
           controller: pesoT,
           decoration: const InputDecoration(
-              label: Text("Peso total (En kilogramos)"),
+              label: Text("PESO TOTAL (EN KG)"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
         const SizedBox(
@@ -40,7 +40,7 @@ Widget updateCompraDialog(
         TextFormField(
           controller: costoM2,
           decoration: const InputDecoration(
-              label: Text("Costo del producto en la moneda extranjera"),
+              label: Text("COSTO TOTAL EN MONEDA EXTRANJERA"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
         const SizedBox(
@@ -49,7 +49,7 @@ Widget updateCompraDialog(
         TextFormField(
           controller: ventaM1,
           decoration: const InputDecoration(
-              label: Text("Precio de venta del producto en CUP"),
+              label: Text("PRECIO DE VENTA DE CADA PRODUCTO EN CUP"),
               labelStyle: TextStyle(fontSize: 16)),
         ),
       ],
@@ -59,7 +59,7 @@ Widget updateCompraDialog(
         onPressed: () {
           Navigator.pop(context); // Cerrar el diálogo sin agregar la unidad
         },
-        child: const Text('Cancelar'),
+        child: const Text('CANCELAR'),
       ),
       TextButton(
         onPressed: () {
@@ -68,7 +68,7 @@ Widget updateCompraDialog(
           Navigator.pop(
               context); // Cerrar el diálogo y pasar la unidad ingresada
         },
-        child: const Text('Confirmar'),
+        child: const Text('CONFIRMAR'),
       ),
     ],
   );

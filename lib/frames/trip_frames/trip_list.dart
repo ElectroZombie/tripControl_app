@@ -32,7 +32,7 @@ class TripListState extends State<TripList> {
                       child: Column(
                         children: [
                           const Text(
-                            "No hay viajes disponibles",
+                            "NO HAY VIAJES DISPONIBLES",
                             style: TextStyle(
                                 fontSize: 24, fontFamily: 'Times new roman'),
                           ),
@@ -41,7 +41,7 @@ class TripListState extends State<TripList> {
                                     Navigator.pushNamed(
                                         context, '/new_trip_control')
                                   },
-                              child: const Text("Crear viaje"))
+                              child: const Text("CREAR VIAJE"))
                         ],
                       ),
                     )
@@ -61,15 +61,16 @@ class TripListState extends State<TripList> {
                                 return Column(
                                   children: [
                                     ListTile(
-                                        tileColor:
-                                            const Color.fromARGB(255, 105, 89, 112),
+                                        tileColor: const Color.fromARGB(
+                                            255, 105, 89, 112),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(30)),
                                         title: Text(
-                                          "Nombre del viaje: ${viaje.tripName}"
-                                          "\n Pais del viaje: ${viaje.nombrePais}"
-                                          "\n Fechas del viaje: ${viaje.fechaInicioViaje} - ${viaje.fechaFinalViaje}",
+                                          "${viaje.tripName}"
+                                          "\n PAÍS DE DESTINO: ${viaje.nombrePais}"
+                                          "\n FECHAS DEL VIAJE: ${viaje.fechaInicioViaje} -> ${viaje.fechaFinalViaje}"
+                                          "\n RENTABILIDAD: ${viaje.rentabilidad}",
                                           style: const TextStyle(fontSize: 16),
                                         ),
                                         leading: IconButton(
@@ -82,7 +83,7 @@ class TripListState extends State<TripList> {
                                                 },
                                             hoverColor: const Color.fromARGB(
                                                 202, 14, 99, 139),
-                                            tooltip: "Ver informacion",
+                                            tooltip: "VER INFORMACIÓN",
                                             icon: const Icon(Icons
                                                 .arrow_circle_right_outlined))),
                                     const SizedBox(
@@ -118,7 +119,7 @@ Widget nuevoViaje(snapshot, context) {
                 (states) => const Color.fromARGB(99, 104, 58, 183))),
         onPressed: () => {Navigator.pushNamed(context, '/new_trip_control')},
         child: const Text(
-          "Crear viaje",
+          "CREAR VIAJE",
           style: TextStyle(fontSize: 24),
         ));
   }

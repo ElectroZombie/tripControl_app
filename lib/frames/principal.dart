@@ -30,12 +30,14 @@ class Principal extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           actions: [
-            TextButton(
-                onPressed: () => goToTripControl(context),
-                child: const Text("Control de viaje actual"))
+            IconButton(
+              onPressed: () => goToTripControl(context),
+              icon: const Icon(Icons.turned_in_sharp),
+              tooltip: "CONTROL DE VIAJE ACTUAL",
+            )
           ],
           title: const Text(
-            "Control de viajes",
+            "CONTROL DE VIAJES",
             style: TextStyle(fontSize: 20),
           ),
           backgroundColor: const Color.fromARGB(255, 47, 128, 182),
@@ -43,12 +45,12 @@ class Principal extends StatelessWidget {
             tabs: [
               Tab(
                 child: Text(
-                  'Calculadora',
+                  'CALCULADORA',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
               Tab(
-                child: Text('Lista de viajes', style: TextStyle(fontSize: 16)),
+                child: Text('LISTA DE VIAJES', style: TextStyle(fontSize: 16)),
               )
             ],
           ),

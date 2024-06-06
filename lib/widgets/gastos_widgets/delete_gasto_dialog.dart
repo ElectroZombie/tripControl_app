@@ -9,15 +9,15 @@ _eliminarGasto(context, GastoModel gasto) async {
 
 Widget deleteGastoDialog(context, GastoModel gasto) {
   return AlertDialog(
-    title: const Text("Eliminar compra"),
+    title: const Text("ELIMINAR GASTO"),
     backgroundColor: const Color.fromARGB(255, 111, 129, 155),
-    content: const Text("¿Esta seguro de que desea eliminar el gasto?"),
+    content: const Text("¿ESTÁ SEGURO DE QUE DESEA ELIMINAR EL GASTO?"),
     actions: [
       TextButton(
         onPressed: () {
           Navigator.pop(context); // Cerrar el diálogo sin agregar la unidad
         },
-        child: const Text('Cancelar'),
+        child: const Text('CANCELAR'),
       ),
       TextButton(
         onPressed: () {
@@ -25,7 +25,7 @@ Widget deleteGastoDialog(context, GastoModel gasto) {
           Navigator.pop(
               context); // Cerrar el diálogo y pasar la unidad ingresada
         },
-        child: const Text('Confirmar'),
+        child: const Text('CONFIRMAR'),
       ),
     ],
   );

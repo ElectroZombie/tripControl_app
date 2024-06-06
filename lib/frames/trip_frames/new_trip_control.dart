@@ -57,7 +57,7 @@ class NewTripControlState extends State<NewTripControl> {
         appBar: AppBar(
           leading: const BackButton(),
           title: const Text(
-            "Crear viaje",
+            "CREAR VIAJE",
             style: TextStyle(fontSize: 20, letterSpacing: -2),
           ),
           backgroundColor: const Color.fromARGB(255, 47, 128, 182),
