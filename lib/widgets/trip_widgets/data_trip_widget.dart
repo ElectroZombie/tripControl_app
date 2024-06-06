@@ -154,7 +154,7 @@ Widget dataTripWidget(TripModel data, context) {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "RENTABILIDAD DEL PRODUCTO: ${calculoRentabilidad(snapshot.data[i].cantU, snapshot.data[i].pesoT, snapshot.data[i].compraPrecio, snapshot.data[i].ventaCUPXUnidad, data.coin1Price!, data.coin2Price!)}",
+                                "RENTABILIDAD DEL PRODUCTO: ${(calculoRentabilidad(snapshot.data[i].cantU, snapshot.data[i].pesoT, snapshot.data[i].compraPrecio, snapshot.data[i].ventaCUPXUnidad, data.coin1Price!, data.coin2Price!).T).toStringAsFixed(2)}",
                                 style: const TextStyle(
                                     color: Colors.black, letterSpacing: -1.5),
                               )

@@ -112,7 +112,6 @@ Widget nuevoViaje(snapshot, context) {
   if (snapshot.data[snapshot.data.length - 1].activo == 0) {
     return TextButton(
         style: ButtonStyle(
-            fixedSize: const WidgetStatePropertyAll(Size(150, 50)),
             backgroundColor: WidgetStateColor.resolveWith(
                 (states) => const Color.fromARGB(161, 255, 255, 255)),
             overlayColor: WidgetStateColor.resolveWith(

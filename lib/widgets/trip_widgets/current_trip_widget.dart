@@ -197,7 +197,7 @@ Widget currentTripWidget(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "RENTABILIDAD DEL PRODUCTO: ${calculoRentabilidad(snapshot.data[i].cantU, snapshot.data[i].pesoT, snapshot.data[i].compraPrecio, snapshot.data[i].ventaCUPXUnidad, double.parse(precioM1.value.text), double.parse(precioM2.value.text))}",
+                                "RENTABILIDAD DEL PRODUCTO: ${calculoRentabilidad(snapshot.data[i].cantU, snapshot.data[i].pesoT, snapshot.data[i].compraPrecio, snapshot.data[i].ventaCUPXUnidad, double.parse(precioM1.value.text), double.parse(precioM2.value.text)).T.toStringAsFixed(2)}",
                                 style: const TextStyle(
                                     color: Colors.black, letterSpacing: -1.5),
                               )
@@ -239,9 +239,8 @@ Widget currentTripWidget(
                         pesoT, costoM2, ventaM1, trip),
                     child: const Text(
                       "AGREGAR COMPRA",
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16),
                     )),
                 const SizedBox(
                   height: 20,
@@ -317,6 +316,7 @@ Widget currentTripWidget(
                         context, descripcionGasto, costoGastoD, trip),
                     child: const Text(
                       "AGREGAR GASTO",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
                       ),
