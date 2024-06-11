@@ -1,10 +1,10 @@
 # Trip-control
 
-Una aplicación móvil para apoyar los controles de viaje para comprar artículos
+Una aplicación móvil para apoyar los controles de viajes al extranjero para comprar artículos
 
-v...
+v1.0.5
 
-Autores:
+Autor:
 =
  Eric Michel Villavicencio Reyes (https://github.com/ElectroZombie)
 
@@ -27,7 +27,7 @@ Construido con:
 ------------------------------------------------------------------
 A mobile application to support travel checks for purchasing items
 
-v...
+v1.0.5
 
 Authors:
 =

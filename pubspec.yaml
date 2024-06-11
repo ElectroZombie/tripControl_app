@@ -1,7 +1,7 @@
 name: trip_control_app
-description: A new Flutter project.
+description: Una aplicación móvil para apoyar los controles de viajes al extranjero para comprar artículos.
 publish_to: 'none'
-version: 0.1.0
+version: 1.0.5
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -13,16 +13,16 @@ dependencies:
   sqflite: ^2.3.0
   shared_preferences: ^2.2.2
   permission_handler: ^11.0.1
-
-
-  sqflite_common_ffi: any
+  dropdown_search: ^5.0.6
   path: any
   pdf: ^3.10.8
   path_provider: ^2.1.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  sqflite_common_ffi: any
 
 flutter:
   uses-material-design: true
