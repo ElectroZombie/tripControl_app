@@ -22,6 +22,7 @@ class NewTripControlState extends State<NewTripControl> {
   TextEditingController nombreViaje = TextEditingController();
   TextEditingController precioM1 = TextEditingController();
   TextEditingController precioM2 = TextEditingController();
+  TextEditingController nombrePais = TextEditingController();
 
   _getCountries() async {
     paises = await DB.getCountries();
@@ -66,8 +67,16 @@ class NewTripControlState extends State<NewTripControl> {
           children: [
             gradient(),
             Form(
-              child: newTripWidget(selectedDate, paisSeleccionado, paises,
-                  nombreViaje, precioM1, precioM2, callbacks, context),
+              child: newTripWidget(
+                  selectedDate,
+                  paisSeleccionado,
+                  paises,
+                  nombreViaje,
+                  precioM1,
+                  precioM2,
+                  nombrePais,
+                  callbacks,
+                  context),
             )
           ],
         ));
