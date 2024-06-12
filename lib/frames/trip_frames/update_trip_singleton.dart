@@ -27,6 +27,7 @@ class UpdateTripSingletonState extends State<UpdateTripSingleton> {
   TextEditingController ventaM1 = TextEditingController();
   TextEditingController descripcionGasto = TextEditingController();
   TextEditingController costoGastoD = TextEditingController();
+  TextEditingController nombrePais = TextEditingController();
 
   _getCountries() async {
     paises = await DB.getCountries();
@@ -78,6 +79,7 @@ class UpdateTripSingletonState extends State<UpdateTripSingleton> {
                   ventaM1,
                   descripcionGasto,
                   costoGastoD,
+                  nombrePais,
                   context),
             )
           ],

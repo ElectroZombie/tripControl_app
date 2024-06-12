@@ -69,7 +69,7 @@ class TripListState extends State<TripList> {
                                         title: Text(
                                           "${viaje.tripName}"
                                           "\n PAÍS DE DESTINO: ${viaje.nombrePais}"
-                                          "\n FECHAS DEL VIAJE: ${viaje.fechaInicioViaje!.split(" ").first} -> ${viaje.fechaFinalViaje!.split(" ").first}",
+                                          "\n FECHAS DEL VIAJE: ${viaje.fechaInicioViaje!.split(" ").first} -> ${revisarFechaFinal(viaje)}",
                                           style: const TextStyle(fontSize: 16),
                                         ),
                                         leading: IconButton(
@@ -128,4 +128,12 @@ Widget nuevoViaje(snapshot, context) {
 
 Future<TripModel> getCompleteTrip(int idTrip) async {
   return DB.getTripByID(idTrip);
+}
+
+String revisarFechaFinal(TripModel viaje) {
+  if (viaje.fechaFinalViaje == null) {
+    return "No terminado";
+  } else {
+    return viaje.fechaFinalViaje!.split(" ").first;
+  }
 }

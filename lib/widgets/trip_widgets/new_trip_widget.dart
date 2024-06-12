@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/models/trip_model.dart';
+import 'package:trip_control_app/widgets/drop_down_search_widget.dart';
 
 Widget newTripWidget(
     selectedDate,
@@ -9,6 +10,7 @@ Widget newTripWidget(
     TextEditingController nombreViaje,
     TextEditingController precioM1,
     TextEditingController precioM2,
+    TextEditingController paisNombre,
     Map<String, Function> callbacks,
     context) {
   return SingleChildScrollView(
@@ -95,30 +97,11 @@ Widget newTripWidget(
                     height: 20,
                   ),
                   ListTile(
-                    tileColor: const Color.fromARGB(255, 160, 121, 177),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    subtitle: DropdownButtonFormField<String>(
-                      items: List.generate(
-                          paises.length,
-                          (i) => DropdownMenuItem(
-                                value: paises[i],
-                                child: Text(paises[i]),
-                              )),
-                      decoration: InputDecoration(
-                        labelStyle: const TextStyle(
-                            fontSize: 20,
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                        labelText: 'PAÍS DE DESTINO:',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40)),
-                      ),
-                      value: paisSeleccionado,
-                      onChanged: (value) {
-                        callbacks["pais"]!(value);
-                      },
-                    ),
-                  ),
+                      tileColor: const Color.fromARGB(255, 160, 121, 177),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      subtitle: dropDownSearch(
+                          paises, paisNombre, context, callbacks)),
                   const SizedBox(
                     height: 20,
                   ),

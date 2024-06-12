@@ -29,6 +29,7 @@ class CurrentTripControlState extends State<CurrentTripControl> {
   TextEditingController ventaM1 = TextEditingController();
   TextEditingController descripcionGasto = TextEditingController();
   TextEditingController costoGastoD = TextEditingController();
+  TextEditingController nombrePais = TextEditingController();
 
   Future<void> revisarViaje() async {
     int e = await DB.getLastIDTrip();
@@ -84,6 +85,7 @@ class CurrentTripControlState extends State<CurrentTripControl> {
                   ventaM1,
                   descripcionGasto,
                   costoGastoD,
+                  nombrePais,
                   context),
             )
           ],

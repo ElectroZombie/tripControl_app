@@ -4,6 +4,7 @@ import 'package:trip_control_app/methods/compras_methods.dart';
 import 'package:trip_control_app/methods/gastos_methods.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/utils/calculo_rentabilidad.dart';
+import 'package:trip_control_app/widgets/drop_down_search_widget.dart';
 
 Widget currentTripWidget(
     TripModel trip,
@@ -18,6 +19,7 @@ Widget currentTripWidget(
     TextEditingController ventaM1,
     TextEditingController descripcionGasto,
     TextEditingController costoGastoD,
+    TextEditingController nombrePais,
     context) {
   nombreViaje.value = TextEditingValue(text: trip.tripName);
   precioM1.value = TextEditingValue(text: trip.coin1Price!.toStringAsFixed(2));
@@ -96,7 +98,9 @@ Widget currentTripWidget(
                   tileColor: const Color.fromARGB(255, 160, 121, 177),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  subtitle: DropdownButtonFormField<String>(
+                  subtitle: dropDownSearchCurrent(
+                      paises, nombrePais, trip, context, updatePais),
+                  /* DropdownButtonFormField<String>(
                     items: List.generate(
                         paises.length,
                         (i) => DropdownMenuItem(
@@ -119,7 +123,7 @@ Widget currentTripWidget(
                     onChanged: (value) {
                       _updatePais(value!, trip.tripID, context);
                     },
-                  ),
+                  ),*/
                 ),
                 const SizedBox(
                   height: 20,
@@ -556,7 +560,7 @@ Future<void> _selectDateFinal(context, int idTrip, String selectedDate) async {
   }
 }
 
-Future<void> _updatePais(String pais, int idTrip, context) async {
+Future<void> updatePais(String pais, int idTrip, context) async {
   await DB.updatePaisTrip(idTrip, pais);
   Navigator.pushReplacementNamed(context, '/current_trip_control');
 }
