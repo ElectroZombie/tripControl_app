@@ -132,7 +132,7 @@ Future<TripModel> getCompleteTrip(int idTrip) async {
 
 String revisarFechaFinal(TripModel viaje) {
   if (viaje.fechaFinalViaje == null) {
-    return "No terminado";
+    return "NO TERMINADO";
   } else {
     return viaje.fechaFinalViaje!.split(" ").first;
   }

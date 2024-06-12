@@ -31,12 +31,12 @@ void exportToPDF(Future<TripModel> data, context) async {
       build: (pdf_package.Context context) {
         return pdf_package.Center(
           child: pdf_package.Column(children: [
-            pdf_package.Text('Datos del viaje: ${trip.tripName}'),
-            pdf_package.Text('Pais: ${trip.nombrePais}'),
+            pdf_package.Text('DATOS DEL VIAJE: ${trip.tripName}'),
+            pdf_package.Text('PAÍS DE DESTINO: ${trip.nombrePais}'),
             pdf_package.Text(
-                'Pais: ${trip.fechaInicioViaje} -> ${trip.fechaFinalViaje}'),
+                'FECHAS: ${trip.fechaInicioViaje} -> ${trip.fechaFinalViaje}'),
             pdf_package.Text(
-                'Precio del CUP en USD: ${trip.coin1Price}/Precio de la moneda extranjera en USD: ${trip.coin2Price}'),
+                'PRECIO DEL CUP EN USD: ${trip.coin1Price}/PRECIO DE LA MONEDA EXTRANJERA EN USD: ${trip.coin2Price}'),
           ]),
         );
       },
@@ -49,14 +49,19 @@ void exportToPDF(Future<TripModel> data, context) async {
         final List<pdf_package.Widget> content = [pdf_package.Text('COMPRAS:')];
         for (int i = 0; i < compras.length; i++) {
           content.add(
-            pdf_package.Text(
-                '${compras[i].compraNombre}   ${compras[i].compraPrecio}   ${compras[i].cantU}   ${compras[i].pesoT}   ${compras[i].ventaCUPXUnidad}'),
+            pdf_package.Text('${compras[i].compraNombre}\n'
+                'PRECIO TOTAL DE LA COMPRA: ${compras[i].compraPrecio}\n'
+                'CANTIDAD DE UNIDADES COMPRADAS: ${compras[i].cantU}\n'
+                'PESO TOTAL DE LA COMPRA: ${compras[i].pesoT}\n'
+                'PRECIO DE VENTA DE CADA PRODUCTO EN CUP: ${compras[i].ventaCUPXUnidad}\n'),
           );
         }
         content.add(pdf_package.Text(
-            '${trip.gastoCompras}   ${trip.gastoComprasXKilo}'));
-        content.add(pdf_package.Text(
-            '${trip.gananciaComprasReal}   ${trip.gananciaComprasXKilo}'));
+            'GASTO TOTAL DE COMPRAS: ${trip.gastoCompras}\n'
+            'GASTO TOTAL DE COMPRAS, POR KILOGRAMO: ${trip.gastoComprasXKilo}'));
+        content.add(
+            pdf_package.Text('GANANCIA TOTAL: ${trip.gananciaComprasReal}\n'
+                'GANANCIA REAL, POR KILOGRAMO: ${trip.gananciaComprasXKilo}'));
         return content;
       },
     ),
@@ -69,11 +74,13 @@ void exportToPDF(Future<TripModel> data, context) async {
         for (int i = 0; i < gastos.length; i++) {
           content.add(
             pdf_package.Text(
-                '${gastos[i].gastoDescripcion}   ${gastos[i].gastoDescripcion}'),
+                'DESCRIPCIÓN DEL GASTO: ${gastos[i].gastoDescripcion}\n'
+                'GASTO: ${gastos[i].gastoMoney}'),
           );
         }
 
-        content.add(pdf_package.Text('${trip.otrosGastos}'));
+        content.add(pdf_package.Text('OTROS GASTOS: ${trip.otrosGastos}\n'));
+        content.add(pdf_package.Text('GASTOS TOTALES: ${trip.gastoTotal}'));
 
         return content;
       },
@@ -85,12 +92,11 @@ void exportToPDF(Future<TripModel> data, context) async {
       build: (pdf_package.Context context) {
         return pdf_package.Center(
           child: pdf_package.Column(children: [
-            pdf_package.Text('Gastos totales: ${trip.gastoTotal}'),
-            pdf_package.Text('Rentabilidad: ${trip.rentabilidad}'),
+            pdf_package.Text('RENTABILIDAD: ${trip.rentabilidad}'),
             pdf_package.Text(
-                'Rentabilidad por Kilogramo: ${trip.rentabilidadXKilo}'),
+                'RENTABILIDAD POR KILOGRAMO: ${trip.rentabilidadXKilo}'),
             pdf_package.Text(
-                'Rentabilidad porcentual: ${trip.rentabilidadPorcentual}'),
+                'RENTABILIDAD PORCENTUAL: ${trip.rentabilidadPorcentual}'),
           ]),
         );
       },
