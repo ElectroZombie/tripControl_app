@@ -16,8 +16,8 @@ dependencies:
   dropdown_search: ^5.0.6
   path: any
   pdf: ^3.10.8
-  path_provider: ^2.1.3
-  flutter_launcher_icons: ^0.13.1
+  #path_provider: ^2.1.3
+  #flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -25,13 +25,13 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   sqflite_common_ffi: any
 
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/icon/icon.png"
-  min_sdk_android: 21
-  adaptive_icon_background: #ffffff
-  adaptive_icon_foreground: #ffffff
+#flutter_launcher_icons:
+#  android: "launcher_icon"
+#  ios: true
+#  image_path: "assets/icon/icon.png"
+#  min_sdk_android: 21
+#  adaptive_icon_background: #ffffff
+#  adaptive_icon_foreground: #ffffff
 
 flutter:
   uses-material-design: true

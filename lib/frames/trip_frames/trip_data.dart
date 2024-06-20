@@ -97,10 +97,10 @@ class TripDataState extends State<TripData> {
                       (states) => const Color.fromARGB(99, 104, 58, 183))),
               itemBuilder: (context) {
                 return [
-                  PopupMenuItem(
+                  /*PopupMenuItem(
                     child: const Text("EXPORTAR PDF"),
                     onTap: () => exportToPDF(trip, context),
-                  ),
+                  ),*/
                   const PopupMenuItem(
                     height: 10,
                     enabled: false,
