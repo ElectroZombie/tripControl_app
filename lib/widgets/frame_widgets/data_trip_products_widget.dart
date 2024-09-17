@@ -95,86 +95,60 @@ Widget dataTripProductsWidget(TripModel trip, context, ColorScheme colors) {
                                 BorderSide(color: colors.tertiary, width: 1.75),
                             borderRadius: BorderRadius.circular(20)),
                         subtitle: Column(children: [
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              1 /
-                                              100),
-                                  Text(
-                                    "GASTO EN COMPRAS:    \$ ${trip.gastoCompras!.toStringAsFixed(2)}",
-                                    style: const TextStyle(fontSize: 9),
-                                  ),
-                                  SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.5 /
-                                              100),
-                                  Text(
-                                    "GASTO EN COMPRAS(KG):\$ ${trip.gastoComprasXKilo!.toStringAsFixed(2)}",
-                                    style: const TextStyle(fontSize: 9),
-                                  ),
-                                  SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.5 /
-                                              100),
-                                  Text(
-                                    "OTROS GASTOS:             \$ ${trip.otrosGastos!.toStringAsFixed(2)}",
-                                    style: const TextStyle(fontSize: 9),
-                                  ),
-                                  SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.5 /
-                                              100),
-                                ],
-                              ),
-                              const SizedBox(width: 5),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "GANANCIAS:    \$ ${trip.gananciaComprasReal!.toStringAsFixed(2)}",
-                                    style: const TextStyle(fontSize: 9),
-                                  ),
-                                  SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.5 /
-                                              100),
-                                  Text(
-                                    "GANANCIAS (KG):    \$ ${trip.gananciaComprasXKilo!.toStringAsFixed(2)}",
-                                    style: const TextStyle(fontSize: 9),
-                                  )
-                                ],
-                              )
-                            ],
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 1 / 100),
+                          Text(
+                            "GASTO EN COMPRAS:         \$ ${trip.gastoCompras!.toStringAsFixed(2)}",
+                            style: const TextStyle(fontSize: 9),
+                          ),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  0.5 /
+                                  100),
+                          Text(
+                            "GASTO EN COMPRAS (KG):\$ ${trip.gastoComprasXKilo!.toStringAsFixed(2)}",
+                            style: const TextStyle(fontSize: 9),
+                          ),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  0.5 /
+                                  100),
+                          Text(
+                            "OTROS GASTOS:                 \$ ${trip.otrosGastos!.toStringAsFixed(2)}",
+                            style: const TextStyle(fontSize: 9),
                           ),
                           SizedBox(
                               height:
                                   MediaQuery.of(context).size.height * 2 / 100),
-                          Column(
-                            children: [
-                              Text(
-                                "GASTOS TOTALES:         \$ ${trip.gastoTotal.toStringAsFixed(2)}",
-                                style: const TextStyle(
-                                    fontSize: 12, color: Colors.redAccent),
-                              ),
-                              SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 100),
-                              Text(
-                                "GANANCIAS TOTALES:    \$ ${trip.gananciaComprasReal!.toStringAsFixed(2)}",
-                                style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Color.fromARGB(255, 8, 95, 53)),
-                              )
-                            ],
+                          Text(
+                            "GASTOS TOTALES:         \$ ${trip.gastoTotal.toStringAsFixed(2)}",
+                            style: const TextStyle(
+                                fontSize: 12, color: Colors.redAccent),
+                          ),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 2 / 100),
+                          Text(
+                            "GANANCIAS:            \$ ${trip.gananciaComprasReal!.toStringAsFixed(2)}",
+                            style: const TextStyle(fontSize: 9),
+                          ),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height *
+                                  0.5 /
+                                  100),
+                          Text(
+                            "GANANCIAS (KG):    \$ ${trip.gananciaComprasXKilo!.toStringAsFixed(2)}",
+                            style: const TextStyle(fontSize: 9),
+                          ),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 2 / 100),
+                          Text(
+                            "GANANCIAS TOTALES:    \$ ${trip.gananciaComprasReal!.toStringAsFixed(2)}",
+                            style: const TextStyle(
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 8, 95, 53)),
                           )
                         ]))
                   ])
@@ -190,7 +164,7 @@ Widget dataTripProductsWidget(TripModel trip, context, ColorScheme colors) {
 Widget tablaCompras(
     List<CompraModel> lista, context, TripModel trip, ColorScheme colors) {
   return DataTable(
-      columnSpacing: 10,
+      columnSpacing: 5,
       border: TableBorder.all(
           width: 1,
           borderRadius: BorderRadius.circular(5),
@@ -236,7 +210,19 @@ Widget tablaCompras(
             Text("USD",
                 textAlign: TextAlign.center, style: TextStyle(fontSize: 9))
           ],
-        ))
+        )),
+        DataColumn(
+            label: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("GANANCIA",
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 9)),
+            Text("TOTAL",
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 9)),
+            Text("USD",
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 9))
+          ],
+        )),
       ],
       rows: lista
           .map((data) => DataRow(cells: [
@@ -254,7 +240,14 @@ Widget tablaCompras(
                 DataCell(Text(
                     (data.compraPrecio / trip.coin2Price!).toStringAsFixed(2),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 9)))
+                    style:
+                        const TextStyle(fontSize: 9, color: Colors.redAccent))),
+                DataCell(Text(
+                    ((data.ventaCUPXUnidad * data.cantU) / trip.coin1Price!)
+                        .toStringAsFixed(2),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 9, color: Color.fromARGB(255, 8, 95, 53))))
               ]))
           .toList());
 }
