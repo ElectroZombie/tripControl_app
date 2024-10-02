@@ -46,7 +46,19 @@ class TripModel {
         tripName: "",
         activo: 0,
         fechaInicioViaje: "",
-        nombrePais: "");
+        nombrePais: "",
+        coin1Price: 0,
+        coin2Price: 0,
+        fechaFinalViaje: "",
+        gananciaComprasReal: 0,
+        gananciaComprasXKilo: 0,
+        gastoCompras: 0,
+        gastoComprasXKilo: 0,
+        kilosTotales: 0,
+        otrosGastos: 0,
+        rentabilidad: 0,
+        rentabilidadPorcentual: 0,
+        rentabilidadXKilo: 0);
   }
 
   Map<String, dynamic> toMap() {

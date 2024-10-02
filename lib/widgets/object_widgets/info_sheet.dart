@@ -37,9 +37,9 @@ Widget infoSheet(BuildContext context, ColorScheme colors) {
                             width: MediaQuery.of(context).size.width * 9 / 10,
                             child: Text(
                                 "La aplicación para dispositivos móviles Controlador de Viajes ha sido creada con el objetivo"
-                                "de brindar un apoyo a las personas que realizan viajes para comprar productos en el extranjero"
-                                "y traer de regreso. Provee de una calculadora de rentabilidad de los productos, así como de un sistema"
-                                "para llevar el control de las compras y gastos de los viajes realizados.",
+                                " de brindar un apoyo a las personas que realizan viajes para comprar productos en el extranjero"
+                                " y traer de regreso. Provee de una calculadora de rentabilidad de los productos, así como de un sistema"
+                                " para llevar el control de las compras y gastos de los viajes realizados.",
                                 maxLines: 11,
                                 softWrap: true,
                                 textAlign: TextAlign.justify,

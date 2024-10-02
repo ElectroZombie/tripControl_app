@@ -256,6 +256,7 @@ class MainApp extends StatelessWidget {
               surface: Color.fromARGB(246, 246, 248, 218),
               surfaceContainerHighest: Color.fromARGB(235, 242, 242, 235),
               primary: Color.fromARGB(106, 130, 175, 218),
+              primaryFixed: Color.fromARGB(149, 10, 100, 142),
               secondary: Color.fromARGB(153, 20, 46, 50),
               tertiary: Color.fromARGB(255, 27, 59, 73),
               onPrimaryFixedVariant: Color.fromARGB(100, 120, 170, 200),

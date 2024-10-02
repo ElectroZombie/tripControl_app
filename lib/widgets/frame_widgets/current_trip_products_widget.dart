@@ -70,7 +70,7 @@ Widget currentTripProductsWidget(
                     child: const Text(
                       "AGREGAR COMPRA",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 14),
                     )),
                 const SizedBox(height: 5),
                 FutureBuilder<List<GastoModel>>(
@@ -113,7 +113,7 @@ Widget currentTripProductsWidget(
                     child: const Text(
                       "AGREGAR GASTO",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 14),
                     )),
                 const SizedBox(
                   height: 20,

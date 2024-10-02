@@ -96,14 +96,16 @@ class TripListState extends State<TripList> {
                                         ListTile(
                                             titleAlignment:
                                                 ListTileTitleAlignment.top,
-                                            tileColor: colors.primary,
+                                            tileColor: revisarFechaViajeColor(
+                                                viaje, colors),
                                             shape: RoundedRectangleBorder(
                                                 side: BorderSide(
                                                     color: colors.tertiary,
                                                     width: 1.75),
                                                 borderRadius:
                                                     BorderRadius.circular(20)),
-                                            title: Text(viaje.tripName),
+                                            title: Text(
+                                                revisarFechaViajeTitulo(viaje)),
                                             subtitle: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
@@ -195,5 +197,21 @@ String revisarFechaViaje(TripModel viaje) {
     return "NO TERMINADO";
   } else {
     return viaje.fechaFinalViaje!.split(" ").first;
+  }
+}
+
+Color revisarFechaViajeColor(TripModel viaje, ColorScheme colors) {
+  if (viaje.fechaFinalViaje == null) {
+    return colors.primaryFixed;
+  } else {
+    return colors.primary;
+  }
+}
+
+String revisarFechaViajeTitulo(TripModel viaje) {
+  if (viaje.fechaFinalViaje == null) {
+    return "${viaje.tripName} (ACTIVO)";
+  } else {
+    return viaje.tripName;
   }
 }
