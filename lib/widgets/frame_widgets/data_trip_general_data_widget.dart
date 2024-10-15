@@ -15,7 +15,6 @@ Widget dataTripGeneralDataWidget(TripModel trip, context, ColorScheme colors) {
                   height: MediaQuery.of(context).size.height / 100,
                 ),
                 listTileSingleTextWidget(
-                    colors,
                     Icons.travel_explore_outlined,
                     TextFormDataModel(
                         id: 1,
@@ -33,7 +32,6 @@ Widget dataTripGeneralDataWidget(TripModel trip, context, ColorScheme colors) {
                   height: MediaQuery.of(context).size.height / 100,
                 ),
                 listTileMultipleNumberWidget(
-                    colors,
                     Icons.monetization_on,
                     "TASA DE CAMBIO",
                     listTileNumberSubtitleWidget([
@@ -57,7 +55,8 @@ Widget dataTripGeneralDataWidget(TripModel trip, context, ColorScheme colors) {
                               TextEditingValue(
                                   text: trip.coin2Price!.toStringAsFixed(2))),
                           func: () => {})
-                    ], context, trip, singleton: false)),
+                    ], context, trip, singleton: false),
+                    context),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 100,
                 ),

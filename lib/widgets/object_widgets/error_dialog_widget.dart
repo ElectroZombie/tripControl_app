@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
 
-void errorDialogWidget(
-    String text, ColorScheme colors, BuildContext context) async {
+void errorDialogWidget(String text, BuildContext context) async {
+  ColorScheme colors = Theme.of(context).colorScheme;
   await showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -17,10 +16,27 @@ void errorDialogWidget(
           IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.cancel),
-            style: iconButtonStyleWidget(colors),
+            style: iconButtonStyle(context),
           )
         ],
       );
     },
   );
+}
+
+iconButtonStyle(context) {
+  ColorScheme colors = Theme.of(context).colorScheme;
+  return ButtonStyle(
+      fixedSize: const WidgetStatePropertyAll(Size(45, 45)),
+      backgroundColor: WidgetStatePropertyAll(colors.secondary),
+      shadowColor: WidgetStatePropertyAll(colors.tertiary),
+      overlayColor: WidgetStatePropertyAll(colors.onPrimaryFixedVariant),
+      foregroundColor: WidgetStatePropertyAll(colors.onSecondary),
+      textStyle: WidgetStatePropertyAll(TextStyle(
+          fontSize: 12,
+          color: colors.onSecondary,
+          fontWeight: FontWeight.bold)),
+      shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+          side: BorderSide(color: colors.tertiary, width: 1.75))));
 }

@@ -182,8 +182,7 @@ Widget nuevoViaje(snapshot, context, colors) {
       tooltip: "CREAR NUEVO VIAJE",
       style: iconButtonStyleWidget(colors),
       onPressed: activo
-          ? () =>
-              errorDialogWidget("YA HAY UN VIAJE EN PROCESO", colors, context)
+          ? () => errorDialogWidget("YA HAY UN VIAJE EN PROCESO", context)
           : () => {Navigator.pushNamed(context, '/new_trip_control')},
       icon: const Icon(Icons.add));
 }

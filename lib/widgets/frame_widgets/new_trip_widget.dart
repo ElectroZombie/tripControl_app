@@ -28,7 +28,6 @@ Widget newTripWidget(
                   height: MediaQuery.of(context).size.height / 100,
                 ),
                 listTileSingleTextWidget(
-                    colors,
                     Icons.travel_explore_outlined,
                     TextFormDataModel(
                         id: 1,
@@ -45,7 +44,6 @@ Widget newTripWidget(
                   height: MediaQuery.of(context).size.height / 100,
                 ),
                 listTileMultipleNumberWidget(
-                    colors,
                     Icons.monetization_on,
                     "TASA DE CAMBIO",
                     listTileNumberSubtitleWidget([
@@ -65,7 +63,8 @@ Widget newTripWidget(
                           hasTitle: true,
                           controller: precioM2,
                           func: () => {})
-                    ], context, TripModel.nullTrip(), singleton: false)),
+                    ], context, TripModel.nullTrip(), singleton: false),
+                    context),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 100,
                 ),
@@ -184,8 +183,7 @@ void crearViaje(
       precioM1.value.text == "" ||
       precioM2.value.text == "" ||
       pais == "") {
-    errorDialogWidget(
-        "RELLENE TODOS LOS CAMPOS", Theme.of(context).colorScheme, context);
+    errorDialogWidget("RELLENE TODOS LOS CAMPOS", context);
   } else {
     TripModel trip = TripModel(
         tripID: (await DB.getLastIDTrip()) + 1,

@@ -35,7 +35,6 @@ Widget currentTripGeneralDataWidget(
                   height: MediaQuery.of(context).size.height / 100,
                 ),
                 listTileSingleTextWidget(
-                    colors,
                     Icons.travel_explore_outlined,
                     TextFormDataModel(
                         id: 1,
@@ -52,7 +51,6 @@ Widget currentTripGeneralDataWidget(
                   height: MediaQuery.of(context).size.height / 100,
                 ),
                 listTileMultipleNumberWidget(
-                    colors,
                     Icons.monetization_on,
                     "TASA DE CAMBIO",
                     listTileNumberSubtitleWidget([
@@ -72,7 +70,8 @@ Widget currentTripGeneralDataWidget(
                           hasTitle: true,
                           controller: precioM2,
                           func: updatePrecioM2)
-                    ], context, trip, singleton: singleton)),
+                    ], context, trip, singleton: singleton),
+                    context),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 100,
                 ),

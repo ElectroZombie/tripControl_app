@@ -7,6 +7,8 @@ import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
 import 'package:trip_control_app/widgets/object_widgets/rentability_widget.dart';
 
+import '../../utils/tuple.dart';
+
 Widget currentTripProductsWidget(
     TripModel trip,
     TextEditingController nombreCompra,
@@ -209,8 +211,14 @@ Widget currentTripProductsWidget(
                   ])
                 ]),
                 SizedBox(height: MediaQuery.of(context).size.height * 1 / 100),
-                rentabilityWidget(trip.rentabilidad!, trip.rentabilidadXKilo!,
-                    trip.rentabilidadPorcentual!, context),
+                rentabilityWidget([
+                  Tuple(T: trip.rentabilidad, K: "RENTABILIDAD \n"),
+                  Tuple(
+                      T: trip.rentabilidadXKilo, K: "RENTABILIDAD \n POR KILO"),
+                  Tuple(
+                      T: trip.rentabilidadPorcentual,
+                      K: "RENTABILIDAD \n PORCENTUAL")
+                ], context),
                 SizedBox(
                     height: MediaQuery.of(context).size.height * 1.5 / 100),
               ]))));

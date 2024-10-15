@@ -76,32 +76,32 @@ Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
             height: (MediaQuery.of(context).size.width) / 100,
           ),
           listTileMultipleNumberWidget(
-              colors,
               Icons.backpack,
               "PRODUCTO",
               listTileNumberSubtitleWidget(
                   producto, context, TripModel.nullTrip(),
-                  singleton: false)),
+                  singleton: false),
+              context),
           SizedBox(
             height: (MediaQuery.of(context).size.width) / 100,
           ),
           listTileMultipleNumberWidget(
-              colors,
               Icons.attach_money,
               "COSTO DEL PRODUCTO",
               listTileNumberSubtitleWidget(
                   costoProducto, context, TripModel.nullTrip(),
-                  singleton: false)),
+                  singleton: false),
+              context),
           SizedBox(
             height: (MediaQuery.of(context).size.width) / 100,
           ),
           listTileMultipleNumberWidget(
-              colors,
               Icons.sell,
               "VENTA DEL PRODUCTO",
               listTileNumberSubtitleWidget(
                   ventaProducto, context, TripModel.nullTrip(),
-                  singleton: false)),
+                  singleton: false),
+              context),
           SizedBox(
             height: (MediaQuery.of(context).size.width * 1.5) / 100,
           ),
@@ -125,7 +125,11 @@ Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
           SizedBox(
             height: (MediaQuery.of(context).size.width * 1.5) / 100,
           ),
-          rentabilityWidget(rentR, rentKg, rentP, context),
+          rentabilityWidget([
+            Tuple(T: rentR, K: "RENTABILIDAD \n"),
+            Tuple(T: rentKg, K: "RENTABILIDAD \n POR KILO"),
+            Tuple(T: rentP, K: "RENTABILIDAD \n PORCENTUAL")
+          ], context),
           SizedBox(
             height: (MediaQuery.of(context).size.width * 1.5) / 100,
           ),
@@ -154,7 +158,7 @@ void save(
       precioM1.text.isEmpty ||
       cambioM1.text.isEmpty ||
       cambioM2.text.isEmpty) {
-    errorDialogWidget("DEBE RELLENAR TODOS LOS CAMPOS", colors, context);
+    errorDialogWidget("DEBE RELLENAR TODOS LOS CAMPOS", context);
   } else {
     Tuple t = calculoRentabilidad(
         int.parse(cantU.text),

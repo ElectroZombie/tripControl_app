@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/utils/text_form_data_model.dart';
+import '../../utils/text_form_data_model.dart';
 
-Widget listTileSingleTextWidget(ColorScheme colors, IconData icon,
-    TextFormDataModel data, context, TripModel trip,
+Widget listTileSingleTextWidget(
+    IconData icon, TextFormDataModel data, context, Object obj,
     {required bool singleton}) {
+  ColorScheme colors = Theme.of(context).colorScheme;
   return Stack(children: [
     Row(children: [
       const SizedBox(width: 10),
@@ -49,7 +49,7 @@ Widget listTileSingleTextWidget(ColorScheme colors, IconData icon,
             style: const TextStyle(fontSize: 12),
             onEditingComplete: () {
               try {
-                data.func(data.controller.text, trip, context, singleton);
+                data.func(data.controller.text, obj, context, singleton);
               } catch (e) {
                 //
               }
@@ -60,7 +60,8 @@ Widget listTileSingleTextWidget(ColorScheme colors, IconData icon,
 }
 
 Widget listTileMultipleTextWidget(
-    ColorScheme colors, IconData icon, String title, Widget subtitle) {
+    IconData icon, String title, Widget subtitle, context) {
+  ColorScheme colors = Theme.of(context).colorScheme;
   return Stack(children: [
     Row(children: [
       const SizedBox(width: 10),
@@ -90,9 +91,9 @@ Widget listTileMultipleTextWidget(
 }
 
 Widget listTileTextSubtitleWidget(
-    List<TextFormDataModel> data, context, TripModel trip,
+    List<TextFormDataModel> data, context, Object obj,
     {required bool singleton}) {
-  var colors = Theme.of(context).colorScheme;
+  ColorScheme colors = Theme.of(context).colorScheme;
   return ListView.builder(
     shrinkWrap: true,
     itemCount: data.length * 2,
@@ -121,7 +122,7 @@ Widget listTileTextSubtitleWidget(
           onEditingComplete: () {
             try {
               data[index]
-                  .func(data[index].controller.text, trip, context, singleton);
+                  .func(data[index].controller.text, obj, context, singleton);
             } catch (e) {
               //
             }

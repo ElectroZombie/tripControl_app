@@ -6,6 +6,8 @@ import 'package:trip_control_app/models/gasto_model.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/widgets/object_widgets/rentability_widget.dart';
 
+import '../../utils/tuple.dart';
+
 Widget dataTripProductsWidget(TripModel trip, context, ColorScheme colors) {
   return SingleChildScrollView(
       child: Center(
@@ -154,8 +156,14 @@ Widget dataTripProductsWidget(TripModel trip, context, ColorScheme colors) {
                   ])
                 ]),
                 SizedBox(height: MediaQuery.of(context).size.height * 1 / 100),
-                rentabilityWidget(trip.rentabilidad!, trip.rentabilidadXKilo!,
-                    trip.rentabilidadPorcentual!, context),
+                rentabilityWidget([
+                  Tuple(T: trip.rentabilidad, K: "RENTABILIDAD \n"),
+                  Tuple(
+                      T: trip.rentabilidadXKilo, K: "RENTABILIDAD \n POR KILO"),
+                  Tuple(
+                      T: trip.rentabilidadPorcentual,
+                      K: "RENTABILIDAD \n PORCENTUAL")
+                ], context),
                 SizedBox(
                     height: MediaQuery.of(context).size.height * 1.5 / 100),
               ]))));
