@@ -1,11 +1,12 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:trip_control_app/db/db_general.dart';
 import 'package:trip_control_app/methods/bar_message_method.dart';
+import 'package:trip_control_app/providers/json_provider.dart';
 import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
 
 class Login extends StatefulWidget {
@@ -17,47 +18,25 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  List<String> listG = [];
-  List<String> listW = [];
-
-  Random r = Random();
-
-  String valor = "";
-
   TextEditingController passC = TextEditingController();
-
-  loadJson() async {
-    String jsonG = await _loadJsonG();
-    String jsonW = await _loadJsonW();
-
-    List<dynamic> jsonDataG = await jsonDecode(jsonG);
-    List<dynamic> jsonDataW = await jsonDecode(jsonW);
-
-    listG = List.generate(jsonDataG.length, (i) => jsonDataG[i]['word']);
-    listW = List.generate(jsonDataW.length, (i) => jsonDataW[i]['sha_word']);
-
-    setState(() {
-      valor = listG[r.nextInt(147)];
-    });
-  }
-
-  static Future<String> _loadJsonG() async {
-    return await rootBundle.loadString("assets/json/guayaba_words.json");
-  }
-
-  static Future<String> _loadJsonW() async {
-    return await rootBundle.loadString("assets/json/sha_words.json");
-  }
 
   @override
   void initState() {
     super.initState();
-    loadJson();
+  }
+
+  load(context) async {
+    if (Provider.of<JsonProvider>(context).value != "") {
+      return;
+    }
+    await Provider.of<JsonProvider>(context).loadJsons();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     var colors = Theme.of(context).colorScheme;
+    load(context);
     return Scaffold(
         backgroundColor: colors.surfaceContainerHighest,
         appBar: AppBar(
@@ -96,70 +75,86 @@ class _LoginState extends State<Login> {
                                 BorderSide(color: colors.tertiary, width: 1.75),
                             borderRadius: BorderRadius.circular(5)),
                         titleAlignment: ListTileTitleAlignment.titleHeight,
-                        subtitle: Column(
-                          children: [
-                            SizedBox(
-                                height: (MediaQuery.of(context).size.height *
-                                        0.10) /
-                                    10),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  IconButton(
-                                    onPressed: () => copy(valor, context),
-                                    icon: const Icon(Icons.copy_rounded),
-                                    tooltip: "COPIAR",
-                                  ),
-                                  Text(
-                                    valor,
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: "Times new roman"),
-                                  )
-                                ]),
-                            SizedBox(
-                                height: (MediaQuery.of(context).size.height *
-                                        0.35) /
-                                    10),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                  icon: const Icon(Icons.text_fields_rounded),
-                                  fillColor: colors.surface,
-                                  labelText: "INTRODUZCA LA CLAVE",
-                                  labelStyle: const TextStyle(fontSize: 10),
-                                  filled: true,
-                                  constraints: BoxConstraints.loose(
-                                      const Size.fromHeight(35)),
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: colors.tertiary, width: 1.75),
-                                      borderRadius: BorderRadius.circular(10))),
-                              cursorColor: colors.tertiary,
-                              controller: passC,
-                              maxLength: null,
-                              keyboardType: TextInputType.text,
-                              style: TextStyle(
-                                  fontSize: 12, color: colors.onPrimary),
-                              onEditingComplete: () {
-                                try {
-                                  checkWord(passC, listW, context);
-                                } catch (e) {
-                                  //
-                                }
-                              },
-                            ),
-                            SizedBox(
-                                height: (MediaQuery.of(context).size.height *
-                                        0.35) /
-                                    10),
-                            TextButton(
-                              onPressed: () =>
-                                  {checkWord(passC, listW, context)},
-                              style: buttonStyleWidget(colors),
-                              child: const Text("LOGIN"),
-                            )
-                          ],
-                        ))
+                        subtitle: Consumer<JsonProvider>(
+                            builder: (context, data, child) => Column(
+                                  children: [
+                                    SizedBox(
+                                        height: (MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.10) /
+                                            10),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          IconButton(
+                                            onPressed: () =>
+                                                copy(data.value, context),
+                                            icon:
+                                                const Icon(Icons.copy_rounded),
+                                            tooltip: "COPIAR",
+                                          ),
+                                          Text(
+                                            data.value,
+                                            style: const TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: "Times new roman"),
+                                          )
+                                        ]),
+                                    SizedBox(
+                                        height: (MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.35) /
+                                            10),
+                                    TextFormField(
+                                      decoration: InputDecoration(
+                                          icon: const Icon(
+                                              Icons.text_fields_rounded),
+                                          fillColor: colors.surface,
+                                          labelText: "INTRODUZCA LA CLAVE",
+                                          labelStyle:
+                                              const TextStyle(fontSize: 10),
+                                          filled: true,
+                                          constraints: BoxConstraints.loose(
+                                              const Size.fromHeight(35)),
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: colors.tertiary,
+                                                  width: 1.75),
+                                              borderRadius:
+                                                  BorderRadius.circular(10))),
+                                      cursorColor: colors.tertiary,
+                                      controller: passC,
+                                      maxLength: null,
+                                      keyboardType: TextInputType.text,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: colors.onPrimary),
+                                      onEditingComplete: () {
+                                        try {
+                                          checkWord(passC, data.listW, context);
+                                        } catch (e) {
+                                          //
+                                        }
+                                      },
+                                    ),
+                                    SizedBox(
+                                        height: (MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.35) /
+                                            10),
+                                    TextButton(
+                                      onPressed: () => {
+                                        checkWord(passC, data.listW, context)
+                                      },
+                                      style: buttonStyleWidget(colors),
+                                      child: const Text("LOGIN"),
+                                    )
+                                  ],
+                                )))
                   ])
                 ]))));
   }

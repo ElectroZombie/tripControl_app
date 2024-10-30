@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/utils/text_form_data_model.dart';
 import 'package:trip_control_app/widgets/object_widgets/drop_down_search_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/list_tile_number_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/list_tile_text_widget.dart';
+import 'package:trip_control_app/widgets/object_widgets/modified_list_tile_widget.dart';
+
+import '../../utils/enum_types.dart';
 
 Widget dataTripGeneralDataWidget(TripModel trip, context, ColorScheme colors) {
   return SingleChildScrollView(
@@ -14,33 +15,35 @@ Widget dataTripGeneralDataWidget(TripModel trip, context, ColorScheme colors) {
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 100,
                 ),
-                listTileSingleTextWidget(
-                    Icons.travel_explore_outlined,
+                modifiedListTileWidget(
+                  Icons.travel_explore_outlined,
+                  "NOMBRE DEL VIAJE",
+                  modifiedListTileSubtitleWidget([
                     TextFormDataModel(
                         id: 1,
                         text: "NOMBRE DEL VIAJE",
                         readOnly: true,
-                        decimal: false,
                         hasTitle: true,
+                        inputType: InputTypes.text,
                         controller: TextEditingController.fromValue(
                             TextEditingValue(text: trip.tripName)),
-                        func: () => {}),
-                    context,
-                    trip,
-                    singleton: false),
+                        func: () => {})
+                  ], context, trip, singleton: false),
+                  context,
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 100,
                 ),
-                listTileMultipleNumberWidget(
+                modifiedListTileWidget(
                     Icons.monetization_on,
                     "TASA DE CAMBIO",
-                    listTileNumberSubtitleWidget([
+                    modifiedListTileSubtitleWidget([
                       TextFormDataModel(
                           id: 1,
                           text: "CAMBIO CUP/USD",
                           readOnly: true,
-                          decimal: true,
                           hasTitle: true,
+                          inputType: InputTypes.numberDecimal,
                           controller: TextEditingController.fromValue(
                               TextEditingValue(
                                   text: trip.coin1Price!.toStringAsFixed(2))),
@@ -49,8 +52,8 @@ Widget dataTripGeneralDataWidget(TripModel trip, context, ColorScheme colors) {
                           id: 2,
                           text: "CAMBIO M2/USD",
                           readOnly: true,
-                          decimal: false,
                           hasTitle: true,
+                          inputType: InputTypes.numberDecimal,
                           controller: TextEditingController.fromValue(
                               TextEditingValue(
                                   text: trip.coin2Price!.toStringAsFixed(2))),

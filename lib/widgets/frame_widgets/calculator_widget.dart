@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:trip_control_app/models/trip_model.dart';
+import 'package:trip_control_app/utils/enum_types.dart';
 import 'package:trip_control_app/utils/text_form_data_model.dart';
 import 'package:trip_control_app/utils/calculo_rentabilidad.dart';
 import 'package:trip_control_app/utils/tuple.dart';
 import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
 import 'package:trip_control_app/widgets/object_widgets/error_dialog_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/list_tile_number_widget.dart';
+import 'package:trip_control_app/widgets/object_widgets/modified_list_tile_widget.dart';
 import 'package:trip_control_app/widgets/object_widgets/rentability_widget.dart';
 
 Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
@@ -15,16 +16,16 @@ Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
         id: 1,
         text: "CANTIDAD DE UNIDADES",
         readOnly: false,
-        decimal: false,
         hasTitle: false,
+        inputType: InputTypes.number,
         controller: cantU,
         func: () => {}),
     TextFormDataModel(
         id: 2,
         text: "PESO TOTAL EN KG",
         readOnly: false,
-        decimal: true,
         hasTitle: false,
+        inputType: InputTypes.numberDecimal,
         controller: pesoT,
         func: () => {})
   ];
@@ -33,16 +34,16 @@ Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
         id: 3,
         text: "COSTO TOTAL EN M2",
         readOnly: false,
-        decimal: true,
         hasTitle: false,
+        inputType: InputTypes.numberDecimal,
         controller: pagoM2,
         func: () => {}),
     TextFormDataModel(
         id: 4,
         text: "CAMBIO M2/USD",
         readOnly: false,
-        decimal: true,
         hasTitle: false,
+        inputType: InputTypes.numberDecimal,
         controller: cambioM2,
         func: () => {})
   ];
@@ -51,21 +52,22 @@ Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
         id: 5,
         text: "VENTA DE UNIDAD EN CUP",
         readOnly: false,
-        decimal: true,
         hasTitle: false,
+        inputType: InputTypes.numberDecimal,
         controller: precioM1,
         func: () => {}),
     TextFormDataModel(
         id: 6,
         text: "CAMBIO CUP/USD",
         readOnly: false,
-        decimal: true,
         hasTitle: false,
+        inputType: InputTypes.numberDecimal,
         controller: cambioM1,
         func: () => {})
   ];
 
   var colors = Theme.of(context).colorScheme;
+
   return SingleChildScrollView(
     child: SizedBox(
       child: ListView(
@@ -75,30 +77,30 @@ Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
           SizedBox(
             height: (MediaQuery.of(context).size.width) / 100,
           ),
-          listTileMultipleNumberWidget(
+          modifiedListTileWidget(
               Icons.backpack,
               "PRODUCTO",
-              listTileNumberSubtitleWidget(
+              modifiedListTileSubtitleWidget(
                   producto, context, TripModel.nullTrip(),
                   singleton: false),
               context),
           SizedBox(
             height: (MediaQuery.of(context).size.width) / 100,
           ),
-          listTileMultipleNumberWidget(
+          modifiedListTileWidget(
               Icons.attach_money,
               "COSTO DEL PRODUCTO",
-              listTileNumberSubtitleWidget(
+              modifiedListTileSubtitleWidget(
                   costoProducto, context, TripModel.nullTrip(),
                   singleton: false),
               context),
           SizedBox(
             height: (MediaQuery.of(context).size.width) / 100,
           ),
-          listTileMultipleNumberWidget(
+          modifiedListTileWidget(
               Icons.sell,
               "VENTA DEL PRODUCTO",
-              listTileNumberSubtitleWidget(
+              modifiedListTileSubtitleWidget(
                   ventaProducto, context, TripModel.nullTrip(),
                   singleton: false),
               context),

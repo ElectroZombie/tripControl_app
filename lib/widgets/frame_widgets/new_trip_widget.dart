@@ -5,8 +5,9 @@ import 'package:trip_control_app/models/trip_model.dart';
 import 'package:trip_control_app/widgets/object_widgets/drop_down_search_widget.dart';
 import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
 import 'package:trip_control_app/widgets/object_widgets/error_dialog_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/list_tile_number_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/list_tile_text_widget.dart';
+import 'package:trip_control_app/widgets/object_widgets/modified_list_tile_widget.dart';
+
+import '../../utils/enum_types.dart';
 
 Widget newTripWidget(
     selectedDate,
@@ -27,31 +28,32 @@ Widget newTripWidget(
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 100,
                 ),
-                listTileSingleTextWidget(
+                modifiedListTileWidget(
                     Icons.travel_explore_outlined,
-                    TextFormDataModel(
-                        id: 1,
-                        text: "NOMBRE DEL VIAJE",
-                        readOnly: false,
-                        decimal: false,
-                        hasTitle: true,
-                        controller: nombreViaje,
-                        func: () => {}),
-                    context,
-                    TripModel.nullTrip(),
-                    singleton: false),
+                    "NOMBRE DEL VIAJE",
+                    modifiedListTileSubtitleWidget([
+                      TextFormDataModel(
+                          id: 1,
+                          text: "NOMBRE DEL VIAJE",
+                          readOnly: false,
+                          hasTitle: true,
+                          inputType: InputTypes.text,
+                          controller: nombreViaje,
+                          func: () => {})
+                    ], context, TripModel.nullTrip(), singleton: false),
+                    context),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 100,
                 ),
-                listTileMultipleNumberWidget(
+                modifiedListTileWidget(
                     Icons.monetization_on,
                     "TASA DE CAMBIO",
-                    listTileNumberSubtitleWidget([
+                    modifiedListTileSubtitleWidget([
                       TextFormDataModel(
                           id: 1,
                           text: "CAMBIO CUP/USD",
                           readOnly: false,
-                          decimal: true,
+                          inputType: InputTypes.numberDecimal,
                           hasTitle: true,
                           controller: precioM1,
                           func: () => {}),
@@ -59,7 +61,7 @@ Widget newTripWidget(
                           id: 2,
                           text: "CAMBIO M2/USD",
                           readOnly: false,
-                          decimal: false,
+                          inputType: InputTypes.numberDecimal,
                           hasTitle: true,
                           controller: precioM2,
                           func: () => {})
