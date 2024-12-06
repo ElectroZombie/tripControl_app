@@ -7,50 +7,32 @@
 **V1.4.14**
 
 -----
-### **Autor:**
+### **AUTOR:**
 1. Eric Michel Villavicencio Reyes [(Github)](https://github.com/ElectroZombie)
 
 -----
-> [PREREQUISITES]
+> ### [REQUISITOS]
 >
 > * Java Version: 17.0.11
 > * SQLite 3 Version: 3.45.3
 > * Dart SDK: 3.4.0
-
------
-> [INFO]
-> #### Construido con:
 > * Flutter SDK: 3.22.0
 > * Android SDK: 31.0.0
 
 ------------------------------------------------------------------
+## **A mobile application to support travel checks for purchasing items**
 
-## A mobile application to support travel checks for purchasing items
+**V1.4.14**
 
-v1.0.5
+-----
+### **AUTHOR:**
+1. Eric Michel Villavicencio Reyes [(Github)](https://github.com/ElectroZombie)
 
-### Authors
-
-=
-
- Eric Michel Villavicencio Reyes (<https://github.com/ElectroZombie>)
-
-### Buildig Specs
-
-*
-
- Java Version: 17.0.11
-
- SQLite 3 Version: 3.45.3
-
- Dart SDK: 3.4.0
-
-### Built on
-
-*
-
- Flutter SDK: 3.22.0
-
- Android SDK: 31.0.0
-
- Code-OSS: 1.89.0
+-----
+> ### [BUILDING SPECS]
+>
+> * Java Version: 17.0.11
+> * SQLite 3 Version: 3.45.3
+> * Dart SDK: 3.4.0
+> * Flutter SDK: 3.22.0
+> * Android SDK: 31.0.0
