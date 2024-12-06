@@ -7,10 +7,13 @@
 **V1.4.14**
 
 -----
+
 ### **AUTOR:**
+
 1. Eric Michel Villavicencio Reyes [(Github)](https://github.com/ElectroZombie)
 
 -----
+
 > ### [REQUISITOS]
 >
 > * Java Version: 17.0.11
@@ -19,16 +22,20 @@
 > * Flutter SDK: 3.22.0
 > * Android SDK: 31.0.0
 
-------------------------------------------------------------------
+-----
+
 ## **A mobile application to support travel checks for purchasing items**
 
 **V1.4.14**
 
 -----
+
 ### **AUTHOR:**
+
 1. Eric Michel Villavicencio Reyes [(Github)](https://github.com/ElectroZombie)
 
 -----
+
 > ### [BUILDING SPECS]
 >
 > * Java Version: 17.0.11
