@@ -1,10 +1,10 @@
 name: trip_control_app
 description: Una aplicación móvil para apoyar los controles de viajes al extranjero para comprar artículos.
-publish_to: 'none'
-version: 1.4.12
+publish_to: "none"
+version: 1.4.14
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: ">=3.0.6 <4.0.0"
 
 dependencies:
   flutter:
