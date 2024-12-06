@@ -4,14 +4,12 @@
 
 ## **Una aplicación móvil para apoyar los controles de viajes al extranjero para comprar productos**
 
-> [!] v1.4.14
+**V1.4.14**
 
 ### **Autor:**
+1. Eric Michel Villavicencio Reyes [(Github)](https://github.com/ElectroZombie)
 
-=
- Eric Michel Villavicencio Reyes [Github](https://github.com/ElectroZombie)
-
-### > [!PREREQUISITES]
+> [!PREREQUISITES]
 >
 > * Java Version: 17.0.11
 > [2 spaces]
@@ -19,8 +17,8 @@
 > [2 spaces]
 > * Dart SDK: 3.4.0
   
-### > [!INFO] Construido con
->
+> [!INFO]
+> Construido con
 > * Flutter SDK: 3.22.0
 >[2 spaces]
 > * Android SDK: 31.0.0
