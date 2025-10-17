@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/utils/id_element_model.dart';
-import 'package:trip_control_app/utils/tuple.dart';
+import 'package:alforja/utils/id_element_model.dart';
+import 'package:alforja/utils/tuple.dart';
 
 import 'enum_types.dart';
 

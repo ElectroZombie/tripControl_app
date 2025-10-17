@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/utils/text_form_data_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/widgets/object_widgets/drop_down_search_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/error_dialog_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/modified_list_tile_widget.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/utils/text_form_data_model.dart';
+import 'package:alforja/models/trip_model.dart';
+import 'package:alforja/widgets/object_widgets/drop_down_search_widget.dart';
+import 'package:alforja/widgets/object_widgets/button_widget.dart';
+import 'package:alforja/widgets/object_widgets/error_dialog_widget.dart';
+import 'package:alforja/widgets/object_widgets/modified_list_tile_widget.dart';
 
 import '../../utils/enum_types.dart';
 

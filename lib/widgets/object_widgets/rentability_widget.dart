@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/utils/tuple.dart';
+import 'package:alforja/utils/tuple.dart';
 
 Widget rentabilityWidget(List<Tuple<double, String>> data, context) {
   return Container(

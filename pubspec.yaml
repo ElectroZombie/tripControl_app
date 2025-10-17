@@ -1,7 +1,7 @@
-name: Alforja
+name: alforja
 description: Una aplicación móvil para apoyar los controles de viajes al extranjero para comprar artículos.
 publish_to: "none"
-version: 1.4.14
+version: 1.5.18
 
 environment:
   sdk: ">=3.0.6 <4.0.0"
@@ -11,11 +11,8 @@ dependencies:
     sdk: flutter
   sqflite: ^2.3.0
   shared_preferences: ^2.2.2
-  #permission_handler: ^11.0.1
   dropdown_search: ^5.0.6
   path: any
-  #pdf: ^3.10.8
-  #path_provider: ^2.1.3
   crypto: ^3.0.3
   url_launcher: ^6.3.0
   provider: ^6.1.2

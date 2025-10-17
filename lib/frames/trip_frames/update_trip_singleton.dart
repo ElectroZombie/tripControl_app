@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/widgets/frame_widgets/current_trip_general_data_widget.dart';
-import 'package:trip_control_app/widgets/frame_widgets/current_trip_products_widget.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/models/trip_model.dart';
+import 'package:alforja/widgets/frame_widgets/current_trip_general_data_widget.dart';
+import 'package:alforja/widgets/frame_widgets/current_trip_products_widget.dart';
 
 class UpdateTripSingleton extends StatefulWidget {
   const UpdateTripSingleton({Key? key}) : super(key: key);

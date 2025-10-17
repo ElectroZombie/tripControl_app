@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/models/gasto_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/widgets/gastos_widgets/add_gasto_dialog.dart';
-import 'package:trip_control_app/widgets/gastos_widgets/delete_gasto_dialog.dart';
-import 'package:trip_control_app/widgets/gastos_widgets/update_gasto_widget.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/models/gasto_model.dart';
+import 'package:alforja/models/trip_model.dart';
+import 'package:alforja/widgets/gastos_widgets/add_gasto_dialog.dart';
+import 'package:alforja/widgets/gastos_widgets/delete_gasto_dialog.dart';
+import 'package:alforja/widgets/gastos_widgets/update_gasto_widget.dart';
 
 Future<void> actualizarGasto(
     BuildContext context,

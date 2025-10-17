@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/widgets/frame_widgets/calculator_widget.dart';
+import 'package:alforja/widgets/frame_widgets/calculator_widget.dart';
 
 class Calculator extends StatefulWidget {
   const Calculator({Key? key}) : super(key: key);

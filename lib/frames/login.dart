@@ -4,10 +4,10 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/methods/bar_message_method.dart';
-import 'package:trip_control_app/providers/json_provider.dart';
-import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/methods/bar_message_method.dart';
+import 'package:alforja/providers/json_provider.dart';
+import 'package:alforja/widgets/object_widgets/button_widget.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/models/compra_model.dart';
+import 'package:alforja/models/trip_model.dart';
+import 'package:alforja/widgets/object_widgets/button_widget.dart';
 
 _agregarCompra(
     context, nombreCompra, cantU, pesoT, costoM2, ventaM1, TripModel trip,

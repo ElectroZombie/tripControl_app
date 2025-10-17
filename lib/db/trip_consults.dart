@@ -1,10 +1,10 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:trip_control_app/db/compras_consults.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/db/gastos_consults.dart';
-import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/gasto_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
+import 'package:alforja/db/compras_consults.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/db/gastos_consults.dart';
+import 'package:alforja/models/compra_model.dart';
+import 'package:alforja/models/gasto_model.dart';
+import 'package:alforja/models/trip_model.dart';
 
 class TripConsults {
   static Future<void> insertNewTrip(db, TripModel T) async {

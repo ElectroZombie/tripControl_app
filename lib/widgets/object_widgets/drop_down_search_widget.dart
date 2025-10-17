@@ -1,6 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/models/trip_model.dart';
+import 'package:alforja/models/trip_model.dart';
 
 Widget dropDownSearch(paises, TextEditingController userEditTextController,
     context, callbacks, ColorScheme colors, bool singleton) {

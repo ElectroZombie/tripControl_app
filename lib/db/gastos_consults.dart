@@ -1,4 +1,4 @@
-import 'package:trip_control_app/models/gasto_model.dart';
+import 'package:alforja/models/gasto_model.dart';
 
 class GastoConsults {
   static Future<void> insertNewGasto(db, GastoModel g) async {

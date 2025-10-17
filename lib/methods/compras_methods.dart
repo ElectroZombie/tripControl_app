@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/widgets/compra_widgets/add_compra_widget.dart';
-import 'package:trip_control_app/widgets/compra_widgets/delete_compra_widget.dart';
-import 'package:trip_control_app/widgets/compra_widgets/update_compra_widget.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/models/compra_model.dart';
+import 'package:alforja/models/trip_model.dart';
+import 'package:alforja/widgets/compra_widgets/add_compra_widget.dart';
+import 'package:alforja/widgets/compra_widgets/delete_compra_widget.dart';
+import 'package:alforja/widgets/compra_widgets/update_compra_widget.dart';
 
 Future<List<CompraModel>> getCompras(int id) async {
   return DB.getComprasTrip(id);

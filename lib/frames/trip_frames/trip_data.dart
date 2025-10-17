@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-//import 'package:trip_control_app/utils/pdf_actions.dart';
-import 'package:trip_control_app/widgets/frame_widgets/data_trip_general_data_widget.dart';
-import 'package:trip_control_app/widgets/frame_widgets/data_trip_products_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/models/trip_model.dart';
+//import 'package:alforja/utils/pdf_actions.dart';
+import 'package:alforja/widgets/frame_widgets/data_trip_general_data_widget.dart';
+import 'package:alforja/widgets/frame_widgets/data_trip_products_widget.dart';
+import 'package:alforja/widgets/object_widgets/button_widget.dart';
 
 class TripData extends StatefulWidget {
   const TripData({Key? key}) : super(key: key);

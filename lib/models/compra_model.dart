@@ -1,4 +1,4 @@
-import 'package:trip_control_app/utils/id_element_model.dart';
+import 'package:alforja/utils/id_element_model.dart';
 
 class CompraModel extends IDElementModel {
   int tripID;

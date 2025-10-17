@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/utils/enum_types.dart';
-import 'package:trip_control_app/utils/text_form_data_model.dart';
-import 'package:trip_control_app/utils/calculo_rentabilidad.dart';
-import 'package:trip_control_app/utils/tuple.dart';
-import 'package:trip_control_app/widgets/object_widgets/button_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/error_dialog_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/modified_list_tile_widget.dart';
-import 'package:trip_control_app/widgets/object_widgets/rentability_widget.dart';
+import 'package:alforja/models/trip_model.dart';
+import 'package:alforja/utils/enum_types.dart';
+import 'package:alforja/utils/text_form_data_model.dart';
+import 'package:alforja/utils/calculo_rentabilidad.dart';
+import 'package:alforja/utils/tuple.dart';
+import 'package:alforja/widgets/object_widgets/button_widget.dart';
+import 'package:alforja/widgets/object_widgets/error_dialog_widget.dart';
+import 'package:alforja/widgets/object_widgets/modified_list_tile_widget.dart';
+import 'package:alforja/widgets/object_widgets/rentability_widget.dart';
 
 Widget calculator(cantU, pesoT, pagoM2, precioM1, cambioM1, cambioM2,
     double rentR, double rentKg, double rentP, context, callbackCalculate) {

@@ -1,4 +1,4 @@
-import 'package:trip_control_app/utils/tuple.dart';
+import 'package:alforja/utils/tuple.dart';
 
 Tuple calculoRentabilidad(int cantU, double pesoT, double pagoM2,
     double precioM1, double cambioM1, double cambioM2) {

@@ -3,13 +3,13 @@ import 'dart:io';
 // ignore: depend_on_referenced_packages
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:path/path.dart';
-import 'package:trip_control_app/db/countries_consults.dart';
-import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/gasto_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/db/trip_consults.dart';
-import 'package:trip_control_app/db/compras_consults.dart';
-import 'package:trip_control_app/db/gastos_consults.dart';
+import 'package:alforja/db/countries_consults.dart';
+import 'package:alforja/models/compra_model.dart';
+import 'package:alforja/models/gasto_model.dart';
+import 'package:alforja/models/trip_model.dart';
+import 'package:alforja/db/trip_consults.dart';
+import 'package:alforja/db/compras_consults.dart';
+import 'package:alforja/db/gastos_consults.dart';
 
 class DB {
   static Future<Database> _openDB() async {

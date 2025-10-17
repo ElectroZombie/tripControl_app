@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/utils/tuple.dart';
-import 'package:trip_control_app/widgets/frame_widgets/new_trip_widget.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/models/trip_model.dart';
+import 'package:alforja/utils/tuple.dart';
+import 'package:alforja/widgets/frame_widgets/new_trip_widget.dart';
 
 class NewTripControl extends StatefulWidget {
   const NewTripControl({Key? key}) : super(key: key);

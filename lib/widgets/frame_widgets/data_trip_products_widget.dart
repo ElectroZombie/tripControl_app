@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:trip_control_app/methods/compras_methods.dart';
-import 'package:trip_control_app/methods/gastos_methods.dart';
-import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/gasto_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
-import 'package:trip_control_app/widgets/object_widgets/rentability_widget.dart';
+import 'package:alforja/methods/compras_methods.dart';
+import 'package:alforja/methods/gastos_methods.dart';
+import 'package:alforja/models/compra_model.dart';
+import 'package:alforja/models/gasto_model.dart';
+import 'package:alforja/models/trip_model.dart';
+import 'package:alforja/widgets/object_widgets/rentability_widget.dart';
 
 import '../../utils/tuple.dart';
 
