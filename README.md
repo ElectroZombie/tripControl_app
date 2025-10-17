@@ -1,10 +1,10 @@
-# **Trip Control**
+# **Alforja**
 
-![Trip Control](/assets/images/trip_control.png "Hover text")
+![Trip Control](/assets/images/logo.jpg "Hover text")
 
 ## **A mobile application to support travel checks for purchasing items**
 
-**V1.4.14**
+**V1.5.15**
 
 -----
 

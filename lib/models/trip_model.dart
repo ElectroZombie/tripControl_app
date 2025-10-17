@@ -1,4 +1,4 @@
-import 'package:trip_control_app/models/compra_model.dart';
+import 'package:alforja/models/compra_model.dart';
 
 class TripModel {
   int tripID;

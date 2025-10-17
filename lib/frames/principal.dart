@@ -38,7 +38,7 @@ class Principal extends StatelessWidget {
             IconButton(
               onPressed: () => showSheet(context, colors),
               icon: const Icon(Icons.info),
-              tooltip: "Información",
+              tooltip: "INFORMACIÓN",
             ),
             IconButton(
               onPressed: () => goToTripControl(context),
@@ -47,7 +47,7 @@ class Principal extends StatelessWidget {
             )
           ],
           title: Text(
-            "CONTROL DE VIAJES",
+            "ALFORJA",
             style: TextStyle(fontSize: 20, color: colors.onSurface),
           ),
           leading: const Icon(Icons.calendar_month_outlined),

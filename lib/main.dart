@@ -5,20 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trip_control_app/db/initialize_db.dart';
-import 'package:trip_control_app/frames/calculator.dart';
-import 'package:trip_control_app/frames/login.dart';
-import 'package:trip_control_app/frames/trip_frames/new_trip_control.dart';
-import 'package:trip_control_app/frames/principal.dart';
-import 'package:trip_control_app/frames/trip_frames/current_trip_control.dart';
-import 'package:trip_control_app/frames/trip_frames/trip_data.dart';
-import 'package:trip_control_app/frames/trip_frames/trip_list.dart';
-
 // ignore: depend_on_referenced_packages
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:trip_control_app/frames/trip_frames/update_trip_singleton.dart';
-
 import 'providers/json_provider.dart';
+
+import 'package:alforja/db/initialize_db.dart';
+import 'package:alforja/frames/calculator.dart';
+import 'package:alforja/frames/login.dart';
+import 'package:alforja/frames/trip_frames/new_trip_control.dart';
+import 'package:alforja/frames/principal.dart';
+import 'package:alforja/frames/trip_frames/current_trip_control.dart';
+import 'package:alforja/frames/trip_frames/trip_data.dart';
+import 'package:alforja/frames/trip_frames/update_trip_singleton.dart';
+import 'package:alforja/frames/trip_frames/trip_list.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

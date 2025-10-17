@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
         appBar: AppBar(
           backgroundColor: colors.onPrimaryFixedVariant,
           title: const Text(
-            "LOGIN",
+            "INICIO DE SESIÓN",
             style: TextStyle(fontSize: 20),
           ),
           leading: const Icon(Icons.login),
@@ -151,7 +151,7 @@ class _LoginState extends State<Login> {
                                         checkWord(passC, data.listW, context)
                                       },
                                       style: buttonStyleWidget(colors),
-                                      child: const Text("LOGIN"),
+                                      child: const Text("INICIAR SESIÓN"),
                                     )
                                   ],
                                 )))
