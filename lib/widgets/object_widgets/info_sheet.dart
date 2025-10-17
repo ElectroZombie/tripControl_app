@@ -33,7 +33,7 @@ Widget infoSheet(BuildContext context, ColorScheme colors) {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
-                                  "La aplicación para dispositivos móviles Controlador de Viajes ha sido creada con el objetivo"
+                                  "La aplicación para dispositivos móviles Alforja ha sido creada con el objetivo"
                                   " de brindar un apoyo a las personas que realizan viajes para comprar productos en el extranjero"
                                   " y traer de regreso. Provee de una calculadora de rentabilidad de los productos, así como de un sistema"
                                   " para llevar el control de las compras y gastos de los viajes realizados.",
@@ -69,7 +69,7 @@ Widget infoSheet(BuildContext context, ColorScheme colors) {
                                       horizontal: 10),
                                   child: Text(
                                       "A mobile application to support travel checks for purchasing items\n"
-                                      "v1.4.12\n"
+                                      "v1.5.18\n"
                                       "Author:\n"
                                       "Eric Michel Villavicencio Reyes\n"
                                       "Building Specs:\n"
