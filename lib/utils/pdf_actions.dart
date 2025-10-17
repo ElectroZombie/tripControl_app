@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:pdf/widgets.dart' as pdf_package;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:trip_control_app/db/db_general.dart';
-import 'package:trip_control_app/methods/bar_message_method.dart';
-import 'package:trip_control_app/models/compra_model.dart';
-import 'package:trip_control_app/models/gasto_model.dart';
-import 'package:trip_control_app/models/trip_model.dart';
+import 'package:alforja/db/db_general.dart';
+import 'package:alforja/methods/bar_message_method.dart';
+import 'package:alforja/models/compra_model.dart';
+import 'package:alforja/models/gasto_model.dart';
+import 'package:alforja/models/trip_model.dart';
 
 void exportToPDF(Future<TripModel> data, context) async {
   TripModel trip = await data;
